@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
-import {View} from 'react-native'
+import Start from './Components/Authentication/Start'
+import Login from './Components/Authentication/Login'
+import Register from './Components/Authentication/Register'
+import ForgetPass from './Components/Authentication/ForgetPass'
+
 
 export default class App extends Component{
   render()
   {
     return(
-      <View></View>
+      <ForgetPass></ForgetPass>
     )
   }
 }
