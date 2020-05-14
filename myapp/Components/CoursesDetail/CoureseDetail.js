@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
+import { ListItem } from 'react-native-elements'
 
 
 export default class CoursesDetail extends Component{

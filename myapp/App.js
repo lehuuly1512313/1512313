@@ -8,12 +8,13 @@ import ListCourses from './Components/Courses/ListCourses'
 import CoureseDetail from './Components/CoursesDetail/CoureseDetail'
 import Profile from './Components/Account Management/Profile'
 import Search from './Components/Main/Search'
+import Browser from './Components/Main/Browser'
 
 export default class App extends Component{
   render()
   {
     return(
-      <Search></Search>
+      <Browser></Browser>
     )
   }
 }

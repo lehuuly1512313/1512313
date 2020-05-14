@@ -83,7 +83,11 @@ class Item extends Component{
       }}>
         <View style={{
           flex: 1,
-          flexDirection: 'row'
+          flexDirection: 'row',
+          marginTop: 10,
+            marginBottom: 10,
+            marginLeft: 20,
+            marginRight: 20
         }}>
           
           <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
@@ -93,6 +97,7 @@ class Item extends Component{
             flexDirection: 'column',
             height: 120,
             paddingLeft: 10,
+            justifyContent: 'center'
           }}>
             <Text style={{
               color: 'white',
@@ -128,7 +133,9 @@ class Item extends Component{
         </View>
         <View style={{
           height: 1,
-          backgroundColor: 'white'
+          backgroundColor: 'white',
+          marginLeft: 20,
+          marginRight: 20
         }}></View>
       </View>
     )
