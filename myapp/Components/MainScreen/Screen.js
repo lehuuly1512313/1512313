@@ -41,6 +41,7 @@ class Screen extends Component {
           <Stack.Screen name="Sum" component={Sum} />
           <Stack.Screen name="ListCourses" component={ListCourses} />
           <Stack.Screen name="CoureseDetail" component={CoureseDetail} />
+          <Stack.Screen name="Profile" component={Profile}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

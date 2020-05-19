@@ -10,12 +10,13 @@ import Profile from './Components/Account Management/Profile'
 import Sum from './Components/Main/Sum'
 import Browser from './Components/Main/Browser'
 import Screen from './Components/MainScreen/Screen'
+import Setting from './Components/Account Management/Setting'
 
 export default class App extends Component{
   render()
   {
     return(
-      <Screen></Screen>
+      <Setting></Setting>
     )
   }
 }
