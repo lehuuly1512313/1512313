@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
-
+import { Avatar } from "react-native-elements";
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 const data1 = [
   {
@@ -170,11 +170,35 @@ export default class Browser extends Component{
     </View>
      )
     }
-
-        let screenwidth = Dimensions.get('window').width
-        let screenheight = Dimensions.get('window').height
+    let screenwidth = Dimensions.get('window').width
+    let screenheight = Dimensions.get('window').height
+    let listimg = []
+    for (let index = 0; index < 10; index++) {
+      listimg.push(
+        <View>
+        <Image style={{
+          width: screenwidth-160,
+          height: 80,
+          marginBottom: 5,
+          marginRight: 10
+        }} source={require('../../img/bac.jpg')}></Image>
+         <Image style={{
+          width: screenwidth-160,
+          height: 80,
+          marginTop: 5
+        }} source={require('../../img/bac.jpg')}></Image>
+      </View>
+      )
+    }
+       
     return(
-      <View style={styles.container}>
+     
+      <View style={{
+        width: '100%',
+        height: screenheight-124,
+        backgroundColor: '#1b2133',
+      
+      }}>
         <ScrollView>
         <Image style={{
           width: screenwidth - 40,
@@ -188,6 +212,14 @@ export default class Browser extends Component{
           margin: 20,
           
         }} source={{uri: 'https://cdn.ragan.com/wp-content/uploads/2019/07/color_marketing_psychology.jpg'}}></Image>
+        <ScrollView horizontal={true}
+        showsHorizontalScrollIndicator={false}>
+          <View style={{
+            flexDirection: 'row',
+            height: 160,
+            marginLeft: 20,
+          }}>{listimg}</View>
+        </ScrollView>
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
@@ -230,10 +262,13 @@ export default class Browser extends Component{
           <View style={{
             flexDirection:'row',
             marginLeft: 20,
+            marginBottom: 10,
           }}>{topau}</View>
         </ScrollView>
         </ScrollView>
+        
       </View>
+      
     )
   }
 }
@@ -243,6 +278,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       backgroundColor: '#1b2133',
+    
   },
   flex:{
       marginLeft: 20,
@@ -316,10 +352,11 @@ const styles = StyleSheet.create({
     
   },
   txtitem:{
-  
+    color: 'black',
+    fontSize: 22,
+    fontWeight: 'bold',
     flex: 1,
-    alignItems:'center',
-    justifyContent: 'center'
+    marginLeft: 20
   },
   txtitem2:{
       color: 'white',

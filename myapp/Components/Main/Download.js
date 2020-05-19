@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
 
 
 const data = [
@@ -148,8 +148,15 @@ class Item extends Component{
 export default class Download extends Component{
   render()
   {
+    let screenwidth = Dimensions.get('window').width
+    let screenheight = Dimensions.get('window').height
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: screenheight-124,
+        backgroundColor: '#1b2133',
+        justifyContent: 'center',
+      }}>
         <View style={{
           height: 40,
           backgroundColor: 'white',
@@ -163,7 +170,7 @@ export default class Download extends Component{
             marginLeft: 10,
             fontWeight: 'bold',
             flex: 1,
-          }}>Download</Text>
+          }}></Text>
           <View style={{
             marginRight: 10,
             justifyContent:'flex-end'

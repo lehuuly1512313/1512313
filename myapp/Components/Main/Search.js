@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
-
+import {SearchBar} from 'react-native-elements'
 
 const data1 = [
     {
@@ -176,9 +176,11 @@ class All extends Component{
         let datacourse = []
         datacourse.push(data1[0])
         datacourse.push(data1[1])
+       
         let dataauthors = []
         dataauthors.push(data3[0])
         dataauthors.push(data3[1])
+        
         return(
           
             <View style={styles.container}>
@@ -424,8 +426,11 @@ class Authors extends Component{
 }
 
 class Horizontalsroll extends Component{
+
+
     render()
     {
+      
         let screenwidth = Dimensions.get('window').width
         let screenheight = Dimensions.get('window').height
         return(
@@ -439,28 +444,28 @@ class Horizontalsroll extends Component{
                 >
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-124,
+                        height: screenheight-244,
                                 
                     }}>
                        <All></All>
                     </View>
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-124,
+                        height: screenheight-244,
                     }}>
                        <Courses></Courses>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-124,
+                        height: screenheight-244,
                     }}>
                        <Paths></Paths>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-124,
+                        height: screenheight-244,
                     }}>
                        <Authors></Authors>
                     </View>
@@ -476,11 +481,28 @@ class Horizontalsroll extends Component{
 
 
 export default class Search extends Component{
+
+  state = {
+    search: '',
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
     render()
     {
-       
+      const { search } = this.state;
         return(
             <View>
+               
+                    <SearchBar
+                        placeholder="Type Here..."
+                        onChangeText={this.updateSearch}
+                        value={search}
+                        round={true}
+                        lightTheme={true}
+                      />
+                
                 <View style={{
                     height: 50,
                     flexDirection: 'row'
@@ -491,10 +513,7 @@ export default class Search extends Component{
                     <View style={styles.txtitem}><Text>AUTHORS</Text></View>
                 </View>
                 <Horizontalsroll></Horizontalsroll>
-                <View  style={{
-                    height: 50,
-                }}>         
-                </View>
+                
             </View>
         )
     }
@@ -505,6 +524,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#1b2133',
+        marginBottom: 50
     },
     flex:{
         marginLeft: 20,

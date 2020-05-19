@@ -5,6 +5,15 @@ const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-8
 
 
 export default class Register extends Component{
+    constructor(props){
+        super(props)
+        this.handlePressSignIn = this.handlePressSignIn.bind(this)
+      }
+    
+      handlePressSignIn = ()=>
+      {
+        this.props.navigation.navigate('Login');
+      }
   render()
   {
     return(
@@ -29,7 +38,7 @@ export default class Register extends Component{
                     <Text style={styles.txtbtn3}>Need help?</Text>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
+                    <TouchableHighlight onPress={this.handlePressSignIn} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>SIGN IN</Text>
                     </TouchableHighlight>
                 </View>

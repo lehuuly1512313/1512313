@@ -4,6 +4,19 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'reac
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class Login extends Component{
+
+    constructor(props){
+        super(props)
+        this.handlePressSSO = this.handlePressSSO.bind(this)
+        
+      }
+    
+      handlePressSSO = ()=>
+      {
+        this.props.navigation.navigate('Sum');
+      }
+
+
   render()
   {
     return(
@@ -28,7 +41,7 @@ export default class Login extends Component{
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
+                    <TouchableHighlight onPress={this.handlePressSSO} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>Use single sign-on (sso)</Text>
                     </TouchableHighlight>
                 </View>

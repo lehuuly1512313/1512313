@@ -4,6 +4,23 @@ import { Text, View, StyleSheet, TouchableHighlight,Image } from 'react-native';
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class Start extends Component{
+
+  constructor(props){
+    super(props)
+    this.handlePressSignIn = this.handlePressSignIn.bind(this)
+    this.handlePressSignUp = this.handlePressSignUp.bind(this)
+  }
+
+  handlePressSignIn = ()=>
+  {
+    this.props.navigation.navigate('Login');
+  }
+
+  handlePressSignUp=()=>
+  {
+    this.props.navigation.navigate('Register');
+  }
+
   render()
   {
     return(
@@ -17,12 +34,12 @@ export default class Start extends Component{
                     <View style={{marginLeft: 5}}><Text style={styles.txtbtn4}>PLURALSIGHT</Text></View>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
+                    <TouchableHighlight onPress={this.handlePressSignIn} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>SIGN IN</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
+                    <TouchableHighlight onPress={this.handlePressSignUp} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>SIGN UP</Text>
                     </TouchableHighlight>
                 </View>

@@ -7,14 +7,15 @@ import Download from './Components/Main/Download'
 import ListCourses from './Components/Courses/ListCourses'
 import CoureseDetail from './Components/CoursesDetail/CoureseDetail'
 import Profile from './Components/Account Management/Profile'
-import Search from './Components/Main/Search'
+import Sum from './Components/Main/Sum'
 import Browser from './Components/Main/Browser'
+import Screen from './Components/MainScreen/Screen'
 
 export default class App extends Component{
   render()
   {
     return(
-      <Browser></Browser>
+      <Screen></Screen>
     )
   }
 }
