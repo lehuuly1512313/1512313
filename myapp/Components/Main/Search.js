@@ -425,6 +425,30 @@ class Authors extends Component{
   }
 }
 
+class NonSearchKey extends Component{
+  render()
+  {
+    let screenwidth = Dimensions.get('window').width
+    let screenheight = Dimensions.get('window').height
+    return(
+    <View style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: screenwidth,
+      height: screenheight-191,
+      backgroundColor: '#1b2133',
+    }}>
+      <Text style={
+        {
+          fontSize: 30,
+          color: 'white',
+        }
+      }>No content</Text>
+    </View>
+    )
+  }
+}
+
 class Horizontalsroll extends Component{
 
 
@@ -492,6 +516,30 @@ export default class Search extends Component{
     render()
     {
       const { search } = this.state;
+      let rend = null
+      if(this.state.search==='')
+      {
+        rend = (
+          <NonSearchKey></NonSearchKey>
+        )
+      }
+      else
+      {
+        rend = (
+          <View>
+            <View style={{
+              height: 50,
+              flexDirection: 'row'
+          }}>
+              <View style={styles.txtitem}><Text>ALL</Text></View>
+              <View style={styles.txtitem}><Text>COURSES</Text></View>
+              <View style={styles.txtitem}><Text>PATHS</Text></View>
+              <View style={styles.txtitem}><Text>AUTHORS</Text></View>
+            </View>
+            <Horizontalsroll></Horizontalsroll>
+          </View>
+        )
+      }
         return(
             <View>
                
@@ -502,18 +550,7 @@ export default class Search extends Component{
                         round={true}
                         lightTheme={true}
                       />
-                
-                <View style={{
-                    height: 50,
-                    flexDirection: 'row'
-                }}>
-                    <View style={styles.txtitem}><Text>ALL</Text></View>
-                    <View style={styles.txtitem}><Text>COURSES</Text></View>
-                    <View style={styles.txtitem}><Text>PATHS</Text></View>
-                    <View style={styles.txtitem}><Text>AUTHORS</Text></View>
-                </View>
-                <Horizontalsroll></Horizontalsroll>
-                
+                {rend}
             </View>
         )
     }

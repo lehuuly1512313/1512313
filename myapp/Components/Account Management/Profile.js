@@ -7,19 +7,7 @@ export default class Profile extends Component{
   {
     return(
       <View style={styles.container}>
-            <View style={{
-              height: 40,
-              backgroundColor: 'white',
-              flexDirection: 'row',          
-            }}>
-              <Text style={{
-                fontSize: 20,
-                color: 'black',
-                marginLeft: 10,
-                fontWeight: 'bold',
-                flex: 1,
-              }}>Profile</Text>
-            </View>
+            
           <View style={{
             justifyContent:'center',
            

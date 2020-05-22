@@ -19,19 +19,6 @@ export default class CoursesDetail extends Component{
     }
     return(
       <View style={styles.container}>
-        <View style={{
-          height: 40,
-          backgroundColor: 'white',
-          flexDirection: 'row',          
-        }}>
-          <Text style={{
-            fontSize: 20,
-            color: 'black',
-            marginLeft: 10,
-            fontWeight: 'bold',
-            flex: 1,
-          }}>Courses Detail</Text>
-        </View>
        
         <ScrollView style={{ alignSelf: 'stretch' }}>
             <DropDownItem

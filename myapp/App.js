@@ -11,12 +11,14 @@ import Sum from './Components/Main/Sum'
 import Browser from './Components/Main/Browser'
 import Screen from './Components/MainScreen/Screen'
 import Setting from './Components/Account Management/Setting'
+import Videoplayer from './Components/Others/Videoplayer'
+import Subscription from './Components/Others/Subscription'
 
 export default class App extends Component{
   render()
   {
     return(
-      <Setting></Setting>
+     <Videoplayer></Videoplayer>
     )
   }
 }

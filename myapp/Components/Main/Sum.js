@@ -94,7 +94,9 @@ export default class Sum extends Component{
           <Text style={styles.txtitem}>{this.state.name}</Text>
           <View style={{
               flexDirection: 'row'
-          }}><Image source={{uri: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg'}} style={{
+          }} onStartShouldSetResponder={
+              ()=>{this.props.navigation.navigate('Profile')}
+          }><Image source={{uri: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg'}} style={{
             width: 40,
             height: 40,
             borderRadius: 20,
@@ -105,16 +107,16 @@ export default class Sum extends Component{
         </View>
         </View>
                 {this.state.showhome ? (
-                    <Home></Home>
+                    <Home navigation={this.props.navigation}></Home>
                 ): null}
                 {this.state.showdownload ? (
-                    <Download></Download>
+                    <Download navigation={this.props.navigation}></Download>
                 ): null}
                 {this.state.showbrowse ? (
-                    <Browser></Browser>
+                    <Browser navigation={this.props.navigation}></Browser>
                 ): null}
                 {this.state.showsearch ? (
-                    <Search></Search>
+                    <Search navigation={this.props.navigation}></Search>
                 ): null}
 
            

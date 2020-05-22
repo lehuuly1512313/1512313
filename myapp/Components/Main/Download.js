@@ -53,9 +53,47 @@ const data = [
   }
 ]
 
-
+class NoContentDownload extends Component{
+  render()
+  {
+    let screenwidth = Dimensions.get('window').width
+    let screenheight = Dimensions.get('window').height
+    return(
+    <View style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: screenwidth,
+      height: screenheight-191,
+      backgroundColor: '#1b2133',
+    }}>
+      <Text style={
+        {
+          fontSize: 30,
+          color: 'white',
+        }
+      }>No content</Text>
+    </View>
+    )
+  }
+}
 
 class Item extends Component{
+
+  constructor(props){
+    super(props)
+    this.handlePressSSO = this.handlePressSSO.bind(this)
+    this.handelvideoplayer = this.handelvideoplayer.bind(this)
+  }
+
+  handlePressSSO = ()=>
+  {
+    this.props.navigation.navigate('CoureseDetail');
+  }
+
+  handelvideoplayer = ()=>{
+    this.props.navigation.navigate('Videoplayer');
+  }
+
   render()
   {
     var liststar = [];
@@ -89,8 +127,9 @@ class Item extends Component{
             marginLeft: 20,
             marginRight: 20
         }}>
-          
+          <View onStartShouldSetResponder={this.handelvideoplayer}>
           <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
+          </View>
           
           <View style={{
             flex: 1,
@@ -103,7 +142,7 @@ class Item extends Component{
               color: 'white',
               fontSize: 18
             }}>{this.props.item.name}</Text>
-            <Text style={styles.txtitem}>{this.props.item.description}</Text>
+            <Text onPress={this.handlePressSSO} style={styles.txtitem}>{this.props.item.description}</Text>
             <View style={{
               flexDirection: 'row',
               
@@ -146,6 +185,7 @@ class Item extends Component{
 
 
 export default class Download extends Component{
+  
   render()
   {
     let screenwidth = Dimensions.get('window').width
@@ -174,7 +214,7 @@ export default class Download extends Component{
           <View style={{
             marginRight: 10,
             justifyContent:'flex-end'
-          }}>
+          }} onStartShouldSetResponder={this.handlePressSSO}>
           <Text style={{
             fontSize: 20,
             color: '#0000ff',
@@ -188,7 +228,7 @@ export default class Download extends Component{
           data={data}
           renderItem={({index, item})=>{
             return(
-              <Item item={item} index={index}></Item>
+                <Item item={item} index={index} navigation={this.props.navigation}></Item>
             )
           }}
           >
