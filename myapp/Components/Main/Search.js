@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import {SearchBar} from 'react-native-elements'
+import { Icon } from 'react-native-elements'
+
+
 
 const data1 = [
     {
@@ -65,10 +68,13 @@ const data1 = [
             marginBottom: 10,
             marginLeft: 20,
             marginRight: 20
+          }} >
+            <TouchableHighlight onPress={()=>{
+            this.props.navigation.navigate(this.props.to)
           }}>
             
             <Image style={this.props.strech} source={{uri: this.props.item.img}}></Image>
-            
+            </TouchableHighlight>
             <View style={{
               flex: 1,
               flexDirection: 'column',
@@ -86,6 +92,7 @@ const data1 = [
               }}>
               </View>
             </View>
+            
   
           </View>
           <View style={{
@@ -132,10 +139,12 @@ const data1 = [
             marginBottom: 10,
             marginLeft: 20,
             marginRight: 20
+          }} >
+            <TouchableHighlight onPress={()=>{
+            this.props.navigation.navigate(this.props.to)
           }}>
-            
             <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
-            
+            </TouchableHighlight>
             <View style={{
               flex: 1,
               flexDirection: 'column',
@@ -156,7 +165,16 @@ const data1 = [
                 <Text style={styles.txtitem2}>(200)</Text>
               </View>
             </View>
-  
+            <View style={{
+            justifyContent: 'center',
+            alignItems:'center',
+            
+          }}>
+            <TouchableHighlight>
+              <Icon name='more-vert' size={50} color={'white'}/>
+            </TouchableHighlight>
+            
+          </View>
           </View>
           <View style={{
             height: 1,
@@ -219,7 +237,7 @@ class All extends Component{
                     data={datacourse}
                     renderItem={({index, item})=>{
                     return(
-                    <Item item={item} index={index}></Item>
+                    <Item item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -303,7 +321,7 @@ class All extends Component{
                     data={dataauthors}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech3}></Itempath>
+                    <Itempath item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itempath>
                     )
                 }}
                 >
@@ -350,7 +368,7 @@ class Courses extends Component{
                 data={data1}
                 renderItem={({index, item})=>{
                     return(
-                    <Item item={item} index={index}></Item>
+                    <Item item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -414,7 +432,7 @@ class Authors extends Component{
                     data={data3}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech3}></Itempath>
+                    <Itempath item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itempath>
                     )
                 }}
                 >
@@ -471,27 +489,27 @@ class Horizontalsroll extends Component{
                         height: screenheight-244,
                                 
                     }}>
-                       <All></All>
+                       <All navigation={this.props.navigation}></All>
                     </View>
                     <View style={{
                         width: screenwidth,
                         height: screenheight-244,
                     }}>
-                       <Courses></Courses>
-                    </View>
-
-                    <View style={{
-                        width: screenwidth,
-                        height: screenheight-244,
-                    }}>
-                       <Paths></Paths>
+                       <Courses navigation={this.props.navigation}></Courses>
                     </View>
 
                     <View style={{
                         width: screenwidth,
                         height: screenheight-244,
                     }}>
-                       <Authors></Authors>
+                       <Paths navigation={this.props.navigation}></Paths>
+                    </View>
+
+                    <View style={{
+                        width: screenwidth,
+                        height: screenheight-244,
+                    }}>
+                       <Authors navigation={this.props.navigation}></Authors>
                     </View>
                     </ScrollView>
                     
@@ -536,7 +554,7 @@ export default class Search extends Component{
               <View style={styles.txtitem}><Text>PATHS</Text></View>
               <View style={styles.txtitem}><Text>AUTHORS</Text></View>
             </View>
-            <Horizontalsroll></Horizontalsroll>
+            <Horizontalsroll navigation={this.props.navigation}></Horizontalsroll>
           </View>
         )
       }

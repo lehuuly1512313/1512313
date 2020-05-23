@@ -18,7 +18,7 @@ export default class App extends Component{
   render()
   {
     return(
-     <Videoplayer></Videoplayer>
+     <Screen></Screen>
     )
   }
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
-
+import { Icon } from 'react-native-elements'
 
 const data = [
   {
@@ -127,9 +127,9 @@ class Item extends Component{
             marginLeft: 20,
             marginRight: 20
         }}>
-          <View onStartShouldSetResponder={this.handelvideoplayer}>
+          <TouchableHighlight onPress={this.handelvideoplayer}>
           <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
-          </View>
+          </TouchableHighlight>
           
           <View style={{
             flex: 1,
@@ -154,17 +154,11 @@ class Item extends Component{
 
           <View style={{
             justifyContent: 'center',
-            backgroundColor: 'gray',
-            borderRadius: 5,
-            marginBottom: 5,
-            marginTop: 5,
+            alignItems:'center',
+            
           }}>
             <TouchableHighlight>
-                <Text style={{
-                  fontSize: 16,
-                  color: 'white',
-                  marginRight: 5
-                }}>Delete</Text>
+              <Icon name='delete' size={40} color={'white'}/>
             </TouchableHighlight>
             
           </View>

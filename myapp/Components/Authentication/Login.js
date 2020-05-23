@@ -8,12 +8,17 @@ export default class Login extends Component{
     constructor(props){
         super(props)
         this.handlePressSSO = this.handlePressSSO.bind(this)
-        
+        this.handleforgetpassword = this.handleforgetpassword.bind(this)
       }
     
       handlePressSSO = ()=>
       {
         this.props.navigation.navigate('Sum');
+      }
+
+      handleforgetpassword=()=>
+      {
+        this.props.navigation.navigate('ForgetPass');
       }
 
 
@@ -36,7 +41,7 @@ export default class Login extends Component{
                     <Text style={styles.txtbtn3}>Need help?</Text>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
+                    <TouchableHighlight onPress={this.handleforgetpassword} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>Forget Password</Text>
                     </TouchableHighlight>
                 </View>

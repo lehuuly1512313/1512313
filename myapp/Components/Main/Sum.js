@@ -93,16 +93,20 @@ export default class Sum extends Component{
         }}>
           <Text style={styles.txtitem}>{this.state.name}</Text>
           <View style={{
-              flexDirection: 'row'
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems:'center',
+              marginRight: 20
           }} onStartShouldSetResponder={
               ()=>{this.props.navigation.navigate('Profile')}
           }><Image source={{uri: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg'}} style={{
             width: 40,
             height: 40,
             borderRadius: 20,
-            marginRight: 20
+            marginRight: 5
+
           }}></Image>
-         
+         <Icon name='more-vert' size={40} color={'black'}/>
           </View>
         </View>
         </View>

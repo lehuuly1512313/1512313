@@ -114,13 +114,24 @@ export default class Home extends Component{
           marginBottom: 20,
           flex: 1
         }}>Continue learning</Text>
-        <Text style={{
+        <View style={{
           marginRight: 20,
-          fontSize: 18,
-          color: 'white',
           marginTop: 20,
-          marginBottom: 20
-        }}>see all ></Text>
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: 'white',
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={'white'}/>
+          </View>
         </View>
         <ScrollView horizontal={true}
         showsHorizontalScrollIndicator={false}>
@@ -141,13 +152,25 @@ export default class Home extends Component{
           marginBottom: 20,
           flex: 1
         }}>Paths</Text>
-        <Text style={{
+        <View style={{
           marginRight: 20,
-          fontSize: 18,
-          color: 'white',
           marginTop: 20,
-          marginBottom: 20
-        }}>see all ></Text>
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: 'white',
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={'white'}/>
+          </View>
+        
         </View>
         <ScrollView horizontal={true}
         showsHorizontalScrollIndicator={false}>
@@ -168,13 +191,24 @@ export default class Home extends Component{
           marginBottom: 20,
           flex: 1
         }}>Channels</Text>
-        <Text style={{
+        <View style={{
           marginRight: 20,
-          fontSize: 18,
-          color: 'white',
           marginTop: 20,
-          marginBottom: 20
-        }}>see all ></Text>
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: 'white',
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={'white'}/>
+          </View>
         </View>
         <View style={{
             backgroundColor: 'dimgray',
@@ -183,14 +217,14 @@ export default class Home extends Component{
             
             height: 200,
           }}>
-            <Icon name='home' size={55}></Icon>
+            <Icon name='blur-on' size={55}></Icon>
             <Text style={{
               color:'white',
               fontSize: 16,
               marginTop: 60,
               marginLeft: 20,
               marginRight: 20
-            }}>Chung toi la nhung con bo vui nhon, chung toi la nhung con bo vui</Text>
+            }}>“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.</Text>
           </View>
         </ScrollView> 
       </View>

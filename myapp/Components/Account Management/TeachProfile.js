@@ -3,7 +3,8 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,Sc
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
 
-export default class Profile extends Component{
+
+export default class TeachProfile extends Component{
   render()
   {
     return(
@@ -38,7 +39,7 @@ export default class Profile extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Your Infomation</Text>
+                  }}>Personal Infomation</Text>
                   <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
                 </View>
               }>
@@ -48,13 +49,10 @@ export default class Profile extends Component{
                   <Text style={styles.txtitem}>Email: lehuuly1512313@gmail.com</Text>
                   <Text style={styles.txtitem}>Phone: 0338314081</Text>
                   <Text style={styles.txtitem}>Country: Viet Nam</Text>
-                  <Text style={styles.txtitem}>Job: Student</Text>
                   <Text style={styles.txtitem}>Company: HMCMUS</Text>
                   
               </View>
-              <TouchableHighlight style={styles.btn}>
-                    <Text style={styles.txtitem2}>Edit</Text>
-              </TouchableHighlight>
+             
             </DropDownItem>
             <DropDownItem
               key={1}
@@ -89,12 +87,15 @@ export default class Profile extends Component{
                  flex: 2
                }}>
                   <Text style={styles.txtitem}>Number of courses attended: 10</Text>
-                  <Text style={styles.txtitem}>Experience (years): 1</Text>
-                  <Text style={styles.txtitem}>highest point: 100</Text> 
-                  <Text style={styles.txtitem}>Bonus (times): 3</Text> 
+                  <Text style={styles.txtitem}>Experience (years): 3</Text> 
               </View>
              </View>
             </DropDownItem>
+            <View style={styles.flex}>
+                    <TouchableHighlight onPress={this.handlePressSSO} style={styles.btn2}>
+                        <Text style={styles.txtbtn2}>Follow</Text>
+                    </TouchableHighlight>
+                </View>
           </ScrollView>
       </View>
     )

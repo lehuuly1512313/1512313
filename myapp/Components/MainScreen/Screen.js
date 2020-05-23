@@ -14,6 +14,7 @@ import Profile from '../../Components/Account Management/Profile'
 import Sum from '../../Components/Main/Sum'
 import Browser from '../../Components/Main/Browser'
 import Videoplayer from '../../Components/Others/Videoplayer'
+import TeachProfile from '../../Components/Account Management/TeachProfile'
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,7 @@ class Screen extends Component {
           <Stack.Screen name="CoureseDetail" component={CoureseDetail} />
           <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Videoplayer" component={Videoplayer}/>
+          <Stack.Screen name="TeachProfile" component={TeachProfile}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
           
         </Stack.Navigator>

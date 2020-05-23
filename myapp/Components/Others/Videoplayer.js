@@ -73,7 +73,6 @@ export default class Videoplayer extends Component{
 
                 }}
                 rate={1.0}
-                paused={true}
                 resizeMode='contain'
                 muted={false}
                 volume={1.0}

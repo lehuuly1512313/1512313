@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Avatar } from "react-native-elements";
+import { Icon } from 'react-native-elements'
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 const data1 = [
   {
@@ -120,7 +121,6 @@ export default class Browser extends Component{
       }}><Text style={styles.txtitem2}>{data[index]}</Text></View>
       )
     }
-
     let paths = []
     for (let index = 0; index < data1.length; index++) {
       paths.push(
@@ -164,8 +164,12 @@ export default class Browser extends Component{
         justifyContent: 'center',
         alignItems: 'center'
 
+      }} >
+      <TouchableHighlight onPress={()=>{
+        this.props.navigation.navigate('TeachProfile')
       }}>
       <Image style={styles.strech2} source={{uri: data2[index].img}}></Image>
+      </TouchableHighlight>
       <Text style={styles.txtitem2}>{data2[index].name}</Text>
     </View>
      )
@@ -233,15 +237,39 @@ export default class Browser extends Component{
             flexDirection: 'row',
             height: 40,
             marginLeft: 20,
-          }}>{popskills}</View>
+          }} >{popskills}</View>
         </ScrollView>
+        <View style={{
+          flexDirection: 'row'
+        }}>
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
           color: 'white',
           marginTop: 20,
-          marginBottom: 20
+          marginBottom: 20,
+          flex: 1
         }}>Paths</Text>
+        <View style={{
+          marginRight: 20,
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: 'white',
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={'white'}/>
+          </View>
+        
+        </View>
         <ScrollView horizontal={true}
         showsHorizontalScrollIndicator={false}>
           <View style={{
@@ -250,20 +278,43 @@ export default class Browser extends Component{
             marginLeft: 20,
           }}>{paths}</View>
         </ScrollView>
+        <View style={{
+          flexDirection: 'row'
+        }}>
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
           color: 'white',
           marginTop: 20,
-          marginBottom: 20
+          marginBottom: 20,
+          flex: 1
         }}>Top authors</Text>
+        <View style={{
+          marginRight: 20,
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: 'white',
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={'white'}/>
+          </View>
+        </View>
          <ScrollView horizontal={true}
         showsHorizontalScrollIndicator={false}>
           <View style={{
             flexDirection:'row',
             marginLeft: 20,
             marginBottom: 10,
-          }}>{topau}</View>
+          }} >{topau}</View>
         </ScrollView>
         </ScrollView>
         

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
-
+import { Icon } from 'react-native-elements'
 
 export default class Setting extends Component{
   render()
@@ -23,7 +23,7 @@ export default class Setting extends Component{
         }}>Setting</Text>
       </View>
      
-      <ScrollView style={{ alignSelf: 'stretch' }}>
+      <ScrollView style={{ alignSelf: 'stretch',}}>
           <DropDownItem
             key={1}
             style={styles.dropDownItem}
@@ -44,7 +44,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Account</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -79,7 +79,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Subcription</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -113,7 +113,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Communication Preferences</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -148,7 +148,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Theme</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -183,7 +183,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Require Wi Fi for streaming</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -218,7 +218,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Require Wi Fi for Downloading</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -252,7 +252,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Send feedback</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -288,7 +288,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Contact support</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -322,7 +322,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>App version</Text>
-                <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
