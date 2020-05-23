@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
+import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 
@@ -456,6 +456,7 @@ class NonSearchKey extends Component{
       height: screenheight-191,
       backgroundColor: '#1b2133',
     }}>
+      
       <Text style={
         {
           fontSize: 30,

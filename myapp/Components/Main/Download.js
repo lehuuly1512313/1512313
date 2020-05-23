@@ -4,48 +4,56 @@ import { Icon } from 'react-native-elements'
 
 const data = [
   {
+    key: 'dsfgdfgdfgfdg123',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 3
   },
   {
+    key: 'dsfgdfgdfgfdg223',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 4
   },
   {
+    key: 'dsfgdfgdfgfdg333',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 4.5
   },
   {
+    key: 'dsfgdfgdfgfdg12343',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 3.5
   },
   {
+    key: 'dsfgdfgdfgfdg123243',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 2
   },
   {
+    key: 'dsfgdfgdfgfdg1232323',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 2.5
   },
   {
+    key: 'dsfgdfgdfgfdg12fd3',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
     ratting: 2.5
   },
   {
+    key: 'dsfgddfffgdfgfdg123',
     name: 'react js',
     img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
     description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
@@ -128,7 +136,7 @@ class Item extends Component{
             marginRight: 20
         }}>
           <TouchableHighlight onPress={this.handelvideoplayer}>
-          <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
+          <Image style={styles.strech} key={this.props.item.key} source={{uri: this.props.item.img}}></Image>
           </TouchableHighlight>
           
           <View style={{
