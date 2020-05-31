@@ -1,9 +1,38 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
+import { Text,Picker, Switch, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
 
 export default class Setting extends Component{
+
+
+  constructor(props)
+  {
+    super(props)
+    this.state={
+      isEnabled: false,
+      isEnabled1: false
+    }
+    this.toggleSwitch = this.toggleSwitch.bind(this)
+    this.toggleSwitch1 = this.toggleSwitch1.bind(this)
+  }
+
+  toggleSwitch=()=>{
+    let {isEnabled} = this.state;
+    isEnabled = !isEnabled
+    this.setState({
+      isEnabled
+    })
+  }
+
+  toggleSwitch1=()=>{
+    let {isEnabled1} = this.state;
+    isEnabled1 = !isEnabled1
+    this.setState({
+      isEnabled1
+    })
+  }
+
   render()
   {
     return(<View style={styles.container}>
@@ -183,7 +212,14 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Require Wi Fi for streaming</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
+                <Switch
+                  trackColor={{ false: "darkgray", true: "#006400" }}
+                  thumbColor={ "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={this.toggleSwitch}
+                  value={this.state.isEnabled}
+                  style={{ transform:[{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
+                />
               </View>
             }>
            <View style={{
@@ -218,7 +254,16 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Require Wi Fi for Downloading</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
+              
+                 <Switch
+                  trackColor={{ false: "darkgray", true: "#006400" }}
+                  thumbColor={"#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={this.toggleSwitch1}
+                  value={this.state.isEnabled1}
+                  style={{ transform:[{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
+                />
+                
               </View>
             }>
            <View style={{

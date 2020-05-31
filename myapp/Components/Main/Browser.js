@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
-import { Avatar } from "react-native-elements";
 import { Icon } from 'react-native-elements'
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 const data1 = [

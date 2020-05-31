@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Icon } from 'react-native-elements'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
+import { Text,  View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import Search from './Search'
 import Browser from './Browser'
 import Download from './Download'
