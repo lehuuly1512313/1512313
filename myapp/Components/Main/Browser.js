@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
+import {Teachers} from './../../Data/Teacher'
+import {Mycontext} from './../../Context/Mycontext'
+
+
+
+
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 const data1 = [
   {
@@ -156,7 +162,8 @@ export default class Browser extends Component{
     }
 
     let topau = []
-    for (let index = 0; index < data2.length; index++) {
+    var val = this.context
+    for (let index = 0; index < Teachers.length; index++) {
      topau.push(
       <View style={{
         marginRight: 20,
@@ -165,11 +172,12 @@ export default class Browser extends Component{
 
       }} >
       <TouchableHighlight onPress={()=>{
+        val.toggleTeacher(Teachers[index])
         this.props.navigation.navigate('TeachProfile')
       }}>
-      <Image style={styles.strech2} source={{uri: data2[index].img}}></Image>
+      <Image style={styles.strech2} source={{uri: Teachers[index].Avatar}}></Image>
       </TouchableHighlight>
-      <Text style={styles.txtitem2}>{data2[index].name}</Text>
+      <Text style={styles.txtitem2}>{Teachers[index].Name}</Text>
     </View>
      )
     }
@@ -322,6 +330,8 @@ export default class Browser extends Component{
     )
   }
 }
+
+Browser.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

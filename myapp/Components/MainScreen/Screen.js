@@ -15,6 +15,7 @@ import Sum from '../../Components/Main/Sum'
 import Browser from '../../Components/Main/Browser'
 import Videoplayer from '../../Components/Others/Videoplayer'
 import TeachProfile from '../../Components/Account Management/TeachProfile'
+import Splashscreen from '../../Components/Others/Splashscreen'
 
 const Stack = createStackNavigator();
 
@@ -27,8 +28,6 @@ class Screen extends Component {
         <Stack.Navigator
         screenOptions={
           {
-            
-            gestureEnabled: true,
             gestureDirection: 'horizontal',
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             ...TransitionSpecs.TransitionIOSSpec
@@ -36,7 +35,8 @@ class Screen extends Component {
         }
         headerMode='screen'
         >
-          <Stack.Screen name="Start" component={Start}/>
+          <Stack.Screen name="Splashscreen" component={Splashscreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="ForgetPass" component={ForgetPass} />
@@ -46,7 +46,6 @@ class Screen extends Component {
           <Stack.Screen name="Videoplayer" component={Videoplayer}/>
           <Stack.Screen name="TeachProfile" component={TeachProfile}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
-          
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import { Icon } from 'react-native-elements'
-import { Text,  View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
+import { Text,  View, StyleSheet, AsyncStorage, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import Search from './Search'
 import Browser from './Browser'
 import Download from './Download'
 import Home from './Home'
+import {Mycontext} from './../../Context/Mycontext'
 
 
 
@@ -18,14 +19,30 @@ export default class Sum extends Component{
         this.showdownload = this.showdownload.bind(this)
         this.showbrowse = this.showbrowse.bind(this)
         this.showsearch = this.showsearch.bind(this)
+        this._retrieveData = this._retrieveData.bind(this)
         this.state ={
             showhome: true,
             showdownload: false,
             showbrowse: false,
             showsearch: false,
-            name: 'Home'
+            name: 'Home',
+            Account: null
         }
+        
     }
+
+    _retrieveData = async (key) => {
+        try {
+          const value = await AsyncStorage.getItem(key);
+          if (value !== null) {
+            this.setState({
+                Account: value
+            })
+            
+          }
+        } catch (error) {
+        }
+      };
 
     showhome=()=>
     {
@@ -79,6 +96,8 @@ export default class Sum extends Component{
     {
         let screenwidth = Dimensions.get('window').width
         let screenheight = Dimensions.get('window').height
+        var val = this.context
+        console.log(val)
         return(
             <View>
                  <View>
@@ -99,7 +118,7 @@ export default class Sum extends Component{
               marginRight: 20
           }} onStartShouldSetResponder={
               ()=>{this.props.navigation.navigate('Profile')}
-          }><Image source={{uri: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg'}} style={{
+          }><Image source={{uri: `${val.Account.Avatar}`}} style={{
             width: 40,
             height: 40,
             borderRadius: 20,
@@ -139,6 +158,8 @@ export default class Sum extends Component{
         )
     }
 }
+
+Sum.contextType = Mycontext
 
 const styles = StyleSheet.create({
 

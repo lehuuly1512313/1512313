@@ -13,12 +13,48 @@ import Screen from './Components/MainScreen/Screen'
 import Setting from './Components/Account Management/Setting'
 import Videoplayer from './Components/Others/Videoplayer'
 import Subscription from './Components/Others/Subscription'
+import Splashscreen from './Components/Others/Splashscreen'
+import {Mycontext} from './Context/Mycontext'
+
 
 export default class App extends Component{
+
+  constructor(props){
+    super(props)
+    this.toggleAccount = (Account) => {
+      this.setState({
+        Account
+      })
+    }  
+    this.toggleTeacher = (Teacher) => {
+      this.setState({
+        Teacher
+      })
+    }  
+
+    this.toggleCourses = (Courses) => {
+      this.setState({
+        Courses
+      })
+    }  
+    this.state={
+      Account: null,
+      Teacher: null,
+      Courses: null,
+      toggleAccount: this.toggleAccount,
+      toggleTeacher: this.toggleTeacher,
+      toggleCourses: this.toggleCourses
+    }
+
+  }
+
   render()
   {
     return(
-    <Setting></Setting>
+
+      <Mycontext.Provider value={this.state}>
+          <Screen ></Screen>
+      </Mycontext.Provider>
     )
   }
 }

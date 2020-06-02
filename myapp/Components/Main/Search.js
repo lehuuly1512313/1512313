@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-
+import {Courses} from './../../Data/Courses'
+import {Teachers} from './../../Data/Teacher'
 
 
 const data1 = [

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
-
+import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
+import {Accounts} from '../../Data/Account'
+import {Mycontext} from './../../Context/Mycontext'
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class Login extends Component{
@@ -9,6 +10,14 @@ export default class Login extends Component{
         super(props)
         this.handlePressSSO = this.handlePressSSO.bind(this)
         this.handleforgetpassword = this.handleforgetpassword.bind(this)
+        this.handleAccount = this.handleAccount.bind(this)
+        this.handlePassword = this.handlePassword.bind(this)
+        this._storeData = this._storeData.bind(this)
+        this.Login = this.Login.bind(this)
+        this.state={
+            username: '',
+            password: ''
+        }
       }
     
       handlePressSSO = ()=>
@@ -19,6 +28,44 @@ export default class Login extends Component{
       handleforgetpassword=()=>
       {
         this.props.navigation.navigate('ForgetPass');
+      }
+
+      handleAccount=(txt)=>{
+          this.setState({
+            username: txt
+          })
+      }
+
+      handlePassword=(txt)=>{
+        this.setState({
+            password: txt
+          })
+      }
+
+      _storeData = async (key, data) => {
+        try {
+          await AsyncStorage.setItem(
+            key,
+            data
+          );
+        } catch (error) {
+        }
+      };
+
+      Login = ()=>{
+          var {username, password} = this.state
+          let val = this.context
+          const item = Accounts.map((value)=>{
+              if(value.Username === username && value.Password === password)
+              {
+                val.toggleAccount(value)
+                this.props.navigation.navigate('Sum');
+              }
+              else
+              {
+                  alert('Tai khoan hoac mat khau khong chinh xac')
+              }
+          })
       }
 
 
@@ -33,7 +80,7 @@ export default class Login extends Component{
                     <TextInput onChangeText={this.handlePassword} style={styles.textin1} secureTextEntry={true}></TextInput>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
+                    <TouchableHighlight onPress={this.Login} style={styles.btn}>
                         <Text style={styles.txtbtn}>SIGN IN</Text>
                     </TouchableHighlight>
                 </View>
@@ -54,6 +101,8 @@ export default class Login extends Component{
     )
   }
 }
+
+Login.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

@@ -2,11 +2,13 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
+import {Mycontext} from './../../Context/Mycontext'
 
 
 export default class TeachProfile extends Component{
   render()
   {
+    var val = this.context
     return(
       <View style={styles.container}>
             
@@ -18,7 +20,7 @@ export default class TeachProfile extends Component{
               alignItems:'center',
               marginTop: 10
             }}>
-            <Image style={styles.strech} source={{uri: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png'}}></Image>
+            <Image style={styles.strech} source={{uri: `${val.Teacher.Avatar}`}}></Image>
             </View>
         </View>
         <ScrollView style={{ alignSelf: 'stretch' }}>
@@ -45,11 +47,11 @@ export default class TeachProfile extends Component{
               }>
              
                <View >
-                  <Text style={styles.txtitem}>Name: Le Huu Ly</Text>
-                  <Text style={styles.txtitem}>Email: lehuuly1512313@gmail.com</Text>
-                  <Text style={styles.txtitem}>Phone: 0338314081</Text>
-                  <Text style={styles.txtitem}>Country: Viet Nam</Text>
-                  <Text style={styles.txtitem}>Company: HMCMUS</Text>
+                  <Text style={styles.txtitem}>Name: {val.Teacher.Name}</Text>
+                  <Text style={styles.txtitem}>Email: {val.Teacher.Email}</Text>
+                  <Text style={styles.txtitem}>Phone: {val.Teacher.Phone}</Text>
+                  <Text style={styles.txtitem}>Country: {val.Teacher.Country}</Text>
+                  <Text style={styles.txtitem}>Company: {val.Teacher.Company}</Text>
                   
               </View>
              
@@ -86,8 +88,8 @@ export default class TeachProfile extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Number of courses attended: 10</Text>
-                  <Text style={styles.txtitem}>Experience (years): 3</Text> 
+                  <Text style={styles.txtitem}>Number of courses attended: {val.Teacher.Nofca}</Text>
+                  <Text style={styles.txtitem}>Experience (years): {val.Teacher.Experience}</Text>
               </View>
              </View>
             </DropDownItem>
@@ -101,6 +103,8 @@ export default class TeachProfile extends Component{
     )
   }
 }
+
+TeachProfile.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

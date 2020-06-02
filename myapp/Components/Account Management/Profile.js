@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
+import {Mycontext} from './../../Context/Mycontext'
 
 export default class Profile extends Component{
   render()
   {
+    var val = this.context
     return(
       <View style={styles.container}>
             
@@ -17,7 +19,7 @@ export default class Profile extends Component{
               alignItems:'center',
               marginTop: 10
             }}>
-            <Image style={styles.strech} source={{uri: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png'}}></Image>
+            <Image style={styles.strech} source={{uri: `${val.Account.Avatar}`}}></Image>
             </View>
         </View>
         <ScrollView style={{ alignSelf: 'stretch' }}>
@@ -44,12 +46,12 @@ export default class Profile extends Component{
               }>
              
                <View >
-                  <Text style={styles.txtitem}>Name: Le Huu Ly</Text>
-                  <Text style={styles.txtitem}>Email: lehuuly1512313@gmail.com</Text>
-                  <Text style={styles.txtitem}>Phone: 0338314081</Text>
-                  <Text style={styles.txtitem}>Country: Viet Nam</Text>
-                  <Text style={styles.txtitem}>Job: Student</Text>
-                  <Text style={styles.txtitem}>Company: HMCMUS</Text>
+                  <Text style={styles.txtitem}>Name: {val.Account.Name}</Text>
+                  <Text style={styles.txtitem}>Email: {val.Account.Email}</Text>
+                  <Text style={styles.txtitem}>Phone: {val.Account.Phone}</Text>
+                  <Text style={styles.txtitem}>Country: {val.Account.Country}</Text>
+                  <Text style={styles.txtitem}>Job: {val.Account.Job}</Text>
+                  <Text style={styles.txtitem}>Company: {val.Account.Company}</Text>
                   
               </View>
               <TouchableHighlight style={styles.btn}>
@@ -88,10 +90,10 @@ export default class Profile extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Number of courses attended: 10</Text>
-                  <Text style={styles.txtitem}>Experience (years): 1</Text>
-                  <Text style={styles.txtitem}>highest point: 100</Text> 
-                  <Text style={styles.txtitem}>Bonus (times): 3</Text> 
+                  <Text style={styles.txtitem}>Number of courses attended: {val.Account.Nofca}</Text>
+                  <Text style={styles.txtitem}>Experience (years): {val.Account.Experience}</Text>
+                  <Text style={styles.txtitem}>highest point: {val.Account.highest}</Text> 
+                  <Text style={styles.txtitem}>Bonus (times): {val.Account.Bonus}</Text> 
               </View>
              </View>
             </DropDownItem>
@@ -100,6 +102,8 @@ export default class Profile extends Component{
     )
   }
 }
+
+Profile.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{
