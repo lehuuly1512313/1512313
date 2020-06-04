@@ -1,5 +1,4 @@
 import React ,{Component} from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TransitionSpecs, CardStyleInterpolators } from '@react-navigation/stack';
@@ -7,15 +6,15 @@ import Start from '../../Components/Authentication/Start'
 import Login from '../../Components/Authentication/Login'
 import Register from '../../Components/Authentication/Register'
 import ForgetPass from '../../Components/Authentication/ForgetPass'
-import Download from '../../Components/Main/Download'
 import ListCourses from '../../Components/Courses/ListCourses'
 import CoureseDetail from '../../Components/CoursesDetail/CoureseDetail'
 import Profile from '../../Components/Account Management/Profile'
 import Sum from '../../Components/Main/Sum'
-import Browser from '../../Components/Main/Browser'
 import Videoplayer from '../../Components/Others/Videoplayer'
 import TeachProfile from '../../Components/Account Management/TeachProfile'
 import Splashscreen from '../../Components/Others/Splashscreen'
+import VerifyPassword from '../../Components/Authentication/VerifyPassword'
+import Setting from '../../Components/Account Management/Setting'
 
 const Stack = createStackNavigator();
 
@@ -45,6 +44,8 @@ class Screen extends Component {
           <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Videoplayer" component={Videoplayer}/>
           <Stack.Screen name="TeachProfile" component={TeachProfile}/>
+          <Stack.Screen name="VerifyPassword" component={VerifyPassword}/>
+          <Stack.Screen name="Setting" component={Setting}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

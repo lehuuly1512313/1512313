@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, Alert } from 'react-native';
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
@@ -8,12 +8,65 @@ export default class Register extends Component{
     constructor(props){
         super(props)
         this.handlePressSignIn = this.handlePressSignIn.bind(this)
+        this.handlePhone = this.handlePhone.bind(this)
+        this.handleCountry = this.handleCountry.bind(this)
+        this.handleEmail = this.handleEmail.bind(this)
+        this.handleName = this.handleName.bind(this)
+        this.handlePress = this.handlePress.bind(this)
+        this.state={
+            Email: '',
+            Name: '',
+            Phone:'',
+            Country: '',
+        }
       }
     
       handlePressSignIn = ()=>
       {
         this.props.navigation.navigate('Login');
       }
+
+      handleCountry=(txt)=>{
+          this.setState({Country: txt})
+      }
+
+      handleEmail=(txt)=>{
+        this.setState({Email: txt})
+    }
+
+    handlePhone=(txt)=>{
+        this.setState({Phone: txt})
+    }
+
+    handleName=(txt)=>{
+        this.setState({Name: txt})
+    }
+
+
+    handlePress=()=>{
+        var {Email, Name, Phone, Country} = this.state
+
+        if(Email==='' || Name === '' || Phone === '' || Country === '')
+        {
+            alert('Ban chua nhap day du thong tin')
+        }
+        else if (!Email.includes('@') || Phone.length < 10)
+        {
+            alert('Email hoac SDT khong dung dinh dang')
+        }
+        else
+        {
+            var data = {
+                Email,
+                Name,
+                Phone,
+                Country
+            }
+            this.props.navigation.navigate('VerifyPassword', {data} );
+        }
+    }
+
+
   render()
   {
     return(
@@ -21,17 +74,17 @@ export default class Register extends Component{
                 
                 <View style={styles.flex}>
                     <Text style={styles.text1}>Email</Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
+                    <TextInput onChangeText={this.handleEmail} style={styles.textin1} ></TextInput>
                     <Text style={styles.text1}>Name</Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
+                    <TextInput onChangeText={this.handleName} style={styles.textin1} ></TextInput>
                     <Text style={styles.text1}>Phone </Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
+                    <TextInput onChangeText={this.handlePhone} style={styles.textin1} ></TextInput>
                     <Text style={styles.text1}>Country </Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
+                    <TextInput onChangeText={this.handleCountry} style={styles.textin1} ></TextInput>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
-                        <Text style={styles.txtbtn}>SIGN UP</Text>
+                        <Text style={styles.txtbtn}>Continue</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex2}>

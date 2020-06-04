@@ -6,9 +6,12 @@ import Browser from './Browser'
 import Download from './Download'
 import Home from './Home'
 import {Mycontext} from './../../Context/Mycontext'
-
-
-
+import {
+    Menu,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+  } from 'react-native-popup-menu';
 
 export default class Sum extends Component{
 
@@ -97,7 +100,31 @@ export default class Sum extends Component{
         let screenwidth = Dimensions.get('window').width
         let screenheight = Dimensions.get('window').height
         var val = this.context
-        console.log(val)
+        var img = null
+        if(val.Account)
+        {
+            img = (
+                <Image source={{uri: val.Account.Avatar }} style={{
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            marginRight: 5
+
+          }}></Image>
+            )
+        }
+        else
+        {
+            img = (
+                <Image source={{uri: 'https://i.stack.imgur.com/l60Hf.png' }} style={{
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            marginRight: 5
+
+          }}></Image>
+            )
+        }
         return(
             <View>
                  <View>
@@ -118,14 +145,43 @@ export default class Sum extends Component{
               marginRight: 20
           }} onStartShouldSetResponder={
               ()=>{this.props.navigation.navigate('Profile')}
-          }><Image source={{uri: `${val.Account.Avatar}`}} style={{
-            width: 40,
-            height: 40,
-            borderRadius: 20,
-            marginRight: 5
-
-          }}></Image>
-         <Icon name='more-vert' size={40} color={'black'}/>
+          }>{img}
+             {/* <Icon
+              name='more-vert'
+              size={40}
+              color={'black'}
+               /> */}
+               
+               <Menu>
+                <MenuTrigger>
+                    <Icon
+                name='more-vert'
+                size={40}
+                color={'black'}
+                />
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption onSelect={()=>{
+                        this.props.navigation.navigate('Profile')
+                    }}>
+                    <Text style={{fontSize: 20}}>Profile</Text>
+                    </MenuOption >
+                    <MenuOption onSelect={()=>{
+                        this.props.navigation.navigate('Setting')
+                    }}>
+                    <Text style={{fontSize: 20}}>Setting</Text>
+                    </MenuOption>
+                    <MenuOption onSelect={()=>{
+                        this.props.navigation.navigate('Start')
+                    }}>
+                    <Text style={{fontSize: 20}} >Sign Out</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
+                
           </View>
         </View>
         </View>

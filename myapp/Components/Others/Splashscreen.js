@@ -27,7 +27,7 @@ export default class Splashscreen extends Component{
         clearInterval(_interval)
         this.props.navigation.navigate('Start');
       }
-  }, 50);
+  }, 10);
 }
   render()
   {

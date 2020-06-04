@@ -15,6 +15,7 @@ import Videoplayer from './Components/Others/Videoplayer'
 import Subscription from './Components/Others/Subscription'
 import Splashscreen from './Components/Others/Splashscreen'
 import {Mycontext} from './Context/Mycontext'
+import { MenuProvider } from 'react-native-popup-menu';
 
 
 export default class App extends Component{
@@ -50,10 +51,13 @@ export default class App extends Component{
 
   render()
   {
+    console.disableYellowBox = true;
     return(
 
       <Mycontext.Provider value={this.state}>
+        <MenuProvider>
           <Screen ></Screen>
+          </MenuProvider> 
       </Mycontext.Provider>
     )
   }

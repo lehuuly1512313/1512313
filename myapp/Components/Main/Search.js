@@ -4,6 +4,12 @@ import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 import {Courses} from './../../Data/Courses'
 import {Teachers} from './../../Data/Teacher'
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
 
 const data1 = [
@@ -171,9 +177,29 @@ const data1 = [
             alignItems:'center',
             
           }}>
-            <TouchableHighlight>
-              <Icon name='more-vert' size={50} color={'white'}/>
-            </TouchableHighlight>
+            <Menu>
+                <MenuTrigger>
+                    <Icon
+                name='more-vert'
+                size={40}
+                color={'white'}
+                />
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption>
+                    <Text style={{fontSize: 20}}>BookMarked</Text>
+                    </MenuOption >
+                    <MenuOption>
+                    <Text style={{fontSize: 20}}>Add to channels</Text>
+                    </MenuOption>
+                    <MenuOption>
+                    <Text style={{fontSize: 20}} >Download</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
             
           </View>
           </View>
@@ -334,7 +360,7 @@ class All extends Component{
     }
 }
 
-class Courses extends Component{
+class Coursess extends Component{
     render()
     {
        
@@ -469,22 +495,118 @@ class NonSearchKey extends Component{
   }
 }
 
-class Horizontalsroll extends Component{
+// class Horizontalsroll extends Component{
 
 
+//     render()
+//     {
+      
+//         let screenwidth = Dimensions.get('window').width
+//         let screenheight = Dimensions.get('window').height
+//         return(
+                
+//             <ScrollView scrollEventThrottle={10}>
+//                 <ScrollView 
+//                 horizontal={true}
+//                 pagingEnabled={true}
+//                 showsHorizontalScrollIndicator={true}
+                
+//                 >
+//                     <View style={{
+//                         width: screenwidth,
+//                         height: screenheight-244,
+                                
+//                     }}>
+//                        <All navigation={this.props.navigation}></All>
+//                     </View>
+//                     <View style={{
+//                         width: screenwidth,
+//                         height: screenheight-244,
+//                     }}>
+//                        <Coursess navigation={this.props.navigation}></Coursess>
+//                     </View>
+
+//                     <View style={{
+//                         width: screenwidth,
+//                         height: screenheight-244,
+//                     }}>
+//                        <Paths navigation={this.props.navigation}></Paths>
+//                     </View>
+
+//                     <View style={{
+//                         width: screenwidth,
+//                         height: screenheight-244,
+//                     }}>
+//                        <Authors navigation={this.props.navigation}></Authors>
+//                     </View>
+//                     </ScrollView>
+                    
+//             </ScrollView>
+    
+             
+//         )
+//     }
+// }
+
+
+
+export default class Search extends Component{
+
+  state = {
+    search: '',
+    index: 0,
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
     render()
     {
-      
-        let screenwidth = Dimensions.get('window').width
-        let screenheight = Dimensions.get('window').height
-        return(
-                
+      const { search } = this.state;
+      let rend = null
+      let screenwidth = Dimensions.get('window').width
+      let screenheight = Dimensions.get('window').height
+      var {index} = this.state
+      if(this.state.search==='')
+      {
+        rend = (
+          <NonSearchKey></NonSearchKey>
+        )
+      }
+      else
+      {
+        rend = (
+          <View>
+            <View style={{
+              height: 50,
+              flexDirection: 'row'
+          }}>
+              <View onStartShouldSetResponder={()=>{
+                this.scroll.scrollTo({ x: 0 })
+                this.setState({index: 0})
+              }} style={index === 0 ? styles.txtitemforcus:styles.txtitem}><Text>ALL</Text></View>
+              <View onStartShouldSetResponder={()=>{
+                this.scroll.scrollTo({ x: 480 })
+                this.setState({index: 480})
+              }} style={index === 480 ? styles.txtitemforcus:styles.txtitem}><Text>COURSES</Text></View>
+              <View onStartShouldSetResponder={()=>{
+                this.scroll.scrollTo({ x: 960 })
+                this.setState({index: 960})
+              }} style={index === 960 ? styles.txtitemforcus:styles.txtitem}><Text>PATHS</Text></View>
+              <View onStartShouldSetResponder={()=>{
+                this.scroll.scrollTo({ x: 1440 })
+                this.setState({index: 1440})
+              }} style={index === 1440 ? styles.txtitemforcus:styles.txtitem}><Text>AUTHORS</Text></View>
+            </View>
             <ScrollView scrollEventThrottle={10}>
                 <ScrollView 
                 horizontal={true}
                 pagingEnabled={true}
                 showsHorizontalScrollIndicator={true}
-                
+                onMomentumScrollEnd={(e)=>{
+                  this.setState({index: e.nativeEvent.contentOffset.x})
+                }}
+                ref={(node) => this.scroll = node}
                 >
                     <View style={{
                         width: screenwidth,
@@ -497,7 +619,7 @@ class Horizontalsroll extends Component{
                         width: screenwidth,
                         height: screenheight-244,
                     }}>
-                       <Courses navigation={this.props.navigation}></Courses>
+                       <Coursess navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{
@@ -516,47 +638,6 @@ class Horizontalsroll extends Component{
                     </ScrollView>
                     
             </ScrollView>
-    
-             
-        )
-    }
-}
-
-
-
-export default class Search extends Component{
-
-  state = {
-    search: '',
-  };
-
-  updateSearch = search => {
-    this.setState({ search });
-  };
-    render()
-    {
-      const { search } = this.state;
-      let rend = null
-      if(this.state.search==='')
-      {
-        rend = (
-          <NonSearchKey></NonSearchKey>
-        )
-      }
-      else
-      {
-        rend = (
-          <View>
-            <View style={{
-              height: 50,
-              flexDirection: 'row'
-          }}>
-              <View style={styles.txtitem}><Text>ALL</Text></View>
-              <View style={styles.txtitem}><Text>COURSES</Text></View>
-              <View style={styles.txtitem}><Text>PATHS</Text></View>
-              <View style={styles.txtitem}><Text>AUTHORS</Text></View>
-            </View>
-            <Horizontalsroll navigation={this.props.navigation}></Horizontalsroll>
           </View>
         )
       }
@@ -654,10 +735,16 @@ const styles = StyleSheet.create({
       
     },
     txtitem:{
-    
       flex: 1,
       alignItems:'center',
       justifyContent: 'center'
+    },
+    txtitemforcus:{
+      flex: 1,
+      alignItems:'center',
+      justifyContent: 'center',
+      borderBottomWidth: 5,
+      borderColor: 'blue'
     },
     txtitem2:{
         color: 'white',
