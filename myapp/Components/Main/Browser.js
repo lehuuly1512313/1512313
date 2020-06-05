@@ -3,111 +3,9 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 import {Teachers} from './../../Data/Teacher'
 import {Mycontext} from './../../Context/Mycontext'
-
-
-
+import {Courses} from '../../Data/Courses'
 
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
-const data1 = [
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-]
-
-const data2 = [
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-  {
-    name: 'Le Huu Ly',
-    img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-    courses: 12
-  },
-]
 
 export default class Browser extends Component{
   render()
@@ -127,7 +25,7 @@ export default class Browser extends Component{
       )
     }
     let paths = []
-    for (let index = 0; index < data1.length; index++) {
+    for (let index = 0; index < 4; index++) {
       paths.push(
         <View style={{
             marginRight: 20,
@@ -137,9 +35,9 @@ export default class Browser extends Component{
             height: '50%',
             width: 200,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
-            <Image source={{uri: data1[index].img}} style={styles.strech3}></Image>
+            <Image source={{uri: Courses[index].img}} style={styles.strech3}></Image>
           </View>
           <View style={{
             backgroundColor: 'gray',
@@ -153,8 +51,8 @@ export default class Browser extends Component{
               <Text style={{
                 fontSize: 18,
                 color: 'white'
-              }}>{data1[index].name}</Text>
-              <Text style={styles.txtitem2}>{data1[index].courses} courses</Text>
+              }}>{Courses[index].name}</Text>
+              <Text style={styles.txtitem2}>{Courses[index].Videos} videos</Text>
             </View>
           </View>
         </View>
@@ -163,7 +61,7 @@ export default class Browser extends Component{
 
     let topau = []
     var val = this.context
-    for (let index = 0; index < Teachers.length; index++) {
+    for (let index = 0; index < 5; index++) {
      topau.push(
       <View style={{
         marginRight: 20,
@@ -182,26 +80,7 @@ export default class Browser extends Component{
      )
     }
     let screenwidth = Dimensions.get('window').width
-    let screenheight = Dimensions.get('window').height
-    let listimg = []
-    for (let index = 0; index < 10; index++) {
-      listimg.push(
-        <View>
-        <Image style={{
-          width: screenwidth-160,
-          height: 80,
-          marginBottom: 5,
-          marginRight: 10
-        }} source={require('../../img/bac.jpg')}></Image>
-         <Image style={{
-          width: screenwidth-160,
-          height: 80,
-          marginTop: 5
-        }} source={require('../../img/bac.jpg')}></Image>
-      </View>
-      )
-    }
-       
+    let screenheight = Dimensions.get('window').height   
     return(
      
       <View style={{
@@ -216,21 +95,14 @@ export default class Browser extends Component{
           height: 160,
           margin: 20,
         
-        }} source={{uri: 'https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/815/cached.offlinehbpl.hbpl.co.uk/news/SUC/color1-20191204062437970.jpg'}}></Image>
+        }} source={{uri: 'https://elearningindustry.com/wp-content/uploads/2019/10/how-design-thinking-transforming-learning-experience-free-ebook.jpg'}}></Image>
          <Image style={{
           width: screenwidth - 40,
           height: 160,
           margin: 20,
           
-        }} source={{uri: 'https://cdn.ragan.com/wp-content/uploads/2019/07/color_marketing_psychology.jpg'}}></Image>
-        <ScrollView horizontal={true}
-        showsHorizontalScrollIndicator={false}>
-          <View style={{
-            flexDirection: 'row',
-            height: 160,
-            marginLeft: 20,
-          }}>{listimg}</View>
-        </ScrollView>
+        }} source={{uri: 'https://elearningindustry.com/wp-content/uploads/2017/03/how-to-improve-learning-transfer-and-retention.png'}}></Image>
+        
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
@@ -256,7 +128,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Paths</Text>
+        }}>Courses</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -268,6 +140,8 @@ export default class Browser extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('ListCourses') 
         }}>
           <Text style={{
             fontSize: 18,
@@ -307,7 +181,7 @@ export default class Browser extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
-        }}>
+        }} >
           <Text style={{
             fontSize: 18,
             color: 'white',
@@ -373,9 +247,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   strech3:{
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 200,
+    height: '100%',
+   
   },
   btn:{
       padding: 10,

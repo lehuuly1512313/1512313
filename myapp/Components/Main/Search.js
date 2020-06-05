@@ -495,61 +495,6 @@ class NonSearchKey extends Component{
   }
 }
 
-// class Horizontalsroll extends Component{
-
-
-//     render()
-//     {
-      
-//         let screenwidth = Dimensions.get('window').width
-//         let screenheight = Dimensions.get('window').height
-//         return(
-                
-//             <ScrollView scrollEventThrottle={10}>
-//                 <ScrollView 
-//                 horizontal={true}
-//                 pagingEnabled={true}
-//                 showsHorizontalScrollIndicator={true}
-                
-//                 >
-//                     <View style={{
-//                         width: screenwidth,
-//                         height: screenheight-244,
-                                
-//                     }}>
-//                        <All navigation={this.props.navigation}></All>
-//                     </View>
-//                     <View style={{
-//                         width: screenwidth,
-//                         height: screenheight-244,
-//                     }}>
-//                        <Coursess navigation={this.props.navigation}></Coursess>
-//                     </View>
-
-//                     <View style={{
-//                         width: screenwidth,
-//                         height: screenheight-244,
-//                     }}>
-//                        <Paths navigation={this.props.navigation}></Paths>
-//                     </View>
-
-//                     <View style={{
-//                         width: screenwidth,
-//                         height: screenheight-244,
-//                     }}>
-//                        <Authors navigation={this.props.navigation}></Authors>
-//                     </View>
-//                     </ScrollView>
-                    
-//             </ScrollView>
-    
-             
-//         )
-//     }
-// }
-
-
-
 export default class Search extends Component{
 
   state = {
@@ -588,11 +533,11 @@ export default class Search extends Component{
               <View onStartShouldSetResponder={()=>{
                 this.scroll.scrollTo({ x: 480 })
                 this.setState({index: 480})
-              }} style={index === 480 ? styles.txtitemforcus:styles.txtitem}><Text>COURSES</Text></View>
+              }} style={index === 480 ? styles.txtitemforcus:styles.txtitem}><Text>VIDEOS</Text></View>
               <View onStartShouldSetResponder={()=>{
                 this.scroll.scrollTo({ x: 960 })
                 this.setState({index: 960})
-              }} style={index === 960 ? styles.txtitemforcus:styles.txtitem}><Text>PATHS</Text></View>
+              }} style={index === 960 ? styles.txtitemforcus:styles.txtitem}><Text>COURSES</Text></View>
               <View onStartShouldSetResponder={()=>{
                 this.scroll.scrollTo({ x: 1440 })
                 this.setState({index: 1440})

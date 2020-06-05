@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
+import {Courses} from '../../Data/Courses'
+import {Teachers} from '../../Data/Teacher'
+import {Mycontext} from './../../Context/Mycontext'
+
+
 
 
 export default class CoursesDetail extends Component{
@@ -8,6 +13,8 @@ export default class CoursesDetail extends Component{
   {
     var liststar = [];
     let count = 0
+    var val = this.context
+    
     for (let index = 0; index < 4 - 0.5; index++) {
       count++;
       liststar.push(
@@ -50,17 +57,14 @@ export default class CoursesDetail extends Component{
                  alignItems:'center',
                  flex: 1,
                }}>
-                <Image style={styles.strech} source={{uri: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png'}}></Image>
+                <Image style={styles.strech} source={{uri: val.Courses.img}}></Image>
                </View>
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Name courses: React JS</Text>
-                  <Text style={styles.txtitem}>Start date: 12313123213</Text>
-                  <Text style={styles.txtitem}>number of lessons: 20</Text>
-                  <Text style={styles.txtitem}>number of Courses (at the present): 100</Text>
-                  <Text style={styles.txtitem}>number of Video (at the present): 3</Text>
-                  <Text style={styles.txtitem}>number of exercise (at the present): 3</Text>
+                  <Text style={styles.txtitem}>Name courses: {val.Courses.name}</Text>
+                  <Text style={styles.txtitem}>Start date: {val.Courses.Dateinit}</Text>
+                  <Text style={styles.txtitem}>{val.Courses.Videos} Videos</Text>
               </View>
              </View>
             </DropDownItem>
@@ -81,7 +85,7 @@ export default class CoursesDetail extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Teacher</Text>
+                  }}>Author</Text>
                     <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>              
                 </View>
               }>
@@ -92,16 +96,16 @@ export default class CoursesDetail extends Component{
                  alignItems:'center',
                  flex: 1,
                }}>
-                <Image style={styles.strech} source={{uri: 'https://www.takadada.com/wp-content/uploads/2019/07/avatar-one-piece-0.jpg'}}></Image>
+                <Image style={styles.strech} source={{uri: val.Teacher.Avatar}}></Image>
                </View>
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Teacher: Le Huu Ly</Text>
-                  <Text style={styles.txtitem}>Experience (years): 3</Text>
-                  <Text style={styles.txtitem}>Taught (lessons) : 20</Text>
-                  <Text style={styles.txtitem}>Email: lehuuly1512313@gmail.com</Text>
-                  <Text style={styles.txtitem}>University: HCMUS</Text>
+                  <Text style={styles.txtitem}>Teacher: {val.Teacher.Name}</Text>
+                  <Text style={styles.txtitem}>Experience (years): {val.Teacher.Experience}</Text>
+                  <Text style={styles.txtitem}>Taught (lessons) : {val.Teacher.Nofca}</Text>
+                  <Text style={styles.txtitem}>Email: {val.Teacher.Email}</Text>
+                  <Text style={styles.txtitem}>University: {val.Teacher.Company}</Text>
                   <View style={{
                     flexDirection: 'row'
                   }}>
@@ -119,6 +123,7 @@ export default class CoursesDetail extends Component{
     )
   }
 }
+CoursesDetail.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

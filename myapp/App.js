@@ -38,13 +38,21 @@ export default class App extends Component{
         Courses
       })
     }  
+
+    this.toggleVideo = (Video)=>{
+      this.setState({
+        Video
+      })
+    }
     this.state={
       Account: null,
       Teacher: null,
       Courses: null,
+      Video: null,
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
-      toggleCourses: this.toggleCourses
+      toggleCourses: this.toggleCourses,
+      toggleVideos: this.toggleVideo
     }
 
   }

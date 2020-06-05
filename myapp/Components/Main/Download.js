@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements'
-import {Courses} from './../../Data/Courses'
+import {Videos} from './../../Data/Videos'
 
 class NoContentDownload extends Component{
   render()
@@ -168,7 +168,7 @@ export default class Download extends Component{
          
         </View>
         <FlatList 
-          data={Courses}
+          data={Videos}
           renderItem={({index, item})=>{
             return(
                 <Item item={item} index={index} navigation={this.props.navigation}></Item>

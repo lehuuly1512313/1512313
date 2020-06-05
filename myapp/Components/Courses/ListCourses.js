@@ -1,65 +1,8 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
-
-
-const data = [
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach: 'Le Huu Ly',
-    initdate: Date.now(),    
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),    
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),    
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),    
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),   
-    numofless: 20,
-  },
-  {
-    name: 'react js',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    teach:'Le Huu Ly',
-    initdate: Date.now(),   
-    numofless: 20,
-  }
-]
+import {Courses} from '../../Data/Courses'
+import {Teachers} from '../../Data/Teacher'
+import {Mycontext} from './../../Context/Mycontext'
 
 class Item extends Component{
   render()
@@ -80,15 +23,14 @@ class Item extends Component{
             flexDirection: 'column',
             height: 120,
             paddingLeft: 10,
+            justifyContent: 'center'
           }}>
             <Text style={{
               color: 'white',
               fontSize: 18
             }}>{this.props.item.name}</Text>
            
-             <Text style={styles.txtitem}>Teacher: {this.props.item.teach}</Text>
-             <Text style={styles.txtitem}>Start date: {this.props.item.initdate}</Text>
-             <Text style={styles.txtitem}>number of lessons: {this.props.item.numofless}</Text>
+             <Text style={styles.txtitem}>{this.props.item.Videos} Videos</Text>
            
            
            
@@ -131,7 +73,19 @@ class Item extends Component{
                 padding: 15
               
               }
-            }>
+            } onPress={()=>{
+              this.props.context.toggleCourses(this.props.item)
+              var Teacher = null
+              for (let index = 0; index < Teachers.length; index++) {
+                if(Teachers[index].id === this.props.item.Teacher)
+                {
+                  Teacher = Teachers[index]
+                  break
+                }
+              }
+              this.props.context.toggleTeacher(Teacher)
+              this.props.navigation.navigate('CoureseDetail')
+            }}>
                 <Text style={{
                   fontSize: 16,
                   color: 'white',
@@ -154,29 +108,16 @@ class Item extends Component{
 export default class ListCourses extends Component{
   render()
   {
+    var val = this.context
     return(
       <View style={styles.container}>
-        <View style={{
-          height: 40,
-          backgroundColor: 'white',
-          flexDirection: 'row',
-          alignItems: 'center',
-          
-        }}>
-          <Text style={{
-            fontSize: 20,
-            color: 'black',
-            marginLeft: 10,
-            fontWeight: 'bold',
-            flex: 1,
-          }}>List Courses</Text>
-        </View>
+       
         <FlatList 
-          data={data}
+          data={Courses}
           renderItem={({index, item})=>{
             return(
-              <Item item={item} index={index}></Item>
-            )
+              <Item item={item} context={val} navigation={this.props.navigation} index={index}></Item>
+            ) 
           }}
           >
         </FlatList>
@@ -184,6 +125,9 @@ export default class ListCourses extends Component{
     )
   }
 }
+
+
+ListCourses.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{
