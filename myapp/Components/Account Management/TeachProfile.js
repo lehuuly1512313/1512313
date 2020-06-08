@@ -9,6 +9,7 @@ export default class TeachProfile extends Component{
   render()
   {
     var val = this.context
+    console.log(val)
     return(
       <View style={styles.container}>
             

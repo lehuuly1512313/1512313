@@ -11,6 +11,7 @@ export var Teachers = [
         Avatar: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Robinho061115-2.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'ReactJS ReatNative',
     },
     {
         id: 2,
@@ -23,6 +24,7 @@ export var Teachers = [
         Avatar: 'https://i.dailymail.co.uk/1s/2020/01/02/18/22920358-7845007-image-a-2_1577991057070.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'ReactJS ReatNative',
     },
     {
         id: 3,
@@ -35,6 +37,7 @@ export var Teachers = [
         Avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGz0THR61LAyI3T8Mk-rfDosV0Nwlt0wbup4XDujWIeGaWzIHq&usqp=CAU',
         Nofca: 10,
         Experience: 1,
+        Tag: 'ReactJS ReatNative',
     },
     {
         id: 4,
@@ -47,6 +50,7 @@ export var Teachers = [
         Avatar: 'https://znews-stc.zdn.vn/static/topic/person/messi.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'Java C# Ruby Nodejs',
     },
     {
         id: 5,
@@ -59,6 +63,7 @@ export var Teachers = [
         Avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Luis_Su%C3%A1rez_2018.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'Java C# Ruby Nodejs',
     },
     {
         id: 6,
@@ -71,6 +76,7 @@ export var Teachers = [
         Avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/67/Andr%C3%A9s_Iniesta.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'Java C# Ruby Nodejs',
     },
     {
         id: 7,
@@ -83,5 +89,6 @@ export var Teachers = [
         Avatar: 'https://znews-photo.zadn.vn/w660/Uploaded/xbhunua/2015_03_27/1.jpg',
         Nofca: 10,
         Experience: 1,
+        Tag: 'Java C# Ruby Nodejs',
     },
 ]

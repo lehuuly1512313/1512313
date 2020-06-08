@@ -15,6 +15,7 @@ import TeachProfile from '../../Components/Account Management/TeachProfile'
 import Splashscreen from '../../Components/Others/Splashscreen'
 import VerifyPassword from '../../Components/Authentication/VerifyPassword'
 import Setting from '../../Components/Account Management/Setting'
+import ListAuthors from '../../Components/ListAuthors/ListAuthors' 
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ class Screen extends Component {
           <Stack.Screen name="TeachProfile" component={TeachProfile}/>
           <Stack.Screen name="VerifyPassword" component={VerifyPassword}/>
           <Stack.Screen name="Setting" component={Setting}/>
+          <Stack.Screen name="ListAuthors" component={ListAuthors}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

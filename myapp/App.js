@@ -44,15 +44,52 @@ export default class App extends Component{
         Video
       })
     }
+
+    this.toggledownload = (item)=>{
+      var {download} = this.state;
+      download.push(item)
+      this.setState({download})
+    }
+
+    this.toggleyourCourses = (item)=>{
+      var {yourCourses} = this.state;
+      yourCourses.push(item)
+      this.setState({yourCourses})
+    }
+
+    this.toggleAuthorsfollowed = (item)=>{
+      var {Authorsfollowed} = this.state;
+      Authorsfollowed.push(item)
+      this.setState({Authorsfollowed})
+    }
+
+    this.toggleyourvideo = (item)=>{
+      var {yourvideo} = this.state;
+      yourvideo.push(item)
+      this.setState({yourvideo})
+    }
+
+    this.fdownload = (download) =>{
+      this.setState({download})
+    }
     this.state={
       Account: null,
       Teacher: null,
       Courses: null,
       Video: null,
+      download: [],
+      yourCourses: [],
+      Authorsfollowed: [],
+      yourvideo: [],
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
-      toggleVideos: this.toggleVideo
+      toggleVideos: this.toggleVideo,
+      toggleAuthorsfollowed: this.toggleAuthorsfollowed,
+      toggledownload: this.toggledownload,
+      toggleyourCourses: this.toggleyourCourses,
+      toggleyourvideo: this.toggleyourvideo,
+      fdownload: this.fdownload
     }
 
   }

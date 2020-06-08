@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
+import {Courses} from './../../Data/Courses'
+import {Teachers} from './../../Data/Teacher'
+import {Videos} from './../../Data/Videos'
+import {Mycontext} from './../../Context/Mycontext'
 
 const data1 = [
   {
@@ -61,20 +65,21 @@ export default class Home extends Component{
   {
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
+    var val =  this.context
     let paths = []
-    for (let index = 0; index < data1.length; index++) {
+    for (let index = 0; index < val.yourvideo.length; index++) {
       paths.push(
         <View style={{
             marginRight: 20,
         }}>
           <View style={{
-            backgroundColor: 'dimgray',
-            height: '50%',
-            width: 200,
-            justifyContent: 'center',
-            alignItems: 'center'
+             backgroundColor: 'dimgray',
+             height: '50%',
+             width: 200,
+             justifyContent: 'center',
+             alignItems: 'center',
           }}>
-            <Image source={{uri: data1[index].img}} style={styles.strech3}></Image>
+            <Image source={{uri: val.yourvideo[index].img}} style={styles.strech4}></Image>
           </View>
           <View style={{
             backgroundColor: 'gray',
@@ -88,14 +93,81 @@ export default class Home extends Component{
               <Text style={{
                 fontSize: 18,
                 color: 'white'
-              }}>{data1[index].name}</Text>
-              <Text style={styles.txtitem2}>{data1[index].courses} courses</Text>
+              }}>{val.yourvideo[index].name}</Text>
+            </View>
+          </View>
+        </View>
+      )
+    }
+    let authors = []
+    for (let index = 0; index < val.Authorsfollowed.length; index++) {
+      authors.push(
+        <View style={{
+            marginRight: 20,
+        }}>
+          <View style={{
+            backgroundColor: 'dimgray',
+            height: '50%',
+            width: 200,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <Image source={{uri: val.Authorsfollowed[index].Avatar}} style={styles.strech3}></Image>
+          </View>
+          <View style={{
+            backgroundColor: 'gray',
+            height: '50%',
+            width: 200
+          }}>
+            <View style={{
+              marginLeft: 10,
+              marginTop: 10
+            }}>
+              <Text style={{
+                fontSize: 18,
+                color: 'white'
+              }}>{val.Authorsfollowed[index].Name}</Text>
+              <Text style={styles.txtitem2}>{val.Authorsfollowed[index].Nofca} courses</Text>
             </View>
           </View>
         </View>
       )
     }
 
+    let courses = []
+    for (let index = 0; index < val.yourCourses.length; index++) {
+      courses.push(
+        <View style={{
+            marginRight: 20,
+        }}>
+          <View style={{
+            backgroundColor: 'dimgray',
+            height: '50%',
+            width: 200,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <Image source={{uri: val.yourCourses[index].img}} style={styles.strech3}></Image>
+          </View>
+          <View style={{
+            backgroundColor: 'gray',
+            height: '50%',
+            width: 200
+          }}>
+            <View style={{
+              marginLeft: 10,
+              marginTop: 10
+            }}>
+              <Text style={{
+                fontSize: 18,
+                color: 'white'
+              }}>{val.yourCourses[index].name}</Text>
+              <Text style={styles.txtitem2}>{val.yourCourses[index].courses} courses</Text>
+            </View>
+          </View>
+        </View>
+      )
+    }
     return(
       <View style={{
         width: '100%',
@@ -151,7 +223,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Paths</Text>
+        }}>Your courses</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -178,7 +250,7 @@ export default class Home extends Component{
             flexDirection:'row',
             height: 160,
             marginLeft: 20,
-          }}>{paths}</View>
+          }}>{courses}</View>
         </ScrollView>
         <View style={{
           flexDirection: 'row'
@@ -190,7 +262,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Channels</Text>
+        }}>Authors Followed</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -210,27 +282,21 @@ export default class Home extends Component{
           <Icon name='forward' size={30} color={'white'}/>
           </View>
         </View>
-        <View style={{
-            backgroundColor: 'dimgray',
+        <ScrollView horizontal={true}
+        showsHorizontalScrollIndicator={false}>
+          <View style={{
+            flexDirection:'row',
+            height: 160,
             marginLeft: 20,
-            marginRight: 20,
-            
-            height: 200,
-          }}>
-            <Icon name='blur-on' size={55}></Icon>
-            <Text style={{
-              color:'white',
-              fontSize: 16,
-              marginTop: 60,
-              marginLeft: 20,
-              marginRight: 20
-            }}>“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.</Text>
-          </View>
+          }}>{authors}</View>
+        </ScrollView>
         </ScrollView> 
       </View>
     )
   }
 }
+
+Home.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{
@@ -271,9 +337,14 @@ const styles = StyleSheet.create({
     height: 40,
   },
   strech3:{
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+  },
+  strech4:{
+    width: 200,
+    height: '100%',
+   
   },
   btn:{
       padding: 10,

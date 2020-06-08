@@ -51,7 +51,9 @@ class Item extends Component{
                 alignItems: 'center',
                 padding: 15
               }
-            }>
+            } onPress={()=>{
+              this.props.context.toggleyourCourses(this.props.item)
+            }}>
                 <Text style={{
                   fontSize: 16,
                   color: 'white',

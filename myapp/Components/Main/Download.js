@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements'
 import {Videos} from './../../Data/Videos'
+import {Mycontext} from './../../Context/Mycontext'
 
 class NoContentDownload extends Component{
   render()
@@ -13,7 +14,7 @@ class NoContentDownload extends Component{
       justifyContent: 'center',
       alignItems: 'center',
       width: screenwidth,
-      height: screenheight-191,
+      height: screenheight-124,
       backgroundColor: '#1b2133',
     }}>
       <Text style={
@@ -106,7 +107,11 @@ class Item extends Component{
             alignItems:'center',
             
           }}>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={()=>{
+              var arr = this.props.context.download
+              arr.splice(this.props.index, 1);
+              this.props.context.fdownload(arr)
+            }}>
               <Icon name='delete' size={40} color={'white'}/>
             </TouchableHighlight>
             
@@ -133,53 +138,67 @@ export default class Download extends Component{
   {
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
-    return(
-      <View style={{
-        width: '100%',
-        height: screenheight-124,
-        backgroundColor: '#1b2133',
-        justifyContent: 'center',
-      }}>
+    var val = this.context
+    if(val.download[0])
+    {
+      return(
         <View style={{
-          height: 40,
-          backgroundColor: 'white',
-          flexDirection: 'row',
-          alignItems: 'center',
-          
+          width: '100%',
+          height: screenheight-124,
+          backgroundColor: '#1b2133',
+          justifyContent: 'center',
         }}>
-          <Text style={{
-            fontSize: 20,
-            color: 'black',
-            marginLeft: 10,
-            fontWeight: 'bold',
-            flex: 1,
-          }}></Text>
           <View style={{
-            marginRight: 10,
-            justifyContent:'flex-end'
-          }} onStartShouldSetResponder={this.handlePressSSO}>
-          <Text style={{
-            fontSize: 20,
-            color: '#0000ff',
-            marginLeft: 10,
-          }}>Remove all</Text>
+            height: 40,
+            backgroundColor: 'white',
+            flexDirection: 'row',
+            alignItems: 'center',
+            
+          }}>
+            <Text style={{
+              fontSize: 20,
+              color: 'black',
+              marginLeft: 10,
+              fontWeight: 'bold',
+              flex: 1,
+            }}></Text>
+            <View style={{
+              marginRight: 10,
+              justifyContent:'flex-end'
+            }} onStartShouldSetResponder={()=>{
+              var arr = []
+              val.fdownload(arr)
+            }}>
+            <Text style={{
+              fontSize: 20,
+              color: '#0000ff',
+              marginLeft: 10,
+            }}>Remove all</Text>
+            </View>
+            
+           
           </View>
-          
-         
+          <FlatList 
+            data={val.download}
+            renderItem={({index, item})=>{
+              return(
+                  <Item context={val} item={item} index={index} navigation={this.props.navigation}></Item>
+              )
+            }}
+            >
+          </FlatList>
         </View>
-        <FlatList 
-          data={Videos}
-          renderItem={({index, item})=>{
-            return(
-                <Item item={item} index={index} navigation={this.props.navigation}></Item>
-            )
-          }}
-          >
-        </FlatList>
-      </View>
-    )
+        )
+    }
+    else
+    {
+      return <NoContentDownload></NoContentDownload>
+    }
+    
   }
 }
+
+Download.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

@@ -158,7 +158,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -167,7 +167,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -176,7 +176,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -185,7 +185,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -194,7 +194,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -203,7 +203,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -212,7 +212,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
       {
@@ -221,7 +221,7 @@ export var Videos = [
         video: 'https://www.youtube.com/watch?v=TlB_eWDSMt4',
         Teacher: 3,
         Dateinit: '12/10/2019',
-        Tag: 'ReactJS',
+        Tag: 'Nodejs',
         ratting: 3
       },
   ]

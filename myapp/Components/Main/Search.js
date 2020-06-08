@@ -4,6 +4,8 @@ import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 import {Courses} from './../../Data/Courses'
 import {Teachers} from './../../Data/Teacher'
+import {Videos} from './../../Data/Videos'
+import {Mycontext} from './../../Context/Mycontext'
 import {
   Menu,
   MenuOptions,
@@ -12,54 +14,6 @@ import {
 } from 'react-native-popup-menu';
 
 
-const data1 = [
-    {
-      name: 'React JS',
-      img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-      description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
-      ratting: 3
-    },
-    {
-      name: 'React JS',
-      img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-      description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
-      ratting: 4
-    },
-    {
-      name: 'React JS',
-      img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-      description:'“Love Poem” is a twenty-four-line poem in six stanzas of four lines each; the second and fourth lines of each stanza rhyme.',
-      ratting: 4
-    },
-  ]
-
-  const data2 = [
-    {
-      name: 'React JS',
-      img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-      courses: 12
-    },
-  ]
-
-  const data3 = [
-    {
-      name: 'Le Huu Ly',
-      img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-      courses: 12
-    },
-    {
-      name: 'Le Huu Ly',
-      img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-      courses: 12
-    },
-    {
-      name: 'Le Huu Ly',
-      img: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
-      courses: 12
-    },
-
-  ]
-  
 
   class Itempath extends Component{
     render()
@@ -76,9 +30,21 @@ const data1 = [
             marginLeft: 20,
             marginRight: 20
           }} >
-            <TouchableHighlight onPress={()=>{
-            this.props.navigation.navigate(this.props.to)
-          }}>
+            <TouchableHighlight onPress={
+            ()=>{
+              this.props.context.toggleCourses(this.props.item)
+              var Teacher = null
+              for (let index = 0; index < Teachers.length; index++) {
+                if(Teachers[index].id === this.props.item.Teacher)
+                {
+                  Teacher = Teachers[index]
+                  break
+                }
+              }
+              this.props.context.toggleTeacher(Teacher)
+              this.props.navigation.navigate('CoureseDetail')
+            }}
+          >
             
             <Image style={this.props.strech} source={{uri: this.props.item.img}}></Image>
             </TouchableHighlight>
@@ -93,7 +59,62 @@ const data1 = [
                 color: 'white',
                 fontSize: 18
               }}>{this.props.item.name}</Text>
-              <Text style={styles.txtitem2}>{this.props.item.courses} courses</Text>
+              <Text style={styles.txtitem2}>{this.props.item.Videos} Videos</Text>
+              <View style={{
+                flexDirection: 'row',
+              }}>
+              </View>
+            </View>
+            
+  
+          </View>
+          <View style={{
+            height: 1,
+            backgroundColor: 'white',
+            marginLeft: 20,
+            marginRight: 20
+          }}></View>
+        </View>
+      )
+    }
+  }
+
+  class Itemauthor extends Component{
+    render()
+    {
+      return(
+        <View style={{
+          flexDirection: 'column',
+        }}>
+          <View style={{
+            flex: 1,
+            flexDirection: 'row',
+            marginTop: 10,
+            marginBottom: 10,
+            marginLeft: 20,
+            marginRight: 20
+          }} >
+            <TouchableHighlight onPress={()=>{
+            
+            this.props.context.toggleTeacher(this.props.item)
+            this.props.navigation.navigate(this.props.to)
+
+          }}>
+            
+            <Image style={this.props.strech} source={{uri: this.props.item.Avatar}}></Image>
+            </TouchableHighlight>
+            <View style={{
+              flex: 1,
+              flexDirection: 'column',
+              height: 120,
+              paddingLeft: 10,
+              justifyContent: 'center'
+            }}>
+              <Text style={{
+                color: 'white',
+                fontSize: 18
+              }}>{this.props.item.Name}</Text>
+              <Text style={styles.txtitem2}>{this.props.item.Nofca} courses</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -192,10 +213,17 @@ const data1 = [
                     <MenuOption>
                     <Text style={{fontSize: 20}}>BookMarked</Text>
                     </MenuOption >
-                    <MenuOption>
+                   
+                    <MenuOption onSelect={()=>{
+                      this.props.context.toggleyourvideo(this.props.item)
+                    }}>
                     <Text style={{fontSize: 20}}>Add to channels</Text>
                     </MenuOption>
-                    <MenuOption>
+                    
+                    <MenuOption onSelect={()=>{
+                      this.props.context.toggledownload(this.props.item)
+                      
+                    }}>
                     <Text style={{fontSize: 20}} >Download</Text>
                     </MenuOption> 
                 </MenuOptions>
@@ -218,13 +246,26 @@ const data1 = [
 class All extends Component{
     render()
     {
-        let datacourse = []
-        datacourse.push(data1[0])
-        datacourse.push(data1[1])
-       
-        let dataauthors = []
-        dataauthors.push(data3[0])
-        dataauthors.push(data3[1])
+     
+        var datacourse = []
+        if(this.props.videos[0] !== undefined)
+        {
+          datacourse.push(this.props.videos[0])
+          datacourse.push(this.props.videos[1])
+        }
+      
+        var dataauthors = []
+        if(this.props.teachers[0] !== undefined)
+        {
+          dataauthors.push(this.props.teachers[0])
+          dataauthors.push(this.props.teachers[1])
+        }
+
+        var datapaths = []
+        if(this.props.courses[0] !== undefined)
+        {
+          datapaths.push(this.props.courses[0])
+        }
         
         return(
           
@@ -243,7 +284,7 @@ class All extends Component{
                             marginTop: 10,
                             flex: 1
                         }
-                    }>Courses</Text>
+                    }>Videos</Text>
                     <Text style={
                         {
                             fontSize: 18,
@@ -252,7 +293,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>4 Result ></Text>
+                    }>{this.props.videos.length} Result ></Text>
                   </View>
                   <View style={{
                     height: 1,
@@ -261,7 +302,7 @@ class All extends Component{
                     marginRight: 20
                 }}></View>
                   <FlatList 
-                    data={datacourse}
+                    data={datacourse} 
                     renderItem={({index, item})=>{
                     return(
                     <Item item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
@@ -283,7 +324,7 @@ class All extends Component{
                             marginTop: 10,
                             flex: 1
                         }
-                    }>Paths</Text>
+                    }>Courses</Text>
                     <Text style={
                         {
                             fontSize: 18,
@@ -292,7 +333,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>1 Result ></Text>
+                    }>{this.props.courses.length} Result ></Text>
                 </View>
                 <View style={{
                     height: 1,
@@ -301,10 +342,10 @@ class All extends Component{
                     marginRight: 20
                 }}></View>
                 <FlatList 
-                    data={data2}
+                    data={datapaths}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech}></Itempath>
+                    <Itempath item={item} index={index} strech={styles.strech} to='CoursesDetail' navigation={this.props.navigation}></Itempath>
                     )
                 }}
                 >
@@ -333,7 +374,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>4 Result ></Text>
+                    }>{this.props.teachers.length} Result ></Text>
                 </View>
                 
               
@@ -348,7 +389,7 @@ class All extends Component{
                     data={dataauthors}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itempath>
+                    <Itemauthor item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itemauthor>
                     )
                 }}
                 >
@@ -363,7 +404,6 @@ class All extends Component{
 class Coursess extends Component{
     render()
     {
-       
         return(
             <View style={styles.container}>
 
@@ -384,7 +424,7 @@ class Coursess extends Component{
                       color: 'white',
                       marginLeft: 20,
                       flex: 1,
-                    }}>4 Result</Text>
+                    }}>{this.props.videos.length} Result</Text>
                     <Text style={{
                       fontSize: 18,
                       color: 'white',
@@ -392,10 +432,10 @@ class Coursess extends Component{
                     }}>Newest</Text>
                 </View>
                 <FlatList 
-                data={data1}
+                data={this.props.videos}
                 renderItem={({index, item})=>{
                     return(
-                    <Item item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
+                    <Item context={this.props.context} item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -421,13 +461,13 @@ class Paths extends Component{
                     fontSize: 20,
                     color: 'white',
                     marginLeft: 20
-                  }}>1 Result</Text>
+                  }}>{this.props.courses.length} Result</Text>
               </View>
                <FlatList 
-                    data={data2}
+                    data={this.props.courses}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech}></Itempath>
+                    <Itempath context={this.props.context} item={item} index={index} strech={styles.strech} navigation={this.props.navigation} to='CoureseDetail'></Itempath>
                     )
                 }}
                 >
@@ -453,13 +493,13 @@ class Authors extends Component{
                   fontSize: 20,
                   color: 'white',
                   marginLeft: 20
-                }}>4 Result</Text>
+                }}>{this.props.teachers.length} Result</Text>
             </View>
                <FlatList 
-                    data={data3}
+                    data={this.props.teachers}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itempath>
+                    <Itemauthor context={this.props.context} item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itemauthor>
                     )
                 }}
                 >
@@ -500,18 +540,61 @@ export default class Search extends Component{
   state = {
     search: '',
     index: 0,
+    courses: [],
+    videos: [],
+    teachers: [],
+    checkcourses: false,
+    checkvideos: false,
+    checkteachers: false
   };
 
   updateSearch = search => {
     this.setState({ search });
+    var videos = []
+    var courses = []
+    var teachers = []
+    var checkvideos = false
+    var checkcourses = false
+    var checkteachers = false
+    Videos.map((val)=>{
+      if(val.Tag.includes(search))
+      {
+        videos.push(val)
+        checkvideos = true
+      }
+    })
+    Courses.map((val)=>{
+      if(val.name.includes(search))
+      {
+        courses.push(val)
+        checkcourses = true
+      }
+    })
+    Teachers.map((val)=>{
+      if(val.Tag.includes(search))
+      {
+        teachers.push(val)
+        checkteachers = true
+      }
+    })
+   
+    this.setState({
+      videos,
+      courses, 
+      teachers,
+      checkvideos,
+      checkcourses,
+      checkteachers
+    })
   };
     render()
     {
-      const { search } = this.state;
+      var { search, videos, teachers, courses ,checkvideos, checkcourses, checkteachers} = this.state;
       let rend = null
       let screenwidth = Dimensions.get('window').width
       let screenheight = Dimensions.get('window').height
       var {index} = this.state
+      var val = this.context
       if(this.state.search==='')
       {
         rend = (
@@ -558,27 +641,27 @@ export default class Search extends Component{
                         height: screenheight-244,
                                 
                     }}>
-                       <All navigation={this.props.navigation}></All>
+                       <All context={val} videos={videos} courses={courses} teachers={teachers} navigation={this.props.navigation}></All>
                     </View>
                     <View style={{
                         width: screenwidth,
                         height: screenheight-244,
                     }}>
-                       <Coursess navigation={this.props.navigation}></Coursess>
-                    </View>
-
-                    <View style={{
-                        width: screenwidth,
-                        height: screenheight-244,
-                    }}>
-                       <Paths navigation={this.props.navigation}></Paths>
+                       <Coursess context={val} videos={videos} navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{
                         width: screenwidth,
                         height: screenheight-244,
                     }}>
-                       <Authors navigation={this.props.navigation}></Authors>
+                       <Paths context={val} courses={courses} navigation={this.props.navigation}></Paths>
+                    </View>
+
+                    <View style={{
+                        width: screenwidth,
+                        height: screenheight-244,
+                    }}>
+                       <Authors context={val} teachers={teachers} navigation={this.props.navigation}></Authors>
                     </View>
                     </ScrollView>
                     
@@ -601,6 +684,8 @@ export default class Search extends Component{
         )
     }
 }
+
+Search.contextType = Mycontext
 
 const styles = StyleSheet.create({
     container:{

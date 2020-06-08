@@ -181,7 +181,9 @@ export default class Browser extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
-        }} >
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('ListAuthors') 
+        }}>
           <Text style={{
             fontSize: 18,
             color: 'white',
@@ -247,9 +249,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   strech3:{
-    width: 200,
-    height: '100%',
-   
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
   btn:{
       padding: 10,
