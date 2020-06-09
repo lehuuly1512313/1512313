@@ -1,63 +1,8 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
-import {Courses} from './../../Data/Courses'
-import {Teachers} from './../../Data/Teacher'
-import {Videos} from './../../Data/Videos'
 import {Mycontext} from './../../Context/Mycontext'
 
-const data1 = [
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-  {
-    name: 'Paths',
-    img: 'https://1.bp.blogspot.com/-4x1jlkRRQFk/Wq5aQ5q79MI/AAAAAAAAAWc/4Mgk7PnjVPs1G01W9PMf1UdnBaab5H4ggCPcBGAYYCw/s1600/wallhaven-461264.png',
-    courses: 12
-  },
-]
 
 export default class Home extends Component{
 
@@ -67,6 +12,8 @@ export default class Home extends Component{
     let screenheight = Dimensions.get('window').height
     var val =  this.context
     let paths = []
+    if(val.yourvideo.length > 0)
+    {
     for (let index = 0; index < val.yourvideo.length; index++) {
       paths.push(
         <View style={{
@@ -99,7 +46,27 @@ export default class Home extends Component{
         </View>
       )
     }
+  }
+  else
+  {
+    paths.push(<View style={
+      {
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginRight: 20,
+        width: screenwidth - 40,
+        justifyContent: "center",
+        alignItems: 'center'
+      }
+    }><Text style={{
+      color: 'white',
+      fontSize: 30
+    }}>No content</Text></View>)
+  }
+  
     let authors = []
+    if(val.Authorsfollowed.length > 0)
+    {
     for (let index = 0; index < val.Authorsfollowed.length; index++) {
       authors.push(
         <View style={{
@@ -132,9 +99,27 @@ export default class Home extends Component{
           </View>
         </View>
       )
+      }
+    }
+    else{
+      authors.push(<View style={
+        {
+          borderColor: 'gray',
+          borderWidth: 1,
+          marginRight: 20,
+          width: screenwidth - 40,
+          justifyContent: "center",
+          alignItems: 'center'
+        }
+      }><Text style={{
+        color: 'white',
+        fontSize: 30
+      }}>No content</Text></View>)
     }
 
     let courses = []
+    if(val.yourCourses.length > 0)
+    {
     for (let index = 0; index < val.yourCourses.length; index++) {
       courses.push(
         <View style={{
@@ -168,6 +153,23 @@ export default class Home extends Component{
         </View>
       )
     }
+  }
+  else
+  {
+    courses.push(<View style={
+      {
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginRight: 20,
+        width: screenwidth - 40,
+        justifyContent: "center",
+        alignItems: 'center'
+      }
+    }><Text style={{
+      color: 'white',
+      fontSize: 30
+    }}>No content</Text></View>)
+  }
     return(
       <View style={{
         width: '100%',

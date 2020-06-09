@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
+import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions, Alert } from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 import {Courses} from './../../Data/Courses'
@@ -13,7 +13,46 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 
-
+  class ItemHistory extends Component{
+    render()
+    {
+      return(
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
+      }}>
+        <TouchableHighlight style={{
+          flex: 1
+        }} onPress={
+          ()=>{
+            this.props.Search(this.props.item)
+          }
+        }>
+       <Icon  name='call-made'
+                size={25}
+                color={'white'}
+                ></Icon>
+        </TouchableHighlight>
+        <Text style={{
+          color: 'white',
+          fontSize: 20,
+          flex: 2
+        }}>{this.props.item}</Text>
+        <TouchableHighlight style={{
+          flex: 1
+        }} onPress={()=>{
+          var arr = this.props.context.history
+          arr.splice(this.props.index, 1);
+          this.props.context.fHistory(arr)
+        }}>
+          <Icon name='delete' size={25} color={'white'}/>
+        </TouchableHighlight>
+      </View>
+      )
+    }
+  }
 
   class Itempath extends Component{
     render()
@@ -517,19 +556,22 @@ class NonSearchKey extends Component{
     let screenheight = Dimensions.get('window').height
     return(
     <View style={{
-      justifyContent: 'center',
-      alignItems: 'center',
       width: screenwidth,
       height: screenheight-191,
       backgroundColor: '#1b2133',
     }}>
       
-      <Text style={
-        {
-          fontSize: 30,
-          color: 'white',
-        }
-      }>No content</Text>
+            
+      <FlatList 
+          data={this.props.context.history}
+          renderItem={({index, item})=>{
+          return(
+            <ItemHistory Search={this.props.Search} context={this.props.context} item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></ItemHistory>
+              )
+          }}
+          >
+          </FlatList>
+              
     </View>
     )
   }
@@ -587,9 +629,17 @@ export default class Search extends Component{
       checkteachers
     })
   };
+
+
+  onCancel=()=>{
+    var val = this.context
+    var {search} = this.state
+    val.toggleHistory(search)
+  }
+    
     render()
     {
-      var { search, videos, teachers, courses ,checkvideos, checkcourses, checkteachers} = this.state;
+      var { search, videos, teachers, courses} = this.state;
       let rend = null
       let screenwidth = Dimensions.get('window').width
       let screenheight = Dimensions.get('window').height
@@ -598,7 +648,7 @@ export default class Search extends Component{
       if(this.state.search==='')
       {
         rend = (
-          <NonSearchKey></NonSearchKey>
+          <NonSearchKey context={val} Search={this.updateSearch}></NonSearchKey>
         )
       }
       else
@@ -675,6 +725,7 @@ export default class Search extends Component{
                     <SearchBar
                         placeholder="Type Here..."
                         onChangeText={this.updateSearch}
+                        onClear={this.onCancel}
                         value={search}
                         round={true}
                         lightTheme={true}

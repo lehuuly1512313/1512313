@@ -72,6 +72,16 @@ export default class App extends Component{
     this.fdownload = (download) =>{
       this.setState({download})
     }
+
+    this.fHistory = (history)=>{
+      this.setState({history})
+    }
+
+    this.toggleHistory = (item)=>{
+      var {history} = this.state
+      history.push(item)
+      this.setState({history})
+    }
     this.state={
       Account: null,
       Teacher: null,
@@ -81,6 +91,8 @@ export default class App extends Component{
       yourCourses: [],
       Authorsfollowed: [],
       yourvideo: [],
+      history: ['ReactJS',
+      'ReactNative'],
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
@@ -89,7 +101,9 @@ export default class App extends Component{
       toggledownload: this.toggledownload,
       toggleyourCourses: this.toggleyourCourses,
       toggleyourvideo: this.toggleyourvideo,
-      fdownload: this.fdownload
+      fdownload: this.fdownload,
+      toggleHistory: this.toggleHistory,
+      fHistory: this.fHistory
     }
 
   }
