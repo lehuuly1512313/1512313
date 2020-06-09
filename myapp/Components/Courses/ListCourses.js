@@ -52,7 +52,10 @@ class Item extends Component{
                 padding: 15
               }
             } onPress={()=>{
-              this.props.context.toggleyourCourses(this.props.item)
+              if(this.props.item.channel === false)
+              {
+                this.props.context.toggleyourCourses(this.props.item)
+              }
             }}>
                 <Text style={{
                   fontSize: 16,

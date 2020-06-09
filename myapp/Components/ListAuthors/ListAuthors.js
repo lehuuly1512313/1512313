@@ -70,7 +70,10 @@ class Itempath extends Component{
                 padding: 30
               }
             } onPress={()=>{
-              this.props.context.toggleAuthorsfollowed(this.props.item)
+              if(this.props.item.channel === false)
+              {
+                this.props.context.toggleAuthorsfollowed(this.props.item)
+              }
             }}>
                 <Text style={{
                   fontSize: 16,

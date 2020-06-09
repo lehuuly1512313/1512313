@@ -111,6 +111,7 @@ class Item extends Component{
               var arr = this.props.context.download
               arr.splice(this.props.index, 1);
               this.props.context.fdownload(arr)
+              this.props.item.download = false
             }}>
               <Icon name='delete' size={40} color={'white'}/>
             </TouchableHighlight>

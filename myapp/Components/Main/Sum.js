@@ -192,7 +192,7 @@ export default class Sum extends Component{
                     <Download navigation={this.props.navigation}></Download>
                 ): null}
                 {this.state.showbrowse ? (
-                    <Browser navigation={this.props.navigation}></Browser>
+                    <Browser navigation={this.props.navigation} showsearch={this.showsearch}></Browser>
                 ): null}
                 {this.state.showsearch ? (
                     <Search navigation={this.props.navigation}></Search>

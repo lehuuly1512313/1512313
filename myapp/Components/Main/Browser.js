@@ -10,10 +10,11 @@ const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','R
 export default class Browser extends Component{
   render()
   {
+    var val = this.context
     let popskills = []
     for (let index = 0; index < data.length; index++) {
       popskills.push(
-      <View style={{
+      <TouchableHighlight style={{
         backgroundColor: 'gray',
         borderRadius: 20,
         justifyContent: 'center',
@@ -21,7 +22,10 @@ export default class Browser extends Component{
         paddingLeft: 20,
         paddingRight: 20,
         marginRight: 10
-      }}><Text style={styles.txtitem2}>{data[index]}</Text></View>
+      }} onPress={()=>{
+        this.props.showsearch()
+        val.togglesearchkey(data[index])
+      }}><Text style={styles.txtitem2}>{data[index]}</Text></TouchableHighlight>
       )
     }
     let paths = []
@@ -60,7 +64,7 @@ export default class Browser extends Component{
     }
 
     let topau = []
-    var val = this.context
+    
     for (let index = 0; index < 5; index++) {
      topau.push(
       <View style={{

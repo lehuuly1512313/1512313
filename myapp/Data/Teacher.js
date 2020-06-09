@@ -12,6 +12,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'ReactJS ReatNative',
+        channel: false
     },
     {
         id: 2,
@@ -25,6 +26,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'ReactJS ReatNative',
+        channel: false
     },
     {
         id: 3,
@@ -38,6 +40,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'ReactJS ReatNative',
+        channel: false
     },
     {
         id: 4,
@@ -51,6 +54,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'Java C# Ruby Nodejs',
+        channel: false
     },
     {
         id: 5,
@@ -64,6 +68,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'Java C# Ruby Nodejs',
+        channel: false
     },
     {
         id: 6,
@@ -77,6 +82,7 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'Java C# Ruby Nodejs',
+        channel: false
     },
     {
         id: 7,
@@ -90,5 +96,6 @@ export var Teachers = [
         Nofca: 10,
         Experience: 1,
         Tag: 'Java C# Ruby Nodejs',
+        channel: false
     },
 ]

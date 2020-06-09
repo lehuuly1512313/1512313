@@ -254,14 +254,19 @@ import {
                     </MenuOption >
                    
                     <MenuOption onSelect={()=>{
-                      this.props.context.toggleyourvideo(this.props.item)
+                      if(this.props.item.channel === false)
+                      {
+                        this.props.context.toggleyourvideo(this.props.item)
+                      }
                     }}>
                     <Text style={{fontSize: 20}}>Add to channels</Text>
                     </MenuOption>
                     
                     <MenuOption onSelect={()=>{
-                      this.props.context.toggledownload(this.props.item)
-                      
+                      if(this.props.item.download === false)
+                        {
+                          this.props.context.toggledownload(this.props.item)
+                        }
                     }}>
                     <Text style={{fontSize: 20}} >Download</Text>
                     </MenuOption> 
@@ -580,15 +585,22 @@ class NonSearchKey extends Component{
 export default class Search extends Component{
 
   state = {
-    search: '',
-    index: 0,
-    courses: [],
-    videos: [],
-    teachers: [],
-    checkcourses: false,
-    checkvideos: false,
-    checkteachers: false
-  };
+      search: '',
+      index: 0,
+      courses: [],
+      videos: [],
+      teachers: [],
+      checkcourses: false,
+      checkvideos: false,
+      checkteachers: false
+    };
+
+  componentWillMount()
+  {
+    var val = this.context
+    this.updateSearch(val.searchkey)
+  }
+  
 
   updateSearch = search => {
     this.setState({ search });

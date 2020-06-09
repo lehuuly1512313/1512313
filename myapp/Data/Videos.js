@@ -6,7 +6,9 @@ export var Videos = [
       Teacher: 1,
       Dateinit: '12/10/2019',
       Tag: 'ReactJS',
-      ratting: 3
+      ratting: 3,
+      channel: false,
+      download: false
     },
     {
         name: 'How to Use Google Maps in React Native',
@@ -15,7 +17,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Slide In Drawer Navigation in React Native',
@@ -24,7 +28,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Tutorial #24 - Drawer Navigation',
@@ -33,7 +39,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'How to Use Google Maps in React Native',
@@ -42,7 +50,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Slide In Drawer Navigation in React Native',
@@ -51,7 +61,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Tutorial #24 - Drawer Navigation',
@@ -60,7 +72,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'How to Use Google Maps in React Native',
@@ -69,7 +83,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Slide In Drawer Navigation in React Native',
@@ -78,7 +94,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Tutorial #24 - Drawer Navigation',
@@ -87,7 +105,9 @@ export var Videos = [
         Teacher: 2,
         Dateinit: '12/10/2019',
         Tag: 'ReactNative',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -96,7 +116,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -105,7 +127,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -114,7 +138,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -123,7 +149,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -132,7 +160,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -141,7 +171,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'React Native Maps Tutorial | Add Google Maps to iOS & Android Apps',
@@ -150,7 +182,9 @@ export var Videos = [
         Teacher: 1,
         Dateinit: '12/10/2019',
         Tag: 'ReactJS',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -159,7 +193,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -168,7 +204,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -177,7 +215,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -186,7 +226,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -195,7 +237,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -204,7 +248,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -213,7 +259,9 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
       {
         name: 'Node.js Tutorial for Beginners: Learn Node in 1 Hour | Mosh',
@@ -222,6 +270,8 @@ export var Videos = [
         Teacher: 3,
         Dateinit: '12/10/2019',
         Tag: 'Nodejs',
-        ratting: 3
+        ratting: 3,
+      channel: false,
+      download: false
       },
   ]

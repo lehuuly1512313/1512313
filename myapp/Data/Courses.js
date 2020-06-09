@@ -5,6 +5,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 12,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'ReactNative',
@@ -12,6 +13,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 20,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'NodeJS',
@@ -19,6 +21,7 @@ export var Courses = [
       Videos: 14,
       Teacher: 1,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'Ruby',
@@ -26,6 +29,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 30,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'C#',
@@ -33,6 +37,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 100,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'Java',
@@ -40,6 +45,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 113,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'Python',
@@ -47,6 +53,7 @@ export var Courses = [
       Teacher: 1,
       Videos: 30,
       Dateinit: '12/10/2019',
+      channel: false
     },
     {
       name: 'GoLang',
@@ -54,5 +61,6 @@ export var Courses = [
       Teacher: 1,
       Videos: 30,
       Dateinit: '12/10/2019',
+      channel: false
     },
   ]

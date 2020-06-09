@@ -47,24 +47,28 @@ export default class App extends Component{
 
     this.toggledownload = (item)=>{
       var {download} = this.state;
+      item.download = true
       download.push(item)
       this.setState({download})
     }
 
     this.toggleyourCourses = (item)=>{
       var {yourCourses} = this.state;
+      item.channel = true
       yourCourses.push(item)
       this.setState({yourCourses})
     }
 
     this.toggleAuthorsfollowed = (item)=>{
       var {Authorsfollowed} = this.state;
+      item.channel = true
       Authorsfollowed.push(item)
       this.setState({Authorsfollowed})
     }
 
     this.toggleyourvideo = (item)=>{
       var {yourvideo} = this.state;
+      item.channel = true
       yourvideo.push(item)
       this.setState({yourvideo})
     }
@@ -82,12 +86,20 @@ export default class App extends Component{
       history.push(item)
       this.setState({history})
     }
+
+
+    this.togglesearchkey = (searchkey)=>{
+      this.setState({searchkey})
+    }
+
+
     this.state={
       Account: null,
       Teacher: null,
       Courses: null,
       Video: null,
       download: [],
+      searchkey: '',
       yourCourses: [],
       Authorsfollowed: [],
       yourvideo: [],
@@ -103,7 +115,8 @@ export default class App extends Component{
       toggleyourvideo: this.toggleyourvideo,
       fdownload: this.fdownload,
       toggleHistory: this.toggleHistory,
-      fHistory: this.fHistory
+      fHistory: this.fHistory,
+      togglesearchkey: this.togglesearchkey
     }
 
   }
