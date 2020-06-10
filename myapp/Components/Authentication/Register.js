@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, Alert } from 'react-native';
-
+import {Mycontext} from './../../Context/Mycontext'
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 
@@ -69,18 +69,60 @@ export default class Register extends Component{
 
   render()
   {
+      var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center'
+      }}>
                 
                 <View style={styles.flex}>
-                    <Text style={styles.text1}>Email</Text>
-                    <TextInput onChangeText={this.handleEmail} style={styles.textin1} ></TextInput>
-                    <Text style={styles.text1}>Name</Text>
-                    <TextInput onChangeText={this.handleName} style={styles.textin1} ></TextInput>
-                    <Text style={styles.text1}>Phone </Text>
-                    <TextInput onChangeText={this.handlePhone} style={styles.textin1} ></TextInput>
-                    <Text style={styles.text1}>Country </Text>
-                    <TextInput onChangeText={this.handleCountry} style={styles.textin1} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Email</Text>
+                    <TextInput onChangeText={this.handleEmail} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Name</Text>
+                    <TextInput onChangeText={this.handleName} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Phone </Text>
+                    <TextInput onChangeText={this.handlePhone} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Country </Text>
+                    <TextInput onChangeText={this.handleCountry} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
@@ -99,6 +141,8 @@ export default class Register extends Component{
     )
   }
 }
+
+Register.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

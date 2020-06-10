@@ -25,7 +25,11 @@ export default class CoursesDetail extends Component{
       )
     }
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+      }}>
        
         <ScrollView style={{ alignSelf: 'stretch' }}>
             <DropDownItem
@@ -62,9 +66,21 @@ export default class CoursesDetail extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Name courses: {val.Courses.name}</Text>
-                  <Text style={styles.txtitem}>Start date: {val.Courses.Dateinit}</Text>
-                  <Text style={styles.txtitem}>{val.Courses.Videos} Videos</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Name courses: {val.Courses.name}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Start date: {val.Courses.Dateinit}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>{val.Courses.Videos} Videos</Text>
               </View>
              </View>
             </DropDownItem>
@@ -101,15 +117,39 @@ export default class CoursesDetail extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Teacher: {val.Teacher.Name}</Text>
-                  <Text style={styles.txtitem}>Experience (years): {val.Teacher.Experience}</Text>
-                  <Text style={styles.txtitem}>Taught (lessons) : {val.Teacher.Nofca}</Text>
-                  <Text style={styles.txtitem}>Email: {val.Teacher.Email}</Text>
-                  <Text style={styles.txtitem}>University: {val.Teacher.Company}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Teacher: {val.Teacher.Name}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Experience (years): {val.Teacher.Experience}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Taught (lessons) : {val.Teacher.Nofca}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Email: {val.Teacher.Email}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>University: {val.Teacher.Company}</Text>
                   <View style={{
                     flexDirection: 'row'
                   }}>
-                    <Text style={styles.txtitem}>Ratting: </Text>
+                    <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Ratting: </Text>
                     <View style={{
                       marginTop: 10,
                       flexDirection: 'row'

@@ -34,10 +34,13 @@ class Itempath extends Component{
               justifyContent: 'center'
             }}>
               <Text style={{
-                color: 'white',
-                fontSize: 18
-              }}>{this.props.item.Name}</Text>
-              <Text style={styles.txtitem2}>{this.props.item.Nofca} courses</Text>
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.Name}</Text>
+              <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.Nofca} courses</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -87,7 +90,7 @@ class Itempath extends Component{
           </View>
           <View style={{
             height: 1,
-            backgroundColor: 'white',
+            backgroundColor: `${this.props.context.Theme.Color}`,
             marginLeft: 20,
             marginRight: 20
           }}></View>
@@ -101,7 +104,12 @@ class Itempath extends Component{
     {
        var val = this.context
         return(
-            <View style={styles.container}>
+            <View style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: `${val.Theme.BackgroundColor}`,
+              justifyContent: 'center'
+            }}>
                  <FlatList 
                       data={Teachers}
                       renderItem={({index, item})=>{

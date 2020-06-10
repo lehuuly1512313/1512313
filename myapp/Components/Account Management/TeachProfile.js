@@ -9,9 +9,12 @@ export default class TeachProfile extends Component{
   render()
   {
     var val = this.context
-    console.log(val)
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+      }}>
             
           <View style={{
             justifyContent:'center',
@@ -48,11 +51,31 @@ export default class TeachProfile extends Component{
               }>
              
                <View >
-                  <Text style={styles.txtitem}>Name: {val.Teacher.Name}</Text>
-                  <Text style={styles.txtitem}>Email: {val.Teacher.Email}</Text>
-                  <Text style={styles.txtitem}>Phone: {val.Teacher.Phone}</Text>
-                  <Text style={styles.txtitem}>Country: {val.Teacher.Country}</Text>
-                  <Text style={styles.txtitem}>Company: {val.Teacher.Company}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Name: {val.Teacher.Name}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Email: {val.Teacher.Email}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Phone: {val.Teacher.Phone}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Country: {val.Teacher.Country}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Company: {val.Teacher.Company}</Text>
                   
               </View>
              
@@ -89,13 +112,26 @@ export default class TeachProfile extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Number of courses attended: {val.Teacher.Nofca}</Text>
-                  <Text style={styles.txtitem}>Experience (years): {val.Teacher.Experience}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Number of courses attended: {val.Teacher.Nofca}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Experience (years): {val.Teacher.Experience}</Text>
               </View>
              </View>
             </DropDownItem>
             <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePressSSO} style={styles.btn2}>
+                    <TouchableHighlight onPress={()=>{
+                      if(val.Teacher.channel === false)
+                      {
+                        val.toggleAuthorsfollowed(val.Teacher)
+                      }
+                    }} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>Follow</Text>
                     </TouchableHighlight>
                 </View>

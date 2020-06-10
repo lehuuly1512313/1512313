@@ -59,7 +59,7 @@ export default class Home extends Component{
         alignItems: 'center'
       }
     }><Text style={{
-      color: 'white',
+      color: `${val.Theme.Color}`,
       fontSize: 30
     }}>No content</Text></View>)
   }
@@ -112,7 +112,7 @@ export default class Home extends Component{
           alignItems: 'center'
         }
       }><Text style={{
-        color: 'white',
+        color:`${val.Theme.Color}`,
         fontSize: 30
       }}>No content</Text></View>)
     }
@@ -166,7 +166,7 @@ export default class Home extends Component{
         alignItems: 'center'
       }
     }><Text style={{
-      color: 'white',
+      color: `${val.Theme.Color}`,
       fontSize: 30
     }}>No content</Text></View>)
   }
@@ -174,7 +174,7 @@ export default class Home extends Component{
       <View style={{
         width: '100%',
         height: screenheight-124,
-        backgroundColor: '#1b2133',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
       }}>
         <ScrollView>
         <View style={{
@@ -183,7 +183,7 @@ export default class Home extends Component{
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
-          color: 'white',
+          color: `${val.Theme.Color}`,
           marginTop: 20,
           marginBottom: 20,
           flex: 1
@@ -202,9 +202,9 @@ export default class Home extends Component{
         }}>
           <Text style={{
             fontSize: 18,
-            color: 'white',
+            color: `${val.Theme.Color}`,
           }}>see all</Text>
-          <Icon name='forward' size={30} color={'white'}/>
+          <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         </View>
         <ScrollView horizontal={true}
@@ -221,7 +221,7 @@ export default class Home extends Component{
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
-          color: 'white',
+          color: `${val.Theme.Color}`,
           marginTop: 20,
           marginBottom: 20,
           flex: 1
@@ -240,9 +240,9 @@ export default class Home extends Component{
         }}>
           <Text style={{
             fontSize: 18,
-            color: 'white',
+            color: `${val.Theme.Color}`,
           }}>see all</Text>
-          <Icon name='forward' size={30} color={'white'}/>
+          <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         
         </View>
@@ -260,7 +260,7 @@ export default class Home extends Component{
         <Text style={{
           marginLeft: 20,
           fontSize: 18,
-          color: 'white',
+          color: `${val.Theme.Color}`,
           marginTop: 20,
           marginBottom: 20,
           flex: 1
@@ -279,9 +279,9 @@ export default class Home extends Component{
         }}>
           <Text style={{
             fontSize: 18,
-            color: 'white',
+            color: `${val.Theme.Color}`,
           }}>see all</Text>
-          <Icon name='forward' size={30} color={'white'}/>
+          <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         </View>
         <ScrollView horizontal={true}

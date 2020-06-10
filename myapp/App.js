@@ -16,6 +16,7 @@ import Subscription from './Components/Others/Subscription'
 import Splashscreen from './Components/Others/Splashscreen'
 import {Mycontext} from './Context/Mycontext'
 import { MenuProvider } from 'react-native-popup-menu';
+import {Theme} from './Data/Theme'
 
 
 export default class App extends Component{
@@ -92,6 +93,9 @@ export default class App extends Component{
       this.setState({searchkey})
     }
 
+    this.toggleTheme = (Theme)=>{
+      this.setState({Theme})
+    }
 
     this.state={
       Account: null,
@@ -105,6 +109,7 @@ export default class App extends Component{
       yourvideo: [],
       history: ['ReactJS',
       'ReactNative'],
+      Theme: Theme[0],
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
@@ -116,7 +121,8 @@ export default class App extends Component{
       fdownload: this.fdownload,
       toggleHistory: this.toggleHistory,
       fHistory: this.fHistory,
-      togglesearchkey: this.togglesearchkey
+      togglesearchkey: this.togglesearchkey,
+      toggleTheme: this.toggleTheme
     }
 
   }
@@ -128,7 +134,7 @@ export default class App extends Component{
 
       <Mycontext.Provider value={this.state}>
         <MenuProvider>
-          <Screen ></Screen>
+          <Screen></Screen>
           </MenuProvider> 
       </Mycontext.Provider>
     )

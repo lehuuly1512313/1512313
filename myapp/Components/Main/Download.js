@@ -15,12 +15,12 @@ class NoContentDownload extends Component{
       alignItems: 'center',
       width: screenwidth,
       height: screenheight-124,
-      backgroundColor: '#1b2133',
+      backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
     }}>
       <Text style={
         {
           fontSize: 30,
-          color: 'white',
+          color: `${this.props.context.Theme.Color}`,
         }
       }>No content</Text>
     </View>
@@ -90,14 +90,17 @@ class Item extends Component{
             justifyContent: 'center'
           }}>
             <Text onPress={this.handlePressSSO} style={{
-              color: 'white',
+              color: `${this.props.context.Theme.Color}`,
               fontSize: 18
             }}>{this.props.item.name}</Text>
             <View style={{
               flexDirection: 'row',
               
             }}>
-              <Text style={styles.txtitem}>Ratting:  </Text>
+              <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 16
+            }}>Ratting:  </Text>
               {liststar}
             </View>
           </View>
@@ -113,7 +116,7 @@ class Item extends Component{
               this.props.context.fdownload(arr)
               this.props.item.download = false
             }}>
-              <Icon name='delete' size={40} color={'white'}/>
+              <Icon name='delete' size={40} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>
             
           </View>
@@ -121,7 +124,7 @@ class Item extends Component{
         </View>
         <View style={{
           height: 1,
-          backgroundColor: 'white',
+          backgroundColor: `${this.props.context.Theme.Color}`,
           marginLeft: 20,
           marginRight: 20
         }}></View>
@@ -146,7 +149,7 @@ export default class Download extends Component{
         <View style={{
           width: '100%',
           height: screenheight-124,
-          backgroundColor: '#1b2133',
+          backgroundColor: `${val.Theme.BackgroundColor}`,
           justifyContent: 'center',
         }}>
           <View style={{
@@ -193,7 +196,7 @@ export default class Download extends Component{
     }
     else
     {
-      return <NoContentDownload></NoContentDownload>
+      return <NoContentDownload context={val}></NoContentDownload>
     }
     
   }

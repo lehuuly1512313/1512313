@@ -26,11 +26,14 @@ class Item extends Component{
             justifyContent: 'center'
           }}>
             <Text style={{
-              color: 'white',
+              color: `${this.props.context.Theme.Color}`,
               fontSize: 18
             }}>{this.props.item.name}</Text>
            
-             <Text style={styles.txtitem}>{this.props.item.Videos} Videos</Text>
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.Videos} Videos</Text>
            
            
            
@@ -103,7 +106,7 @@ class Item extends Component{
         </View>
         <View style={{
           height: 1,
-          backgroundColor: 'white'
+          backgroundColor: `${this.props.context.Theme.Color}`
         }}></View>
       </View>
     )
@@ -115,7 +118,12 @@ export default class ListCourses extends Component{
   {
     var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center'
+      }}>
        
         <FlatList 
           data={Courses}

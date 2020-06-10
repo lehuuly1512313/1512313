@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
 import Video from 'react-native-video';
 import Share from './Share'
+import {Mycontext} from './../../Context/Mycontext'
 
 class Contents extends Component{
   render()
@@ -14,7 +15,11 @@ class Contents extends Component{
         justifyContent: 'center',
         alignItems:'center'
       }}>
-        <Text style={styles.txtitem2}>Contents</Text>
+        <Text style={{
+                  color: `${this.props.context.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Contents</Text>
       </View>
     )
   }
@@ -33,7 +38,11 @@ class Transcripts extends Component{
         justifyContent: 'center',
         alignItems:'center'
       }}>
-        <Text style={styles.txtitem2}>Transcripts</Text>
+        <Text style={{
+                  color: `${this.props.context.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Transcripts</Text>
       </View>
     )
   }
@@ -52,6 +61,7 @@ export default class Videoplayer extends Component{
   
    render()
    {
+    var val = this.context
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
     var liststar = [];
@@ -65,7 +75,11 @@ export default class Videoplayer extends Component{
     }
     var date = new Date()
        return(
-         <View style={styles.container}>
+         <View style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: `${val.Theme.BackgroundColor}`,
+         }}>
            <ScrollView>
           <Video source={{uri: "http://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4"}}
                 style={{
@@ -85,7 +99,11 @@ export default class Videoplayer extends Component{
                 ) }
               />
               <View style={styles.content}>
-              <Text style={styles.txtitem}>React: The big picture</Text>
+              <Text style={{
+                 color: `${val.Theme.Color}`,
+                 fontSize: 25,
+                 flex: 1
+              }}>React: The big picture</Text>
               <View style={{
                 flexDirection: 'row',
                 justifyContent:'center',
@@ -96,7 +114,11 @@ export default class Videoplayer extends Component{
               }} onStartShouldSetResponder={()=>{
                 this.refs.share.showshare()
               }}>
-                 <Text style={styles.txtitem2}>Share</Text><Image source={{uri: 'https://purepng.com/public/uploads/large/share-icon-7nl.png'}} style={{
+                 <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Share</Text><Image source={{uri: 'https://purepng.com/public/uploads/large/share-icon-7nl.png'}} style={{
                 width: 40,
                 height: 40,
                 borderRadius: 20,
@@ -110,13 +132,25 @@ export default class Videoplayer extends Component{
                     borderRadius: 25,
                     marginRight: 10
                     }}></Image>
-              <Text style={styles.txtitem2}>Le Huu Ly</Text>
+              <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Le Huu Ly</Text>
                
               </View>
               <View style={styles.content}>
-                <Text style={styles.txtitem2}>Beginer: {date.getDate() + '/' + date.getMonth()+ '/' + date.getFullYear()+ ' ' + date.getHours()+ ':' + date.getMinutes()}</Text>
+                <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Beginer: {date.getDate() + '/' + date.getMonth()+ '/' + date.getFullYear()+ ' ' + date.getHours()+ ':' + date.getMinutes()}</Text>
                 <View style={{marginLeft: 10, flexDirection: 'row'}}>{liststar}</View>
-                <Text style={styles.txtitem2}>   (444)</Text>
+                <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>   (444)</Text>
               </View>
               <View style={styles.content}>
                 <View style={{
@@ -129,7 +163,11 @@ export default class Videoplayer extends Component{
                 borderRadius: 10,
                 padding: 10
               }}></Image>
-                  <Text style={styles.txtitem2}>BookMarked</Text>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>BookMarked</Text>
                 </View>
                 <View style={{
                   alignItems: 'center',
@@ -143,7 +181,11 @@ export default class Videoplayer extends Component{
                 borderRadius: 10,
                
               }}></Image>
-                  <Text style={styles.txtitem2}>Add to channels</Text>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Add to channels</Text>
                 </View>
                 <View style={{
                   alignItems: 'center',
@@ -155,12 +197,24 @@ export default class Videoplayer extends Component{
                 borderRadius: 10,
                 
               }}></Image>
-                  <Text style={styles.txtitem2}>Download</Text>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Download</Text>
                 </View>
               </View>
               <View >
-                <TouchableHighlight style={styles.btn11}><Text style={styles.txtitem2}>Related paths and courses</Text></TouchableHighlight>
-                <TouchableHighlight style={styles.btn11}><Text style={styles.txtitem2}>Take learning check</Text></TouchableHighlight>
+                <TouchableHighlight style={styles.btn11}><Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Related paths and courses</Text></TouchableHighlight>
+                <TouchableHighlight style={styles.btn11}><Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Take learning check</Text></TouchableHighlight>
               </View>
               <View style={styles.content}>
                 <View style={
@@ -176,7 +230,11 @@ export default class Videoplayer extends Component{
                   contents: 'blue',
                   transcripts: 'gray'
                 })}>
-                  <Text style={styles.txtitem2}>Contents</Text>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Contents</Text>
                 </View>
                 <View style={
                   {
@@ -192,14 +250,18 @@ export default class Videoplayer extends Component{
                   contents: 'gray',
                   transcripts: 'blue'
                 })}>
-                  <Text style={styles.txtitem2}>Transcripts</Text>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>Transcripts</Text>
                 </View>
               </View>
               {this.state.contents === 'blue' ? (
-                    <Contents></Contents>
+                    <Contents context={val}></Contents>
                 ): null}
                 {this.state.transcripts === 'blue' ? (
-                    <Transcripts></Transcripts>
+                    <Transcripts context={val}></Transcripts>
                 ): null}
                 <Share ref={'share'}></Share>
               </ScrollView>
@@ -208,6 +270,8 @@ export default class Videoplayer extends Component{
        )
    }
 }
+
+Videoplayer.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

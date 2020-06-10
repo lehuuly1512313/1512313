@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,Image } from 'react-native';
-
+import {Mycontext} from './../../Context/Mycontext'
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 
@@ -31,22 +31,32 @@ export default class Splashscreen extends Component{
 }
   render()
   {
+    var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center',
+    }}>
                 <View style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
                     }}>
                     <View style={{marginRight: 5}}><Image source={img} style={styles.strech}></Image></View>
-                    <View style={{marginLeft: 5}}><Text style={styles.txtbtn4}>LOADING...{this.state.status}%</Text></View>
+                    <View style={{marginLeft: 5}}><Text style={{
+                       color: `${val.Theme.Color}`,
+                       fontSize: 40,
+                       fontWeight: 'bold'
+                    }}>LOADING...{this.state.status}%</Text></View>
                 </View>
             </View>
     )
   }
 }
 
-
+Splashscreen.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

@@ -2,6 +2,15 @@ import React, {Component} from 'react'
 import { Text,Picker, Switch, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import {Mycontext} from './../../Context/Mycontext'
+import {Theme} from './../../Data/Theme'
+
 
 export default class Setting extends Component{
 
@@ -35,33 +44,19 @@ export default class Setting extends Component{
 
   render()
   {
-    return(<View style={styles.container}>
-      <View style={{
-        height: 40,
-        backgroundColor: 'white',
-        flexDirection: 'row',  
-        
-        alignItems: 'center'       
-      }}>
-        <Text style={{
-          fontSize: 20,
-          color: 'black',
-          marginLeft: 10,
-          fontWeight: 'bold',
-          flex: 1,
-        }}>Setting</Text>
-      </View>
-     
+    var val = this.context
+    return(<View style={{
+      width: '100%',
+      height: '100%',
+      backgroundColor: `${val.Theme.BackgroundColor}`,
+    }}>
       <ScrollView style={{ alignSelf: 'stretch',}}>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
+
+          
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
                 marginRight: 20,
@@ -70,59 +65,12 @@ export default class Setting extends Component{
               }}>
                 <Text style={{
                   fontSize: 18,
-                  color: 'white',
-                  flex: 1,
-                }}>Account</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
-              </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Account</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
-              <View style={{
-                flexDirection:'row',
-                backgroundColor:'gray',
-                borderRadius: 25,
-                padding:15,
-                marginLeft: 20,
-                marginRight: 20,
-                marginTop: 20,
-                
-              }}>
-                <Text style={{
-                  fontSize: 18,
+                  marginBottom: 10,
                   color: 'white',
                   flex: 1,
                 }}>Subcription</Text>
                 <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Subcription</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
           <DropDownItem
             key={1}
             style={styles.dropDownItem}
@@ -131,41 +79,7 @@ export default class Setting extends Component{
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
-                padding:15,
-                marginLeft: 20,
-                marginRight: 20,
-                marginTop: 20,
-              }}>
-                <Text style={{
-                  fontSize: 18,
-                  color: 'white',
-                  flex: 1,
-                }}>Communication Preferences</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
-              </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Communication Preferences</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
-              <View style={{
-                flexDirection:'row',
-                backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
                 marginRight: 20,
@@ -177,7 +91,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Theme</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
+                <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -187,24 +101,61 @@ export default class Setting extends Component{
                alignItems:'center',
                flex: 1,
              }}>
-               <Text>Theme</Text>
+               <Menu>
+                <MenuTrigger>
+                   <View style={{
+                      borderRadius: 12,
+                      borderColor: 'gray',
+                      borderWidth: 2,
+                      padding: 5,
+                      flexDirection: 'row',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      marginLeft: 20,
+                      width: 200
+                   }}>
+                     <Text style={{
+                       fontSize: 24,
+                       color: `${val.Theme.Color}`,
+                       flex: 1
+                     }}>Dark</Text>
+                     <Icon name='keyboard-arrow-down' size={28} color={`${val.Theme.Color}`}/>
+                   </View>
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption onSelect={()=>{
+                      
+                      val.toggleTheme(Theme[0])
+                      
+                    }}>
+                    <Text style={{fontSize: 20}}>Dark</Text>
+                    </MenuOption>
+                    
+                    <MenuOption onSelect={()=>{
+                      
+                      val.toggleTheme(Theme[1])
+                    
+                    }}>
+                    <Text style={{fontSize: 20}} >Light</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
              </View>
              
            </View>
           </DropDownItem>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
+          
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
-      marginRight: 20,
-      marginTop: 20,
+                marginRight: 20,
+                marginTop: 20,
                 
               }}>
                 <Text style={{
@@ -221,28 +172,11 @@ export default class Setting extends Component{
                   style={{ transform:[{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
                 />
               </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Account</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
+          
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
                 marginRight: 20,
@@ -265,63 +199,13 @@ export default class Setting extends Component{
                 />
                 
               </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Account</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
+            
+        
+          
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
-                padding:15,
-                marginLeft: 20,
-                marginRight: 20,
-                marginTop: 20,
-              }}>
-                <Text style={{
-                  fontSize: 18,
-                  color: 'white',
-                  flex: 1,
-                }}>Send feedback</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
-              </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Account</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
-       
-          <DropDownItem
-            key={1}
-            style={styles.dropDownItem}
-            contentVisible={false}
-            header={
-              <View style={{
-                flexDirection:'row',
-                backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
       marginRight: 20,
@@ -333,21 +217,9 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>Contact support</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
+               <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
-            }>
-           <View style={{
-             justifyContent:'center',
-           }}>
-             <View style={{
-               alignItems:'center',
-               flex: 1,
-             }}>
-               <Text>Account</Text>
-             </View>
-             
-           </View>
-          </DropDownItem>
+           
           <DropDownItem
             key={1}
             style={styles.dropDownItem}
@@ -356,7 +228,7 @@ export default class Setting extends Component{
               <View style={{
                 flexDirection:'row',
                 backgroundColor:'gray',
-                borderRadius: 25,
+                borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
       marginRight: 20,
@@ -367,7 +239,7 @@ export default class Setting extends Component{
                   color: 'white',
                   flex: 1,
                 }}>App version</Text>
-                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
+                <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
               </View>
             }>
            <View style={{
@@ -376,8 +248,12 @@ export default class Setting extends Component{
              <View style={{
                alignItems:'center',
                flex: 1,
+               marginLeft: 20
              }}>
-               <Text>Account</Text>
+               <Text style={{
+                 fontSize: 30,
+                 color: `${val.Theme.Color}`
+             }}>V.0.0.0.1</Text>
              </View>
              
            </View>
@@ -392,12 +268,13 @@ export default class Setting extends Component{
     )
   }
 }
+
+Setting.contextType = Mycontext
 const styles = StyleSheet.create({
   container:{
       width: '100%',
       height: '100%',
       backgroundColor: '#1b2133',
-      
   },
   flex:{
       marginLeft: 20,

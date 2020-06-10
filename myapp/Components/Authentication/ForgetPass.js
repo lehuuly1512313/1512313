@@ -1,28 +1,50 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
-
+import {Mycontext} from './../../Context/Mycontext'
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class ForgetPass extends Component{
   render()
   {
+    var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center'
+      }}>
       <View style={{
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
           }}>
           <View style={{marginRight: 5}}><Image source={img} style={styles.strech}></Image></View>
-          <View style={{marginLeft: 5}}><Text style={styles.txtbtn4}>PLURALSIGHT</Text></View>
+          <View style={{marginLeft: 5}}><Text style={{
+                              color: `${val.Theme.Color}`,
+                              fontSize: 40,
+                              fontWeight: 'bold'}}>PLURALSIGHT</Text></View>
       </View>
       <View style={styles.flex}>
-                    <Text style={styles.text1}>Enter your email address and we will send you a link to reset your password</Text>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Enter your email address and we will send you a link to reset your password</Text>
                     
                 </View>
       <View style={styles.flex}>
-                    <Text style={styles.text1}>Email</Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Email</Text>
+                    <TextInput onChangeText={this.handleAccount} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
                 </View>
       <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
@@ -38,6 +60,8 @@ export default class ForgetPass extends Component{
     )
   }
 }
+
+ForgetPass.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

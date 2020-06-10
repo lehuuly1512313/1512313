@@ -71,13 +71,37 @@ export default class Login extends Component{
 
   render()
   {
+    var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center'
+      }}>
                 <View style={styles.flex}>
-                    <Text style={styles.text1}>Email or Username </Text>
-                    <TextInput onChangeText={this.handleAccount} style={styles.textin1} ></TextInput>
-                    <Text style={styles.text1}>Password </Text>
-                    <TextInput onChangeText={this.handlePassword} style={styles.textin1} secureTextEntry={true}></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Email or Username </Text>
+                    <TextInput onChangeText={this.handleAccount} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Password </Text>
+                    <TextInput onChangeText={this.handlePassword} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} secureTextEntry={true}></TextInput>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.Login} style={styles.btn}>

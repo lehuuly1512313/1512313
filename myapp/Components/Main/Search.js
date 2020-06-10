@@ -32,11 +32,11 @@ import {
         }>
        <Icon  name='call-made'
                 size={25}
-                color={'white'}
+                color={`${this.props.context.Theme.Color}`}
                 ></Icon>
         </TouchableHighlight>
         <Text style={{
-          color: 'white',
+          color: `${this.props.context.Theme.Color}`,
           fontSize: 20,
           flex: 2
         }}>{this.props.item}</Text>
@@ -47,7 +47,7 @@ import {
           arr.splice(this.props.index, 1);
           this.props.context.fHistory(arr)
         }}>
-          <Icon name='delete' size={25} color={'white'}/>
+          <Icon name='delete' size={25} color={`${this.props.context.Theme.Color}`}/>
         </TouchableHighlight>
       </View>
       )
@@ -95,10 +95,13 @@ import {
               justifyContent: 'center'
             }}>
               <Text style={{
-                color: 'white',
+                color: `${this.props.context.Theme.Color}`,
                 fontSize: 18
               }}>{this.props.item.name}</Text>
-              <Text style={styles.txtitem2}>{this.props.item.Videos} Videos</Text>
+              <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16
+              }}>{this.props.item.Videos} Videos</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -109,7 +112,7 @@ import {
           </View>
           <View style={{
             height: 1,
-            backgroundColor: 'white',
+            backgroundColor: `${this.props.context.Theme.Color}`,
             marginLeft: 20,
             marginRight: 20
           }}></View>
@@ -150,10 +153,13 @@ import {
               justifyContent: 'center'
             }}>
               <Text style={{
-                color: 'white',
+                color: `${this.props.context.Theme.Color}`,
                 fontSize: 18
               }}>{this.props.item.Name}</Text>
-              <Text style={styles.txtitem2}>{this.props.item.Nofca} courses</Text>
+              <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16
+              }}>{this.props.item.Nofca} courses</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -164,7 +170,7 @@ import {
           </View>
           <View style={{
             height: 1,
-            backgroundColor: 'white',
+            backgroundColor: `${this.props.context.Theme.Color}`,
             marginLeft: 20,
             marginRight: 20
           }}></View>
@@ -220,16 +226,25 @@ import {
               justifyContent: 'center'
             }}>
               <Text style={{
-                color: 'white',
+                color: `${this.props.context.Theme.Color}`,
                 fontSize: 18
               }}>{this.props.item.name}</Text>
-              <Text style={styles.txtitem2}>{this.props.item.description}</Text>
+              <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16,
+              }}>{this.props.item.description}</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
-                <Text style={styles.txtitem2}>Ratting:  </Text>
+                <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16,
+              }}>Ratting:  </Text>
                 {liststar}
-                <Text style={styles.txtitem2}>(200)</Text>
+                <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16,
+              }}>(200)</Text>
               </View>
             </View>
             <View style={{
@@ -242,7 +257,7 @@ import {
                     <Icon
                 name='more-vert'
                 size={40}
-                color={'white'}
+                color={`${this.props.context.Theme.Color}`}
                 />
                 </MenuTrigger>
                 <MenuOptions style={{
@@ -277,7 +292,7 @@ import {
           </View>
           <View style={{
             height: 1,
-            backgroundColor: 'white',
+            backgroundColor: `${this.props.context.Theme.Color}`,
             marginLeft: 20,
             marginRight: 20
           }}></View>
@@ -313,7 +328,12 @@ class All extends Component{
         
         return(
           
-            <View style={styles.container}>
+            <View style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+              marginBottom: 50
+          }}>
               <ScrollView>
               <View>
                 <View style={{
@@ -322,7 +342,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginLeft: 20,
                             marginTop: 10,
@@ -332,7 +352,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginTop: 10,
                             marginRight: 20
@@ -341,7 +361,7 @@ class All extends Component{
                   </View>
                   <View style={{
                     height: 1,
-                    backgroundColor: 'white',
+                    backgroundColor: `${this.props.context.Theme.Color}`,
                     marginLeft: 20,
                     marginRight: 20
                 }}></View>
@@ -349,7 +369,7 @@ class All extends Component{
                     data={datacourse} 
                     renderItem={({index, item})=>{
                     return(
-                    <Item item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
+                    <Item item={item} context={this.props.context} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -362,7 +382,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginLeft: 20,
                             marginTop: 10,
@@ -372,7 +392,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginTop: 10,
                             marginRight: 20
@@ -381,7 +401,7 @@ class All extends Component{
                 </View>
                 <View style={{
                     height: 1,
-                    backgroundColor: 'white',
+                    backgroundColor: `${this.props.context.Theme.Color}`,
                     marginLeft: 20,
                     marginRight: 20
                 }}></View>
@@ -389,7 +409,7 @@ class All extends Component{
                     data={datapaths}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath item={item} index={index} strech={styles.strech} to='CoursesDetail' navigation={this.props.navigation}></Itempath>
+                    <Itempath item={item} context={this.props.context} index={index} strech={styles.strech} to='CoursesDetail' navigation={this.props.navigation}></Itempath>
                     )
                 }}
                 >
@@ -403,7 +423,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginLeft: 20,
                             marginTop: 10,
@@ -413,7 +433,7 @@ class All extends Component{
                     <Text style={
                         {
                             fontSize: 18,
-                            color: 'white',
+                            color: `${this.props.context.Theme.Color}`,
                             marginBottom: 10,
                             marginTop: 10,
                             marginRight: 20
@@ -425,7 +445,7 @@ class All extends Component{
             </View>
             <View style={{
                     height: 1,
-                    backgroundColor: 'white',
+                    backgroundColor: `${this.props.context.Theme.Color}`,
                     marginLeft: 20,
                     marginRight: 20
                 }}></View>
@@ -433,7 +453,7 @@ class All extends Component{
                     data={dataauthors}
                     renderItem={({index, item})=>{
                     return(
-                    <Itemauthor item={item} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itemauthor>
+                    <Itemauthor item={item} context={this.props.context} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itemauthor>
                     )
                 }}
                 >
@@ -449,11 +469,16 @@ class Coursess extends Component{
     render()
     {
         return(
-            <View style={styles.container}>
+            <View style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+              marginBottom: 50
+          }}>
 
                 <Text style={{
                       fontSize: 18,
-                      color: 'white',
+                      color: `${this.props.context.Theme.Color}`,
                       marginLeft: 20,
                       marginTop: 20,
                     }}>Skill Levels ></Text>
@@ -465,13 +490,13 @@ class Coursess extends Component{
                 }}>
                     <Text style={{
                       fontSize: 18,
-                      color: 'white',
+                      color: `${this.props.context.Theme.Color}`,
                       marginLeft: 20,
                       flex: 1,
                     }}>{this.props.videos.length} Result</Text>
                     <Text style={{
                       fontSize: 18,
-                      color: 'white',
+                      color: `${this.props.context.Theme.Color}`,
                       marginRight: 20
                     }}>Newest</Text>
                 </View>
@@ -495,15 +520,20 @@ class Paths extends Component{
   {
      
       return(
-          <View style={styles.container}>
+          <View style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+            marginBottom: 50
+        }}>
               <View style={{
-                flexDirection: 'row',
-                marginTop: 10,
-                marginBottom: 10
-              }}>
+                  flexDirection: 'row',
+                  marginTop: 10,
+                  marginBottom: 10
+                }}>
                   <Text style={{
                     fontSize: 20,
-                    color: 'white',
+                    color: `${this.props.context.Theme.Color}`,
                     marginLeft: 20
                   }}>{this.props.courses.length} Result</Text>
               </View>
@@ -527,7 +557,12 @@ class Authors extends Component{
   {
      
       return(
-          <View style={styles.container}>
+          <View style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+            marginBottom: 50
+        }}>
             <View style={{
               flexDirection: 'row',
               marginTop: 10,
@@ -535,7 +570,7 @@ class Authors extends Component{
             }}>
                 <Text style={{
                   fontSize: 20,
-                  color: 'white',
+                  color: `${this.props.context.Theme.Color}`,
                   marginLeft: 20
                 }}>{this.props.teachers.length} Result</Text>
             </View>
@@ -563,7 +598,7 @@ class NonSearchKey extends Component{
     <View style={{
       width: screenwidth,
       height: screenheight-191,
-      backgroundColor: '#1b2133',
+      backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
     }}>
       
             
@@ -604,6 +639,8 @@ export default class Search extends Component{
 
   updateSearch = search => {
     this.setState({ search });
+    var val = this.context;
+    val.togglesearchkey(search)
     var videos = []
     var courses = []
     var teachers = []
@@ -700,28 +737,28 @@ export default class Search extends Component{
                 >
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-244,
+                        height: screenheight-241,
                                 
                     }}>
                        <All context={val} videos={videos} courses={courses} teachers={teachers} navigation={this.props.navigation}></All>
                     </View>
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-244,
+                        height: screenheight-241,
                     }}>
                        <Coursess context={val} videos={videos} navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-244,
+                        height: screenheight-241,
                     }}>
                        <Paths context={val} courses={courses} navigation={this.props.navigation}></Paths>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-244,
+                        height: screenheight-241,
                     }}>
                        <Authors context={val} teachers={teachers} navigation={this.props.navigation}></Authors>
                     </View>

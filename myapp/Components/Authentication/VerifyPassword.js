@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
 import {Accounts} from '../../Data/Account'
 import Modal from 'react-native-modalbox'
+import {Mycontext} from './../../Context/Mycontext'
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
@@ -126,14 +127,38 @@ export default class VerifyPassword extends Component{
 
   render()
   {
+    var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+        justifyContent: 'center'
+      }}>
                 
                 <View style={styles.flex}>
-                    <Text style={styles.text1}>Password</Text>
-                    <TextInput onChangeText={this.handlePassword} secureTextEntry={true}  style={styles.textin1} ></TextInput>
-                    <Text style={styles.text1}>Confirm password</Text>
-                    <TextInput onChangeText={this.handleConPassword} secureTextEntry={true} style={styles.textin1} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Password</Text>
+                    <TextInput onChangeText={this.handlePassword} secureTextEntry={true}  style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Confirm password</Text>
+                    <TextInput onChangeText={this.handleConPassword} secureTextEntry={true} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
@@ -148,6 +173,8 @@ export default class VerifyPassword extends Component{
     )
   }
 }
+
+VerifyPassword.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

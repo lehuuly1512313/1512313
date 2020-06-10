@@ -9,7 +9,11 @@ export default class Profile extends Component{
   {
     var val = this.context
     return(
-      <View style={styles.container}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: `${val.Theme.BackgroundColor}`,
+      }}>
             
           <View style={{
             justifyContent:'center',
@@ -46,12 +50,36 @@ export default class Profile extends Component{
               }>
              
                <View >
-                  <Text style={styles.txtitem}>Name: {val.Account.Name}</Text>
-                  <Text style={styles.txtitem}>Email: {val.Account.Email}</Text>
-                  <Text style={styles.txtitem}>Phone: {val.Account.Phone}</Text>
-                  <Text style={styles.txtitem}>Country: {val.Account.Country}</Text>
-                  <Text style={styles.txtitem}>Job: {val.Account.Job}</Text>
-                  <Text style={styles.txtitem}>Company: {val.Account.Company}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Name: {val.Account.Name}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Email: {val.Account.Email}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Phone: {val.Account.Phone}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Country: {val.Account.Country}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Job: {val.Account.Job}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Company: {val.Account.Company}</Text>
                   
               </View>
               <TouchableHighlight style={styles.btn}>
@@ -90,10 +118,26 @@ export default class Profile extends Component{
                <View style={{
                  flex: 2
                }}>
-                  <Text style={styles.txtitem}>Number of courses attended: {val.Account.Nofca}</Text>
-                  <Text style={styles.txtitem}>Experience (years): {val.Account.Experience}</Text>
-                  <Text style={styles.txtitem}>highest point: {val.Account.highest}</Text> 
-                  <Text style={styles.txtitem}>Bonus (times): {val.Account.Bonus}</Text> 
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Number of courses attended: {val.Account.Nofca}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Experience (years): {val.Account.Experience}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>highest point: {val.Account.highest}</Text> 
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Bonus (times): {val.Account.Bonus}</Text> 
               </View>
              </View>
             </DropDownItem>
