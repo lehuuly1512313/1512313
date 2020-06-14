@@ -62,6 +62,8 @@ export default class Setting extends Component{
                 marginRight: 20,
                 marginTop: 20,
                 
+              }} onStartShouldSetResponder={()=>{
+                this.props.navigation.navigate('Subscription')
               }}>
                 <Text style={{
                   fontSize: 18,
@@ -118,7 +120,7 @@ export default class Setting extends Component{
                        fontSize: 24,
                        color: `${val.Theme.Color}`,
                        flex: 1
-                     }}>Dark</Text>
+                     }}>{val.Theme.Name}</Text>
                      <Icon name='keyboard-arrow-down' size={28} color={`${val.Theme.Color}`}/>
                    </View>
                 </MenuTrigger>
@@ -208,9 +210,11 @@ export default class Setting extends Component{
                 borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
-      marginRight: 20,
-      marginTop: 20,
+                marginRight: 20,
+                marginTop: 20,
                 
+              }} onStartShouldSetResponder={()=>{
+                this.props.navigation.navigate('Contact')
               }}>
                 <Text style={{
                   fontSize: 18,
@@ -259,7 +263,9 @@ export default class Setting extends Component{
            </View>
           </DropDownItem>
           <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePressSignIn} style={styles.btn2}>
+                    <TouchableHighlight onPress={()=>{
+                      this.props.navigation.navigate('Start')
+                    }} style={styles.btn2}>
                         <Text style={styles.txtbtn2}>Sign out</Text>
                     </TouchableHighlight>
                 </View>

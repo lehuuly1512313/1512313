@@ -199,6 +199,8 @@ export default class Home extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('Listvideochannel')
         }}>
           <Text style={{
             fontSize: 18,
@@ -237,6 +239,8 @@ export default class Home extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('Listcourseschannel')
         }}>
           <Text style={{
             fontSize: 18,
@@ -276,6 +280,8 @@ export default class Home extends Component{
           flexDirection: 'row',
           justifyContent: 'center',
           
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('Listauthorschannel')
         }}>
           <Text style={{
             fontSize: 18,

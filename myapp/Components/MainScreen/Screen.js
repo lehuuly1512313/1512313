@@ -15,7 +15,12 @@ import TeachProfile from '../../Components/Account Management/TeachProfile'
 import Splashscreen from '../../Components/Others/Splashscreen'
 import VerifyPassword from '../../Components/Authentication/VerifyPassword'
 import Setting from '../../Components/Account Management/Setting'
-import ListAuthors from '../../Components/ListAuthors/ListAuthors' 
+import ListAuthors from '../../Components/Authors/ListAuthors'
+import Listvideochannel from '../../Components/Videos/Listvideochannel'
+import Listauthorschannel from '../../Components/Authors/Listauthorschannel'
+import Listcourseschannel from '../../Components/Courses/Listcourseschannel'
+import Subscription from '../../Components/Others/Subscription'
+import Contact from '../../Components/Others/Contact'
 
 const Stack = createStackNavigator();
 
@@ -48,6 +53,11 @@ class Screen extends Component {
           <Stack.Screen name="VerifyPassword" component={VerifyPassword}/>
           <Stack.Screen name="Setting" component={Setting}/>
           <Stack.Screen name="ListAuthors" component={ListAuthors}/>
+          <Stack.Screen name="Listvideochannel" component={Listvideochannel}/>
+          <Stack.Screen name="Listauthorschannel" component={Listauthorschannel}/>
+          <Stack.Screen name="Listcourseschannel" component={Listcourseschannel}/>
+          <Stack.Screen name="Subscription" component={Subscription}/>
+          <Stack.Screen name="Contact" component={Contact}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

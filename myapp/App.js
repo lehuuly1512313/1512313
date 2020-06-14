@@ -97,6 +97,18 @@ export default class App extends Component{
       this.setState({Theme})
     }
 
+    this.fyourvideo = (yourvideo)=>{
+      this.setState({yourvideo})
+    }
+
+    this.fyourCourses = (yourCourses)=>{
+      this.setState({yourCourses})
+    }
+
+    this.fAuthorsfollowed = (Authorsfollowed)=>{
+      this.setState({Authorsfollowed})
+    }
+
     this.state={
       Account: null,
       Teacher: null,
@@ -122,7 +134,10 @@ export default class App extends Component{
       toggleHistory: this.toggleHistory,
       fHistory: this.fHistory,
       togglesearchkey: this.togglesearchkey,
-      toggleTheme: this.toggleTheme
+      toggleTheme: this.toggleTheme,
+      fyourvideo: this.fyourvideo,
+      fyourCourses: this.fyourCourses,
+      fAuthorsfollowed: this.fAuthorsfollowed
     }
 
   }

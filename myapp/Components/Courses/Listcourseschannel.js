@@ -1,9 +1,34 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight, Dimensions,TextInput,Image, FlatList } from 'react-native';
 import {Courses} from '../../Data/Courses'
 import {Teachers} from '../../Data/Teacher'
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
+
+class NoContentDownload extends Component{
+    render()
+    {
+      let screenwidth = Dimensions.get('window').width
+      let screenheight = Dimensions.get('window').height
+      return(
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: screenwidth,
+        height: screenheight-74,
+        backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+      }}>
+        <Text style={
+          {
+            fontSize: 30,
+            color: `${this.props.context.Theme.Color}`,
+          }
+        }>No content</Text>
+      </View>
+      )
+    }
+  }
+  
 
 class Item extends Component{
   render()
@@ -60,12 +85,12 @@ class Item extends Component{
                 padding: 15
               }
             } onPress={()=>{
-              if(this.props.item.channel === false)
-              {
-                this.props.context.toggleyourCourses(this.props.item)
-              }
+            var arr = this.props.context.yourCourses
+              arr.splice(this.props.index, 1);
+              this.props.context.fyourCourses(arr)
+              this.props.item.channel = false
             }}>
-                <Icon name='exit-to-app' size={22} color={`${this.props.context.Theme.Color}`}/>
+                <Icon name='clear' size={22} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>
             </View>
             <View style={{
@@ -105,18 +130,19 @@ class Item extends Component{
           height: 1,
           backgroundColor: `${this.props.context.Theme.Color}`,
           marginLeft: 20,
-          marginRight: 20,
-        
+          marginRight: 20
         }}></View>
       </View>
     )
   }
 }
 
-export default class ListCourses extends Component{
+export default class Listcourseschannel extends Component{
   render()
   {
     var val = this.context
+    if(val.yourCourses[0])
+    {
     return(
       <View style={{
         width: '100%',
@@ -126,7 +152,7 @@ export default class ListCourses extends Component{
       }}>
        
         <FlatList 
-          data={Courses}
+          data={val.yourCourses}
           renderItem={({index, item})=>{
             return(
               <Item item={item} context={val} navigation={this.props.navigation} index={index}></Item>
@@ -136,11 +162,16 @@ export default class ListCourses extends Component{
         </FlatList>
       </View>
     )
+        }
+        else
+        {
+            return <NoContentDownload context={val}></NoContentDownload>
+        }
   }
 }
 
 
-ListCourses.contextType = Mycontext
+Listcourseschannel.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

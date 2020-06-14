@@ -29,7 +29,8 @@ export default class Sum extends Component{
             showbrowse: false,
             showsearch: false,
             name: 'Home',
-            Account: null
+            Account: null,
+            Signquestion: 'Sign out'
         }
         
     }
@@ -46,6 +47,9 @@ export default class Sum extends Component{
         } catch (error) {
         }
       };
+
+
+      
 
     showhome=()=>
     {
@@ -93,6 +97,17 @@ export default class Sum extends Component{
             name: 'Search'
         })
         
+    }
+    componentWillMount()
+    {
+        var val = this.context
+        var img = null
+        if(val.Account === null)
+        {
+            this.setState({
+                Signquestion: 'Sign in'
+            })
+        }
     }
 
     render()
@@ -175,9 +190,13 @@ export default class Sum extends Component{
                     <Text style={{fontSize: 20}}>Setting</Text>
                     </MenuOption>
                     <MenuOption onSelect={()=>{
-                        this.props.navigation.navigate('Start')
+                        if(this.state.Signquestion === 'Sign out')
+                        {
+                            val.toggleAccount(null)
+                        }
+                        this.state.Signquestion === 'Sign in' ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
                     }}>
-                    <Text style={{fontSize: 20}} >Sign Out</Text>
+                    <Text style={{fontSize: 20}} >{this.state.Signquestion}</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>

@@ -15,7 +15,7 @@ export default class Subscription extends Component{
             borderBottomWidth: 4,
             marginRight: 20,
             marginLeft: 20,
-            marginTop: 100
+            marginTop: 20
           }
         }>
             <Text style={styles.txtitem}>Subscription</Text>   

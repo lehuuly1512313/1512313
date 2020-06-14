@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import {Teachers} from '../../Data/Teacher'
-import {Mycontext} from './../../Context/Mycontext'
+import {Mycontext} from '../../Context/Mycontext'
 
 
 class Itempath extends Component{
