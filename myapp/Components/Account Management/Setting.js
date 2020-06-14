@@ -235,8 +235,8 @@ export default class Setting extends Component{
                 borderRadius: 30,
                 padding:15,
                 marginLeft: 20,
-      marginRight: 20,
-      marginTop: 20,
+                marginRight: 20,
+                marginTop: 20,
               }}>
                 <Text style={{
                   fontSize: 18,

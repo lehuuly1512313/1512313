@@ -55,17 +55,24 @@ export default class Login extends Component{
       Login = ()=>{
           var {username, password} = this.state
           let val = this.context
+          var check = false
+          if(username === '' || password === '')
+          {
+            alert('Tai khoan, mat khau khong duoc bo trong')
+          }
           const item = Accounts.map((value)=>{
               if(value.Username === username && value.Password === password)
               {
                 val.toggleAccount(value)
-                this.props.navigation.navigate('Sum');
+                this.props.navigation.navigate('Sum')
+                check = true
               }
-              else
+              
+          })
+          if(!check)
               {
                   alert('Tai khoan hoac mat khau khong chinh xac')
               }
-          })
       }
 
 

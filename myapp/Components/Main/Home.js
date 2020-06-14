@@ -25,6 +25,9 @@ export default class Home extends Component{
              width: 200,
              justifyContent: 'center',
              alignItems: 'center',
+          }} onStartShouldSetResponder={()=>{
+            this.props.context.toggleVideo(val.yourvideo[index])
+            this.props.navigation.navigate('Videoplayer');
           }}>
             <Image source={{uri: val.yourvideo[index].img}} style={styles.strech4}></Image>
           </View>

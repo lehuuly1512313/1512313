@@ -82,7 +82,9 @@ export default class Profile extends Component{
                   }}>Company: {val.Account.Company}</Text>
                   
               </View>
-              <TouchableHighlight style={styles.btn}>
+              <TouchableHighlight style={styles.btn} onPress={()=>{
+                this.props.navigation.navigate('ChangeInfo')
+              }}>
                     <Text style={styles.txtitem2}>Edit</Text>
               </TouchableHighlight>
             </DropDownItem>

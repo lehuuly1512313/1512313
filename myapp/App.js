@@ -125,7 +125,7 @@ export default class App extends Component{
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
-      toggleVideos: this.toggleVideo,
+      toggleVideo: this.toggleVideo,
       toggleAuthorsfollowed: this.toggleAuthorsfollowed,
       toggledownload: this.toggledownload,
       toggleyourCourses: this.toggleyourCourses,

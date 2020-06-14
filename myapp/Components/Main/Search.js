@@ -214,7 +214,10 @@ import {
             marginRight: 20
           }} >
             <TouchableHighlight onPress={()=>{
+              console.log(this.props.context.toggleVideo(this.props.item))
+            
             this.props.navigation.navigate(this.props.to)
+            
           }}>
             <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
             </TouchableHighlight>
@@ -349,6 +352,10 @@ class All extends Component{
                             flex: 1
                         }
                     }>Videos</Text>
+                    <TouchableHighlight onPress={()=>{
+                      this.props.setState(this.props.screenwidth)
+                      this.props.Scroll(this.props.screenwidth)
+                    }}>
                     <Text style={
                         {
                             fontSize: 18,
@@ -358,6 +365,7 @@ class All extends Component{
                             marginRight: 20
                         }
                     }>{this.props.videos.length} Result ></Text>
+                    </TouchableHighlight>
                   </View>
                   <View style={{
                     height: 1,
@@ -389,6 +397,10 @@ class All extends Component{
                             flex: 1
                         }
                     }>Courses</Text>
+                    <TouchableHighlight onPress={()=>{
+                      this.props.setState(this.props.screenwidth*2)
+                      this.props.Scroll(this.props.screenwidth*2)
+                    }}>
                     <Text style={
                         {
                             fontSize: 18,
@@ -398,6 +410,7 @@ class All extends Component{
                             marginRight: 20
                         }
                     }>{this.props.courses.length} Result ></Text>
+                    </TouchableHighlight>
                 </View>
                 <View style={{
                     height: 1,
@@ -430,6 +443,10 @@ class All extends Component{
                             flex: 1
                         }
                     }>Authors</Text>
+                     <TouchableHighlight onPress={()=>{
+                      this.props.setState(this.props.screenwidth*3)
+                      this.props.Scroll(this.props.screenwidth*3)
+                    }}>
                     <Text style={
                         {
                             fontSize: 18,
@@ -439,6 +456,7 @@ class All extends Component{
                             marginRight: 20
                         }
                     }>{this.props.teachers.length} Result ></Text>
+                    </TouchableHighlight>
                 </View>
                 
               
@@ -685,6 +703,14 @@ export default class Search extends Component{
     var {search} = this.state
     val.toggleHistory(search)
   }
+
+  setIndex = (index)=>{
+    this.setState({index})
+  }
+
+  Scroll = (loca)=>{
+    this.scroll.scrollTo({x: loca})
+  }
     
     render()
     {
@@ -713,23 +739,23 @@ export default class Search extends Component{
                 this.setState({index: 0})
               }} style={index === 0 ? styles.txtitemforcus:styles.txtitem}><Text>ALL</Text></View>
               <View onStartShouldSetResponder={()=>{
-                this.scroll.scrollTo({ x: 480 })
-                this.setState({index: 480})
-              }} style={index === 480 ? styles.txtitemforcus:styles.txtitem}><Text>VIDEOS</Text></View>
+                this.scroll.scrollTo({ x: screenwidth })
+                this.setState({index: screenwidth})
+              }} style={index === screenwidth ? styles.txtitemforcus:styles.txtitem}><Text>VIDEOS</Text></View>
               <View onStartShouldSetResponder={()=>{
-                this.scroll.scrollTo({ x: 960 })
-                this.setState({index: 960})
-              }} style={index === 960 ? styles.txtitemforcus:styles.txtitem}><Text>COURSES</Text></View>
+                this.scroll.scrollTo({ x: screenwidth*2 })
+                this.setState({index: screenwidth*2})
+              }} style={index === screenwidth*2 ? styles.txtitemforcus:styles.txtitem}><Text>COURSES</Text></View>
               <View onStartShouldSetResponder={()=>{
-                this.scroll.scrollTo({ x: 1440 })
-                this.setState({index: 1440})
-              }} style={index === 1440 ? styles.txtitemforcus:styles.txtitem}><Text>AUTHORS</Text></View>
+                this.scroll.scrollTo({ x: screenwidth*3 })
+                this.setState({index: screenwidth*3})
+              }} style={index === screenwidth*3 ? styles.txtitemforcus:styles.txtitem}><Text>AUTHORS</Text></View>
             </View>
-            <ScrollView scrollEventThrottle={10}>
+            <ScrollView>
                 <ScrollView 
                 horizontal={true}
                 pagingEnabled={true}
-                showsHorizontalScrollIndicator={true}
+                scrollEventThrottle={1}
                 onMomentumScrollEnd={(e)=>{
                   this.setState({index: e.nativeEvent.contentOffset.x})
                 }}
@@ -740,13 +766,13 @@ export default class Search extends Component{
                         height: screenheight-241,
                                 
                     }}>
-                       <All context={val} videos={videos} courses={courses} teachers={teachers} navigation={this.props.navigation}></All>
+                       <All context={val} Scroll={this.Scroll} screenwidth={screenwidth} setState={this.setIndex} index={index} videos={videos} courses={courses} teachers={teachers} navigation={this.props.navigation}></All>
                     </View>
                     <View style={{
                         width: screenwidth,
                         height: screenheight-241,
                     }}>
-                       <Coursess context={val} videos={videos} navigation={this.props.navigation}></Coursess>
+                       <Coursess context={val} s videos={videos} navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{

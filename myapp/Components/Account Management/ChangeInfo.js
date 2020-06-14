@@ -1,63 +1,49 @@
 import React, {Component} from 'react'
 import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
+import {Accounts} from '../../Data/Account'
 import {Mycontext} from './../../Context/Mycontext'
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
-export default class ChangePassword extends Component{
+export default class ChangeInfo extends Component{
 
     constructor(props){
         super(props)
-        this.handlePassword = this.handlePassword.bind(this)
-        this._storeData = this._storeData.bind(this)
-        this.Change = this.Change.bind(this)
+        this.handlePhone = this.handlePhone.bind(this)
+        this.handleCompany = this.handleCompany.bind(this)
+        this.handleCountry = this.handleCountry.bind(this)
+        this.handleJob = this.handleJob.bind(this)
+        this.handleName = this.handleName.bind(this)
         this.state={
-            password: '',
-            confirmpassword: '',
+            Name: '',
+            Phone: '',
+            Country: '',
+            Job: '',
+            Company: ''
         }
       }
-
-      handlePassword=(txt)=>{
-        this.setState({
-            password: txt
-          })
+    
+      handleName = (Name)=>{
+          this.setState({Name})
       }
 
-      handleConfirmpassword=(txt)=>{
-        this.setState({
-            confirmpassword: txt
-          })
-      }
+      handlePhone = (Phone)=>{
+        this.setState({Phone})
+    }
 
-      _storeData = async (key, data) => {
-        try {
-          await AsyncStorage.setItem(
-            key,
-            data
-          );
-        } catch (error) {
-        }
-      };
+    handleCountry = (Country)=>{
+        this.setState({Country})
+    }
 
-      Change = ()=>{
-          var {confirmpassword, password} = this.state
-          let val = this.context
-          if(confirmpassword === '' && password === '')
-          {
-              alert('ban chua nhap day du thong tin')
-          }
-          else if(confirmpassword === password)
-          {
-              val.Account.Password = password
-              alert('Doi mat khau thanh cong! xin doi trong giay lat')
-              setTimeout(() => {
-                this.props.navigation.navigate('Sum')
-              }, 1000);
-              
-          }
-          else
-          {
-              alert('mat khau nhap lai khong chinh xac')
-          }
+    handleJob = (Job)=>{
+        this.setState({Job})
+    }
+
+    handleCompany = (Company)=>{
+        this.setState({Company})
+    }
+
+      Changeinfo = ()=>{
+        
       }
 
 
@@ -76,27 +62,60 @@ export default class ChangePassword extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>New Password </Text>
-                    <TextInput onChangeText={this.handlePassword} style={{
+                    }}>Name</Text>
+                    <TextInput onChangeText={this.handleName} style={{
                       padding: 10,
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} secureTextEntry={true}></TextInput>
+                    }} value={val.Account.Name}></TextInput>
+                   <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }} >Phone</Text>
+                    <TextInput onChangeText={this.handlePhone} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} value={val.Account.Phone}></TextInput>
                     <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Confirm New Password</Text>
-                    <TextInput onChangeText={this.handleConfirmpassword} style={{
+                    }}>Country</Text>
+                    <TextInput onChangeText={this.handleCountry} style={{
                       padding: 10,
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} secureTextEntry={true}></TextInput>
+                    }} value={val.Account.Country}></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Job</Text>
+                    <TextInput onChangeText={this.handleJob} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} value={val.Account.Job}></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
+                    }}>Company</Text>
+                    <TextInput onChangeText={this.handleCompany} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} value={val.Account.Company}></TextInput>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.Change} style={styles.btn}>
+                    <TouchableHighlight onPress={this.Login} style={styles.btn}>
                         <Text style={styles.txtbtn}>Change</Text>
                     </TouchableHighlight>
                 </View>
@@ -108,7 +127,7 @@ export default class ChangePassword extends Component{
   }
 }
 
-ChangePassword.contextType = Mycontext
+ChangeInfo.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

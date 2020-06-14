@@ -21,6 +21,8 @@ import Listauthorschannel from '../../Components/Authors/Listauthorschannel'
 import Listcourseschannel from '../../Components/Courses/Listcourseschannel'
 import Subscription from '../../Components/Others/Subscription'
 import Contact from '../../Components/Others/Contact'
+import ChangePassword from '../../Components/Authentication/ChangePassword'
+import ChangeInfo from '../../Components/Account Management/ChangeInfo'
 
 const Stack = createStackNavigator();
 
@@ -58,6 +60,8 @@ class Screen extends Component {
           <Stack.Screen name="Listcourseschannel" component={Listcourseschannel}/>
           <Stack.Screen name="Subscription" component={Subscription}/>
           <Stack.Screen name="Contact" component={Contact}/>
+          <Stack.Screen name="ChangePassword" component={ChangePassword}/>
+          <Stack.Screen name="ChangeInfo" component={ChangeInfo}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

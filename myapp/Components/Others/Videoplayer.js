@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
+import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList, TouchableOpacityBase } from 'react-native';
 import Video from 'react-native-video';
 import Share from './Share'
 import {Mycontext} from './../../Context/Mycontext'
+import {Teachers} from './../../Data/Teacher'
 
 class Contents extends Component{
   render()
@@ -73,6 +74,14 @@ export default class Videoplayer extends Component{
         }}source={require('../../img/star.png')}></Image>
       )
     }
+    var teacher = null
+    Teachers.map((value)=>{
+      if(value.id === val.Video.Teacher)
+      {
+        teacher = value
+        return
+      }
+    })
     var date = new Date()
        return(
          <View style={{
@@ -84,7 +93,6 @@ export default class Videoplayer extends Component{
           <Video source={{uri: "http://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4"}}
                 style={{
                   height: 300,
-
                 }}
                 rate={1.0}
                 resizeMode='contain'
@@ -124,9 +132,11 @@ export default class Videoplayer extends Component{
                 borderRadius: 20,
               }}></Image></View>
               </View>
-              <View style={styles.teacher}>
-               
-                    <Image source={{uri: 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg'}} style={{
+              <View style={styles.teacher} onStartShouldSetResponder={()=>{
+                val.toggleTeacher(teacher)
+                this.props.navigation.navigate('TeachProfile')
+              }}>
+                    <Image source={{uri: `${teacher.Avatar}`}} style={{
                     width: 50,
                     height: 50,
                     borderRadius: 25,
@@ -136,7 +146,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Le Huu Ly</Text>
+              }}>{teacher.Name}</Text>
                
               </View>
               <View style={styles.content}>
@@ -175,12 +185,18 @@ export default class Videoplayer extends Component{
                   flex: 1,
                   
                 }}>
+                  <TouchableHighlight onPress={()=>{
+                     if(val.Video.channel === false)
+                     {
+                       val.toggleyourvideo(val.Video)
+                     }
+                  }}>
                 <Image source={{uri: 'https://www.vippng.com/png/detail/289-2892061_television-clipart-tv-channel-icon-channel-tv.png'}} style={{
                 width: 60,
                 height: 60,
                 borderRadius: 10,
                
-              }}></Image>
+              }}></Image></TouchableHighlight>
                   <Text style={{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
@@ -191,12 +207,18 @@ export default class Videoplayer extends Component{
                   alignItems: 'center',
                   flex: 1
                 }}>
+                  <TouchableHighlight onPress={()=>{
+                    if(val.Video.download === false)
+                    {
+                      val.toggledownload(val.Video)
+                    }
+                  }}>
                 <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQc4nTt2VJgWKBIRaxf7JRAlx-9qEhfz8eJOMQ8w2r2cG6lbKZS&usqp=CAU'}} style={{
                 width: 60,
                 height: 60,
                 borderRadius: 10,
                 
-              }}></Image>
+              }}></Image></TouchableHighlight>
                   <Text style={{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,

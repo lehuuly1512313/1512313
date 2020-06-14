@@ -116,6 +116,7 @@ export default class Sum extends Component{
         let screenheight = Dimensions.get('window').height
         var val = this.context
         var img = null
+        var change = null 
         if(val.Account)
         {
             img = (
@@ -126,6 +127,13 @@ export default class Sum extends Component{
             marginRight: 5
 
           }}></Image>
+            )
+            change = (
+                <MenuOption onSelect={()=>{
+                    this.props.navigation.navigate('ChangePassword')
+                 }}>
+                 <Text style={{fontSize: 20}}>Change Password</Text>
+                 </MenuOption>
             )
         }
         else
@@ -159,7 +167,7 @@ export default class Sum extends Component{
               alignItems:'center',
               marginRight: 20
           }} onStartShouldSetResponder={
-              ()=>{this.props.navigation.navigate('Profile')}
+              ()=>{val.Account !== null ? this.props.navigation.navigate('Profile'):null}
           }>{img}
              {/* <Icon
               name='more-vert'
@@ -180,15 +188,16 @@ export default class Sum extends Component{
                    alignItems: 'center',
                 }}>
                     <MenuOption onSelect={()=>{
-                        this.props.navigation.navigate('Profile')
+                         val.Account !== null ? this.props.navigation.navigate('Profile'):null
                     }}>
                     <Text style={{fontSize: 20}}>Profile</Text>
                     </MenuOption >
                     <MenuOption onSelect={()=>{
-                        this.props.navigation.navigate('Setting')
+                       this.props.navigation.navigate('Setting')
                     }}>
                     <Text style={{fontSize: 20}}>Setting</Text>
                     </MenuOption>
+                    {change}
                     <MenuOption onSelect={()=>{
                         if(this.state.Signquestion === 'Sign out')
                         {
