@@ -144,7 +144,7 @@ export default class Listvideochannel extends Component{
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
     var val = this.context
-    if(val.download[0])
+    if(val.yourvideo[0])
     {
       return(
         <View style={{
@@ -155,7 +155,7 @@ export default class Listvideochannel extends Component{
         }}>
      
           <FlatList 
-            data={val.download}
+            data={val.yourvideo}
             renderItem={({index, item})=>{
               return(
                   <Item context={val} item={item} index={index} navigation={this.props.navigation}></Item>

@@ -21,6 +21,18 @@ export default class ChangeInfo extends Component{
             Company: ''
         }
       }
+
+      componentWillMount()
+      {
+        var val = this.context
+        this.setState({
+          Name: val.Account.Name,
+          Phone: val.Account.Phone,
+          Country: val.Account.Country,
+          Job: val.Account.Job,
+          Company: val.Account.Company
+        })
+      }
     
       handleName = (Name)=>{
           this.setState({Name})
@@ -42,9 +54,21 @@ export default class ChangeInfo extends Component{
         this.setState({Company})
     }
 
-      Changeinfo = ()=>{
-        
-      }
+    Changeinfo = ()=>{
+      var val = this.context
+      var {Name,
+        Phone,
+        Country,
+        Job,
+        Company} = this.state
+        val.Account.Name = Name
+        val.Account.Phone = Phone
+        val.Account.Country = Country
+        val.Account.Job = Job
+        val.Account.Company = Company
+        val.toggleAccount(val.Account)
+        alert('thay doi thong tin thanh cong')
+    }
 
 
   render()
@@ -68,7 +92,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={val.Account.Name}></TextInput>
+                    }} value={this.state.Name}></TextInput>
                    <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
@@ -79,7 +103,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={val.Account.Phone}></TextInput>
+                    }} value={this.state.Phone}></TextInput>
                     <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
@@ -90,7 +114,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={val.Account.Country}></TextInput>
+                    }} value={this.state.Country}></TextInput>
                     <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
@@ -101,7 +125,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={val.Account.Job}></TextInput>
+                    }} value={this.state.Job}></TextInput>
                     <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
@@ -112,10 +136,10 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={val.Account.Company}></TextInput>
+                    }} value={this.state.Company}></TextInput>
                 </View>
                 <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.Login} style={styles.btn}>
+                    <TouchableHighlight onPress={this.Changeinfo} style={styles.btn}>
                         <Text style={styles.txtbtn}>Change</Text>
                     </TouchableHighlight>
                 </View>

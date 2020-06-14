@@ -109,6 +109,7 @@ export default class App extends Component{
       this.setState({Authorsfollowed})
     }
 
+
     this.state={
       Account: null,
       Teacher: null,
