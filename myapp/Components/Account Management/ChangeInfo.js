@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
 import {Accounts} from '../../Data/Account'
 import {Mycontext} from './../../Context/Mycontext'
+import API from './../../API/Api'
+import {UpdateProfileURL} from './../../API/Url'
+
+
+const Api = new API()
+
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class ChangeInfo extends Component{
@@ -9,9 +15,7 @@ export default class ChangeInfo extends Component{
     constructor(props){
         super(props)
         this.handlePhone = this.handlePhone.bind(this)
-        this.handleCompany = this.handleCompany.bind(this)
-        this.handleCountry = this.handleCountry.bind(this)
-        this.handleJob = this.handleJob.bind(this)
+        this.handleAvatar = this.handleAvatar.bind(this)
         this.handleName = this.handleName.bind(this)
         this.state={
             Name: '',
@@ -26,11 +30,9 @@ export default class ChangeInfo extends Component{
       {
         var val = this.context
         this.setState({
-          Name: val.Account.Name,
-          Phone: val.Account.Phone,
-          Country: val.Account.Country,
-          Job: val.Account.Job,
-          Company: val.Account.Company
+          Name: val.Account.name,
+          Phone: val.Account.phone,
+          Avatar: val.Account.avatar
         })
       }
     
@@ -42,17 +44,11 @@ export default class ChangeInfo extends Component{
         this.setState({Phone})
     }
 
-    handleCountry = (Country)=>{
-        this.setState({Country})
+    handleAvatar = (Avatar)=>{
+        this.setState({Avatar})
     }
 
-    handleJob = (Job)=>{
-        this.setState({Job})
-    }
-
-    handleCompany = (Company)=>{
-        this.setState({Company})
-    }
+   
 
     Changeinfo = ()=>{
       var val = this.context
@@ -104,39 +100,17 @@ export default class ChangeInfo extends Component{
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
                     }} value={this.state.Phone}></TextInput>
-                    <Text style={{
+                     <Text style={{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Country</Text>
-                    <TextInput onChangeText={this.handleCountry} style={{
+                    }} >Avatar</Text>
+                    <TextInput onChangeText={this.handleAvatar} style={{
                       padding: 10,
                       fontSize: 20,
                       borderRadius: 50,
                       backgroundColor: `${val.Theme.InputColor}`
-                    }} value={this.state.Country}></TextInput>
-                    <Text style={{
-                      fontSize: 20,
-                      marginBottom: 10,
-                      color: `${val.Theme.Color}`
-                    }}>Job</Text>
-                    <TextInput onChangeText={this.handleJob} style={{
-                      padding: 10,
-                      fontSize: 20,
-                      borderRadius: 50,
-                      backgroundColor: `${val.Theme.InputColor}`
-                    }} value={this.state.Job}></TextInput>
-                    <Text style={{
-                      fontSize: 20,
-                      marginBottom: 10,
-                      color: `${val.Theme.Color}`
-                    }}>Company</Text>
-                    <TextInput onChangeText={this.handleCompany} style={{
-                      padding: 10,
-                      fontSize: 20,
-                      borderRadius: 50,
-                      backgroundColor: `${val.Theme.InputColor}`
-                    }} value={this.state.Company}></TextInput>
+                    }} value={this.state.Avatar}></TextInput>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.Changeinfo} style={styles.btn}>

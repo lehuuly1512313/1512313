@@ -3,14 +3,16 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'reac
 import {Accounts} from '../../Data/Account'
 import Modal from 'react-native-modalbox'
 import {Mycontext} from './../../Context/Mycontext'
+import API from './../../API/Api'
+import {RegisterURL} from './../../API/Url'
+
+const Api = new API()
+
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 
 class Notification extends Component{
-
-
- 
 
     showshare=()=>{
       this.refs.me.open()
@@ -40,7 +42,7 @@ class Notification extends Component{
                     <View style={{
                         justifyContent: 'center',
                         alignItems: 'center'
-                        }}><Text style={styles.txtbtn4}>Please wait....{this.props.second}</Text></View>
+                        }}><Text style={styles.txtbtn4}>Check your email and then active this account...{this.props.second}</Text></View>
               </View>
             </View>
         </Modal>
@@ -92,23 +94,18 @@ export default class VerifyPassword extends Component{
           else
           {
               var Data = {
-                Username: data.Email,
-                Password: Password,
-                Name: data.Name,
-                Email: data.Email,
-                Phone: data.Phone,
-                Country: data.Country,
-                Job: '',
-                Company: '',
-                Avatar: 'https://i.stack.imgur.com/l60Hf.png',
-                Nofca: 0,
-                Experience: 0,
-                highest: 0,
-                Bonus: 0,
+                username: data.Email,
+                email: data.Email,
+                phone: data.Phone,
+                password: Password,
               }
-              Accounts.push(Data)
-              this.refs.Notification.showshare()
-              var _interval = setInterval(() => {
+
+              Api.PostRequest(Data,RegisterURL).then(res=>{
+               
+                if(res)
+                {
+                this.refs.Notification.showshare()
+                var _interval = setInterval(() => {
                 var {status} = this.state
                 status = status + 1
                 this.setState({
@@ -122,6 +119,15 @@ export default class VerifyPassword extends Component{
               setTimeout(() => {
                 this.props.navigation.navigate('Login');
               }, 5000);
+
+                }
+                else
+                {
+                  alert('Email hoặc số điện thoại đã được sử dung')
+                }
+          
+              })
+              
           }
       }
 

@@ -9,25 +9,19 @@ export default class Register extends Component{
         super(props)
         this.handlePressSignIn = this.handlePressSignIn.bind(this)
         this.handlePhone = this.handlePhone.bind(this)
-        this.handleCountry = this.handleCountry.bind(this)
         this.handleEmail = this.handleEmail.bind(this)
-        this.handleName = this.handleName.bind(this)
+        this.handleUsername = this.handleUsername.bind(this)
         this.handlePress = this.handlePress.bind(this)
         this.state={
             Email: '',
-            Name: '',
+            Username: '',
             Phone:'',
-            Country: '',
         }
       }
     
       handlePressSignIn = ()=>
       {
         this.props.navigation.navigate('Login');
-      }
-
-      handleCountry=(txt)=>{
-          this.setState({Country: txt})
       }
 
       handleEmail=(txt)=>{
@@ -38,15 +32,15 @@ export default class Register extends Component{
         this.setState({Phone: txt})
     }
 
-    handleName=(txt)=>{
-        this.setState({Name: txt})
+    handleUsername=(txt)=>{
+        this.setState({Username: txt})
     }
 
 
     handlePress=()=>{
-        var {Email, Name, Phone, Country} = this.state
+        var {Email, Username, Phone} = this.state
 
-        if(Email==='' || Name === '' || Phone === '' || Country === '')
+        if(Email==='' || Username === '' || Phone === '')
         {
             alert('Ban chua nhap day du thong tin')
         }
@@ -58,9 +52,8 @@ export default class Register extends Component{
         {
             var data = {
                 Email,
-                Name,
+                Username,
                 Phone,
-                Country
             }
             this.props.navigation.navigate('VerifyPassword', {data} );
         }
@@ -83,6 +76,17 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
+                    }}>Username</Text>
+                    <TextInput onChangeText={this.handleUsername} style={{
+                      padding: 10,
+                      fontSize: 20,
+                      borderRadius: 50,
+                      backgroundColor: `${val.Theme.InputColor}`
+                    }} ></TextInput>
+                    <Text style={{
+                      fontSize: 20,
+                      marginBottom: 10,
+                      color: `${val.Theme.Color}`
                     }}>Email</Text>
                     <TextInput onChangeText={this.handleEmail} style={{
                       padding: 10,
@@ -94,30 +98,8 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Name</Text>
-                    <TextInput onChangeText={this.handleName} style={{
-                      padding: 10,
-                      fontSize: 20,
-                      borderRadius: 50,
-                      backgroundColor: `${val.Theme.InputColor}`
-                    }} ></TextInput>
-                    <Text style={{
-                      fontSize: 20,
-                      marginBottom: 10,
-                      color: `${val.Theme.Color}`
                     }}>Phone </Text>
                     <TextInput onChangeText={this.handlePhone} style={{
-                      padding: 10,
-                      fontSize: 20,
-                      borderRadius: 50,
-                      backgroundColor: `${val.Theme.InputColor}`
-                    }} ></TextInput>
-                    <Text style={{
-                      fontSize: 20,
-                      marginBottom: 10,
-                      color: `${val.Theme.Color}`
-                    }}>Country </Text>
-                    <TextInput onChangeText={this.handleCountry} style={{
                       padding: 10,
                       fontSize: 20,
                       borderRadius: 50,

@@ -120,7 +120,7 @@ export default class Sum extends Component{
         if(val.Account)
         {
             img = (
-                <Image source={{uri: val.Account.Avatar }} style={{
+                <Image source={{uri: val.Account.avatar }} style={{
             width: 40,
             height: 40,
             borderRadius: 20,

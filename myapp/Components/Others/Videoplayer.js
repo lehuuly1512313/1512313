@@ -4,6 +4,9 @@ import Video from 'react-native-video';
 import Share from './Share'
 import {Mycontext} from './../../Context/Mycontext'
 import {Teachers} from './../../Data/Teacher'
+import YouTube from 'react-native-youtube';
+const YOUR_API_KEY = "AIzaSyC3dckHHZ81DgCQvCMS_1g2OzvQAQ_xPts";
+
 
 class Contents extends Component{
   render()
@@ -90,7 +93,7 @@ export default class Videoplayer extends Component{
           backgroundColor: `${val.Theme.BackgroundColor}`,
          }}>
            <ScrollView>
-          <Video source={{uri: "http://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4"}}
+          {/* <Video source={{uri: "http://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4"}}
                 style={{
                   height: 300,
                 }}
@@ -105,6 +108,18 @@ export default class Videoplayer extends Component{
                   console.log(err);
                 }
                 ) }
+              /> */}
+
+              <YouTube
+                videoId="wIuAc2e7-rQ" // The YouTube video ID
+                apiKey = {YOUR_API_KEY}
+                play = {true}
+                fullscreen
+                onReady={e => this.setState({ isReady: true })}
+                onChangeState={e => this.setState({ status: e.state })}
+                onChangeQuality={e => this.setState({ quality: e.quality })}
+                onError={e => this.setState({ error: e.error })}
+                style={{ alignSelf: 'stretch', height: 300 }}
               />
               <View style={styles.content}>
               <Text style={{

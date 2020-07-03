@@ -23,7 +23,7 @@ export default class Profile extends Component{
               alignItems:'center',
               marginTop: 10
             }}>
-            <Image style={styles.strech} source={{uri: `${val.Account.Avatar}`}}></Image>
+            <Image style={styles.strech} source={{uri: `${val.Account.avatar}`}}></Image>
             </View>
         </View>
         <ScrollView style={{ alignSelf: 'stretch' }}>
@@ -54,32 +54,37 @@ export default class Profile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name: {val.Account.Name}</Text>
+                  }}>Your ID: {val.Account.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Account.Email}</Text>
+                  }}>Name: {val.Account.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Phone: {val.Account.Phone}</Text>
+                  }}>Email: {val.Account.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Country: {val.Account.Country}</Text>
+                  }}>Phone: {val.Account.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Job: {val.Account.Job}</Text>
+                  }}>Type: {val.Account.type}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Company: {val.Account.Company}</Text>
+                  }}>Created at: {val.Account.createdAt}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Updated at: {val.Account.updatedAt}</Text>
                   
               </View>
               <TouchableHighlight style={styles.btn} onPress={()=>{

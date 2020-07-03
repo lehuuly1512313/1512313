@@ -1,0 +1,8 @@
+export const ActiveEmailURL = 'http://itedu-user-api.herokuapp.com/user/send-activate-email'
+export const RegisterURL = 'http://itedu-user-api.herokuapp.com/user/register'
+export const LoginURL = 'http://itedu-user-api.herokuapp.com/user/login'
+export const UpdateProfileURL = 'http://itedu-user-api.herokuapp.com/user/update-profile'
+export const forgetpassSendemailURL = 'http://itedu-user-api.herokuapp.com/user/forget-pass/send-email'
+export const resetpasswordURL = 'http://itedu-user-api.herokuapp.com/user/reset-password'
+export const changepasswordURL = 'http://itedu-user-api.herokuapp.com/user/change-password'
+export const changeuseremailURL = 'http://itedu-user-api.herokuapp.com/user/change-user-email'

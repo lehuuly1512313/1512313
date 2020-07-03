@@ -28,6 +28,13 @@ export default class App extends Component{
         Account
       })
     }  
+
+    this.togglePassword = (Password) => {
+      this.setState({
+        Password
+      })
+    }  
+
     this.toggleTeacher = (Teacher) => {
       this.setState({
         Teacher
@@ -115,6 +122,7 @@ export default class App extends Component{
       Teacher: null,
       Courses: null,
       Video: null,
+      Password: '',
       download: [],
       searchkey: '',
       yourCourses: [],
@@ -138,7 +146,8 @@ export default class App extends Component{
       toggleTheme: this.toggleTheme,
       fyourvideo: this.fyourvideo,
       fyourCourses: this.fyourCourses,
-      fAuthorsfollowed: this.fAuthorsfollowed
+      fAuthorsfollowed: this.fAuthorsfollowed,
+      togglePassword:this.togglePassword
     }
 
   }

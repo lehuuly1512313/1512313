@@ -1,9 +1,52 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
+import API from './../../API/Api'
+import {forgetpassSendemailURL} from './../../API/Url'
+
+
+const Api = new API()
+
+
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class ForgetPass extends Component{
+
+  constructor(props){
+    super(props)
+    this.handleEmail = this.handleEmail.bind(this)
+    this.Send = this.Send.bind(this)
+    this.state={
+        Email: '',
+    }
+  }
+
+  handleEmail=(Email)=>{
+    this.setState({
+        Email
+      })
+  }
+
+
+
+  Send = ()=>{
+          var {Email} = this.state
+          var Data = {
+           email: Email
+          }
+          Api.PostRequest(Data,forgetpassSendemailURL).then(res=>{
+            if(res)
+            {
+              alert('Hãy kiểm tra email và làm theo hướng dẫn!')
+              setTimeout(() => {
+                this.props.navigation.navigate('Login')
+              }, 1000);
+
+            }
+          })
+  }
+
+
   render()
   {
     var val = this.context
@@ -39,7 +82,7 @@ export default class ForgetPass extends Component{
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
                     }}>Email</Text>
-                    <TextInput onChangeText={this.handleAccount} style={{
+                    <TextInput onChangeText={this.handleEmail} style={{
                       padding: 10,
                       fontSize: 20,
                       borderRadius: 50,
@@ -47,7 +90,7 @@ export default class ForgetPass extends Component{
                     }} ></TextInput>
                 </View>
       <View style={styles.flex}>
-                    <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
+                    <TouchableHighlight onPress={this.Send} style={styles.btn}>
                         <Text style={styles.txtbtn}>SEND EMAIL</Text>
                     </TouchableHighlight>
                 </View>

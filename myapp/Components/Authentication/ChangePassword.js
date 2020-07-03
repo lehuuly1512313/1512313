@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
+import API from './../../API/Api'
+import {changepasswordURL} from './../../API/Url'
+
+
+const Api = new API()
+
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
 export default class ChangePassword extends Component{
@@ -43,16 +49,30 @@ export default class ChangePassword extends Component{
           let val = this.context
           if(confirmpassword === '' && password === '')
           {
-              alert('ban chua nhap day du thong tin')
+              alert('bạn chưa nhập đầy đủ thông tin')
           }
           else if(confirmpassword === password)
           {
-              val.Account.Password = password
-              alert('Doi mat khau thanh cong! xin doi trong giay lat')
-              setTimeout(() => {
-                this.props.navigation.navigate('Sum')
-              }, 1000);
               
+              var Data = {
+                id: val.Account.id,
+                oldPass: val.Password,
+                newPass: password
+              }
+
+              console.log(Data)
+              Api.PostRequest(Data,changepasswordURL).then(res=>{
+                if(res)
+                {
+                  val.togglePassword(password)
+                  alert('Đổi mật khẩu thành công!')
+                  setTimeout(() => {
+                    this.props.navigation.navigate('Sum')
+                  }, 1000);
+    
+                }
+              })
+            
           }
           else
           {
