@@ -1,55 +1,14 @@
 import React, {Component} from 'react'
-import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
+import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image, ActivityIndicator } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
 import {LoginURL} from './../../API/Url'
-import Modal from 'react-native-modalbox'
+import Notification from './../Notification/Notification'
 
 const Api = new API()
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
-
-
-
-class Notification extends Component{
-
-  showshare=()=>{
-    this.refs.me.open()
-  }
-
-  render()
-  {
-    return(
-      <Modal
-      ref={'me'}
-       style={{
-        height: '45%',
-        
-        backgroundColor: 'white'
-      }}
-      position='center'
-      backdrop={true}
-      >
-       <Text style={{
-         margin: 20,
-         color: 'darkcyan',
-         fontSize: 20,
-       }}>Notification</Text> 
-        
-          <View>
-            <View style={styles.content}>
-                  <View style={{
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                      }}><Text style={styles.txtbtn4}>Đang đăng nhập vui lòng đợi trong giây lát!...</Text></View>
-            </View>
-          </View>
-      </Modal>
-    )
-  }
-}
-
-
+ 
 export default class Login extends Component{
 
     constructor(props){
@@ -62,7 +21,8 @@ export default class Login extends Component{
         this.Login = this.Login.bind(this)
         this.state={
             username: '',
-            password: ''
+            password: '',
+            notification: 'Đang xác thực thông tin!...'
         }
       }
     
@@ -112,17 +72,21 @@ export default class Login extends Component{
             password,
           }
           this.refs.Notification.showshare()
-          Api.PostRequest(Data,LoginURL).then(res=>{
+          Api.PostRequest(Data,LoginURL,null).then(res=>{
             if(res)
             {
-              
-              console.log(res.data.userInfo)
+              this.setState({notification: 'đang đăng nhập vui lòng đợi trong giây lát!...'})
               val.toggleAccount(res.data.userInfo)
               val.togglePassword(password)
-              this.props.navigation.navigate('Sum')
+              val.toggleToken(res.data.token)
+              setTimeout(() => {
+                this.props.navigation.navigate('Sum')
+              }, 1500);
+              
             }
             else
             {
+              this.refs.Notification.close()
               alert('Email không tồn tại hoặc chưa được kích hoạt')
             }
       
@@ -183,7 +147,7 @@ export default class Login extends Component{
                         <Text style={styles.txtbtn2}>Use single sign-on (sso)</Text>
                     </TouchableHighlight>
                 </View>
-                <Notification ref={'Notification'}></Notification>
+                <Notification ref={'Notification'} notification={this.state.notification}></Notification>
             </View>
     )
   }
@@ -260,7 +224,7 @@ const styles = StyleSheet.create({
   },
   txtbtn4:{
     color: 'black',
-    fontSize: 40,
+    fontSize: 25,
     fontWeight: 'bold'
   }
 });

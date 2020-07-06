@@ -1,10 +1,12 @@
-import React, {Component} from 'react'
-import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
-import {Accounts} from '../../Data/Account'
+import React, {Component,} from 'react'
+import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image, ActivityIndicator } from 'react-native';
+
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
 import {UpdateProfileURL} from './../../API/Url'
+import Notification from './../Notification/Notification'
 
+const notification = 'Đang cập nhật thông tin vui lòng đợi trong giây lát!...'
 
 const Api = new API()
 
@@ -20,9 +22,8 @@ export default class ChangeInfo extends Component{
         this.state={
             Name: '',
             Phone: '',
-            Country: '',
-            Job: '',
-            Company: ''
+            Avatar: '',
+
         }
       }
 
@@ -51,19 +52,32 @@ export default class ChangeInfo extends Component{
    
 
     Changeinfo = ()=>{
+      var {Name, Phone, Avatar} = this.state
+      var data = {
+        name: Name,
+        avatar: Avatar,
+        phone: Phone
+      }
       var val = this.context
-      var {Name,
-        Phone,
-        Country,
-        Job,
-        Company} = this.state
-        val.Account.Name = Name
-        val.Account.Phone = Phone
-        val.Account.Country = Country
-        val.Account.Job = Job
-        val.Account.Company = Company
-        val.toggleAccount(val.Account)
-        alert('thay doi thong tin thanh cong')
+        const config = {
+          headers: { Authorization: `Bearer ${val.Token}` }
+      };
+      
+      Api.PutRequest(data,UpdateProfileURL, config).then(res=>{
+        if(res)
+        {
+          val.toggleAccount(res.data.payload)
+          this.refs.Notification.showshare()
+          setTimeout(() => {
+            this.props.navigation.navigate('Sum')
+          }, 2000);
+        }
+        else
+        {
+          this.refs.Notification.close()
+          alert('Đã xảy ra lỗi trong quá trình thay đổi mật khẩu xin thử lại!')
+        }
+      })
     }
 
 
@@ -120,6 +134,7 @@ export default class ChangeInfo extends Component{
                 <View style={styles.flex2}>
                     <Text style={styles.txtbtn3}>Need help?</Text>
                 </View>
+                <Notification ref={'Notification'} notification={notification}></Notification>
             </View>
     )
   }
@@ -194,4 +209,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     
   },
+  txtbtn4:{
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold'
+  }
 });

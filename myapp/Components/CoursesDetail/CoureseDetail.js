@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
-import {Courses} from '../../Data/Courses'
-import {Teachers} from '../../Data/Teacher'
 import {Mycontext} from './../../Context/Mycontext'
 
 
@@ -14,7 +12,7 @@ export default class CoursesDetail extends Component{
     var liststar = [];
     let count = 0
     var val = this.context
-    
+    console.log(val.Courses)
     for (let index = 0; index < 4 - 0.5; index++) {
       count++;
       liststar.push(
@@ -61,7 +59,7 @@ export default class CoursesDetail extends Component{
                  alignItems:'center',
                  flex: 1,
                }}>
-                <Image style={styles.strech} source={{uri: val.Courses.img}}></Image>
+                <Image style={styles.strech} source={{uri: val.Courses.imageUrl}}></Image>
                </View>
                <View style={{
                  flex: 2
@@ -70,17 +68,27 @@ export default class CoursesDetail extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name courses: {val.Courses.name}</Text>
+                  }}>Title: {val.Courses.title}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Start date: {val.Courses.Dateinit}</Text>
+                  }}>Subtitle: {val.Courses.subtitle}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>{val.Courses.Videos} Videos</Text>
+                  }}>Description: {val.Courses.description}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>learn What: {val.Courses.learnWhat}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Price: {val.Courses.price}</Text>
               </View>
              </View>
             </DropDownItem>
@@ -112,36 +120,58 @@ export default class CoursesDetail extends Component{
                  alignItems:'center',
                  flex: 1,
                }}>
-                <Image style={styles.strech} source={{uri: val.Teacher.Avatar}}></Image>
+                <Image style={styles.strech} source={{uri: val.Teacher.avatar}}></Image>
                </View>
                <View style={{
                  flex: 2
                }}>
+                                    <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Name: {val.Teacher.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Teacher: {val.Teacher.Name}</Text>
+                  }}>Email: {val.Teacher.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Experience (years): {val.Teacher.Experience}</Text>
+                  }}>Phone: {val.Teacher.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Taught (lessons) : {val.Teacher.Nofca}</Text>
+                  }}>Id: {val.Teacher.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Teacher.Email}</Text>
+                  }}>Major: {val.Teacher.major}</Text>
+                  
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>University: {val.Teacher.Company}</Text>
+                  }}>Intro: {val.Teacher.intro}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Skills: {val.Teacher.skills}</Text>
+
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Created At: {val.Teacher.createdAt}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Updated At: {val.Teacher.updatedAt}</Text> 
                   <View style={{
                     flexDirection: 'row'
                   }}>

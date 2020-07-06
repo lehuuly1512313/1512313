@@ -1,28 +1,44 @@
 import React, {Component} from 'react'
-import Start from './Components/Authentication/Start'
-import Login from './Components/Authentication/Login'
-import Register from './Components/Authentication/Register'
-import ForgetPass from './Components/Authentication/ForgetPass'
-import Download from './Components/Main/Download'
-import ListCourses from './Components/Courses/ListCourses'
-import CoureseDetail from './Components/CoursesDetail/CoureseDetail'
-import Profile from './Components/Account Management/Profile'
-import Sum from './Components/Main/Sum'
-import Browser from './Components/Main/Browser'
 import Screen from './Components/MainScreen/Screen'
-import Setting from './Components/Account Management/Setting'
-import Videoplayer from './Components/Others/Videoplayer'
-import Subscription from './Components/Others/Subscription'
-import Splashscreen from './Components/Others/Splashscreen'
 import {Mycontext} from './Context/Mycontext'
 import { MenuProvider } from 'react-native-popup-menu';
 import {Theme} from './Data/Theme'
+import API from './API/Api'
+import {ListAuthorsURL, topnewURL,toprateURL} from './API/Url'
 
+
+const Api = new API()
 
 export default class App extends Component{
 
   constructor(props){
     super(props)
+
+    Api.GetRequest(ListAuthorsURL).then(res=>{
+      if(res)
+      {
+      this.setState({Teachers: res.data.payload})
+      }
+    })
+    var data = {
+      limit: 10,
+      page: 1
+    }
+    Api.PostRequest(data,topnewURL, null).then(res=>{
+      if(res)
+      {
+      this.setState({news: res.data.payload})
+      }
+    })
+
+    Api.PostRequest(data,toprateURL, null).then(res=>{
+      if(res)
+      {
+      this.setState({rates: res.data.payload})
+      }
+    })
+
+
     this.toggleAccount = (Account) => {
       this.setState({
         Account
@@ -116,8 +132,12 @@ export default class App extends Component{
       this.setState({Authorsfollowed})
     }
 
+    this.toggleToken = (Token)=>{
+      this.setState({Token})
+    }
 
     this.state={
+      Teachers: [],
       Account: null,
       Teacher: null,
       Courses: null,
@@ -131,6 +151,9 @@ export default class App extends Component{
       history: ['ReactJS',
       'ReactNative'],
       Theme: Theme[0],
+      Token: '',
+      news: '',
+      rates: '',
       toggleAccount: this.toggleAccount,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
@@ -147,7 +170,8 @@ export default class App extends Component{
       fyourvideo: this.fyourvideo,
       fyourCourses: this.fyourCourses,
       fAuthorsfollowed: this.fAuthorsfollowed,
-      togglePassword:this.togglePassword
+      togglePassword:this.togglePassword,
+      toggleToken: this.toggleToken
     }
 
   }

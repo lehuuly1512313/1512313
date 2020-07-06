@@ -118,7 +118,7 @@ class Item extends Component{
   }
 }
 
-export default class ListCourses extends Component{
+export default class ListCoursesNews extends Component{
   render()
   {
     var val = this.context
@@ -146,7 +146,7 @@ export default class ListCourses extends Component{
 }
 
 
-ListCourses.contextType = Mycontext
+ListCoursesNews.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

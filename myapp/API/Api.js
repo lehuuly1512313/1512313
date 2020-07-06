@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 class API {
-    PostRequest=(Data, url)=>{
+    PostRequest=(Data, url, header)=>{
         return axios
-        .post(url,Data)
+        .post(url,Data,header)
         .then(res=>{
           return res;
         })
@@ -12,9 +12,31 @@ class API {
         });
     }
 
-    PutRequest=(Data, url)=>{
+    PutRequest=(Data, url, header)=>{
       return axios
-      .put(url,Data)
+      .put(url,Data,header)
+      .then(res=>{
+        return res;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  GetRequest=(url)=>{
+    return axios
+      .get(url)
+      .then(res=>{
+        return res;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  GetRequestWithParam=(url,param)=>{
+    return axios
+      .get(url+param)
       .then(res=>{
         return res;
       })

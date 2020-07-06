@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
-import {Teachers} from './../../Data/Teacher'
+
 import {Mycontext} from './../../Context/Mycontext'
 import {Courses} from '../../Data/Courses'
+
+import API from './../../API/Api'
+import {DetailAuthorURL} from './../../API/Url'
+
+const Api = new API()
 
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 
 export default class Browser extends Component{
   render()
   {
+    
     var val = this.context
     let popskills = []
     for (let index = 0; index < data.length; index++) {
@@ -29,7 +35,7 @@ export default class Browser extends Component{
       )
     }
     let paths = []
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < val.news.length; index++) {
       paths.push(
         <View style={{
             marginRight: 20,
@@ -41,7 +47,7 @@ export default class Browser extends Component{
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <Image source={{uri: Courses[index].img}} style={styles.strech3}></Image>
+            <Image source={{uri: val.news[index].imageUrl}} style={styles.strech3}></Image>
           </View>
           <View style={{
             backgroundColor: 'gray',
@@ -52,11 +58,38 @@ export default class Browser extends Component{
               marginLeft: 10,
               marginTop: 10
             }}>
-              <Text style={{
-                fontSize: 18,
-                color: 'white'
-              }}>{Courses[index].name}</Text>
-              <Text style={styles.txtitem2}>{Courses[index].Videos} videos</Text>
+              <Text style={styles.txtitem2}>{val.news[index].title}</Text>
+            </View>
+          </View>
+        </View>
+      )
+    }
+
+    let path2s = []
+    for (let index = 0; index < val.rates.length; index++) {
+      path2s.push(
+        <View style={{
+            marginRight: 20,
+        }}>
+          <View style={{
+            backgroundColor: 'dimgray',
+            height: '50%',
+            width: 200,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Image source={{uri: val.rates[index].imageUrl}} style={styles.strech3}></Image>
+          </View>
+          <View style={{
+            backgroundColor: 'gray',
+            height: '50%',
+            width: 200
+          }}>
+            <View style={{
+              marginLeft: 10,
+              marginTop: 10
+            }}>
+              <Text style={styles.txtitem2}>{val.rates[index].title} videos</Text>
             </View>
           </View>
         </View>
@@ -64,8 +97,8 @@ export default class Browser extends Component{
     }
 
     let topau = []
-    
-    for (let index = 0; index < 5; index++) {
+    var Teachers = val.Teachers
+    for (let index = 0; index < Teachers.length; index++) {
      topau.push(
       <View style={{
         marginRight: 20,
@@ -74,10 +107,16 @@ export default class Browser extends Component{
 
       }} >
       <TouchableHighlight onPress={()=>{
-        val.toggleTeacher(Teachers[index])
-        this.props.navigation.navigate('TeachProfile')
+        Api.GetRequestWithParam(DetailAuthorURL,Teachers[index].id).then(res=>{
+          if(res)
+          {
+            val.toggleTeacher(res.data.payload)
+            this.props.navigation.navigate('TeachProfile')
+          }
+        })
+        
       }}>
-      <Image style={styles.strech2} source={{uri: Teachers[index].Avatar}}></Image>
+      <Image style={styles.strech2} source={{uri: Teachers[index]['user.avatar']}}></Image>
       </TouchableHighlight>
       <Text style={{
       color: `${val.Theme.Color}`,
@@ -135,7 +174,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Courses</Text>
+        }}>Top new courses</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -148,7 +187,7 @@ export default class Browser extends Component{
           justifyContent: 'center',
           
         }} onStartShouldSetResponder={()=>{
-          this.props.navigation.navigate('ListCourses') 
+          this.props.navigation.navigate('ListCoursesNews') 
         }}>
           <Text style={{
             fontSize: 18,
@@ -165,6 +204,47 @@ export default class Browser extends Component{
             height: 160,
             marginLeft: 20,
           }}>{paths}</View>
+        </ScrollView>
+        <View style={{
+          flexDirection: 'row'
+        }}>
+        <Text style={{
+          marginLeft: 20,
+          fontSize: 18,
+          color: `${val.Theme.Color}`,
+          marginTop: 20,
+          marginBottom: 20,
+          flex: 1
+        }}>Top rate courses</Text>
+        <View style={{
+          marginRight: 20,
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('ListCoursesRates') 
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: `${val.Theme.Color}`,
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
+          </View>
+        
+        </View>
+        <ScrollView horizontal={true}
+        showsHorizontalScrollIndicator={false}>
+          <View style={{
+            flexDirection:'row',
+            height: 160,
+            marginLeft: 20,
+          }}>{path2s}</View>
         </ScrollView>
         <View style={{
           flexDirection: 'row'

@@ -100,8 +100,7 @@ export default class VerifyPassword extends Component{
                 password: Password,
               }
 
-              Api.PostRequest(Data,RegisterURL).then(res=>{
-               
+              Api.PostRequest(Data,RegisterURL,null).then(res=>{
                 if(res)
                 {
                 this.refs.Notification.showshare()

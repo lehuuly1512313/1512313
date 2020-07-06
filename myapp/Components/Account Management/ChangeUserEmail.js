@@ -12,7 +12,7 @@ const Api = new API()
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
 
-export default class ForgetPass extends Component{
+export default class ChangeUserEmail extends Component{
 
   constructor(props){
     super(props)
@@ -45,11 +45,6 @@ export default class ForgetPass extends Component{
               setTimeout(() => {
                 this.props.navigation.navigate('Login')
               }, 1000);
-            }
-            else
-            {
-              this.refs.Notification.close()
-              alert('Email không tồn tại! xin kiểm tra lại')
             }
           })
   }
@@ -114,7 +109,7 @@ export default class ForgetPass extends Component{
   }
 }
 
-ForgetPass.contextType = Mycontext
+ChangeUserEmail.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

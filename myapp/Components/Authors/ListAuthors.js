@@ -3,6 +3,10 @@ import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import {Teachers} from '../../Data/Teacher'
 import {Mycontext} from '../../Context/Mycontext'
 
+import API from './../../API/Api'
+import {DetailAuthorURL} from './../../API/Url'
+
+const Api = new API()
 
 class Itempath extends Component{
     render()
@@ -19,12 +23,16 @@ class Itempath extends Component{
             marginLeft: 20,
             marginRight: 20
           }} >
-            <TouchableHighlight onPress={()=>{
-           
-            this.props.context.toggleTeacher(this.props.item)
-            this.props.navigation.navigate(this.props.to)
+            <TouchableHighlight onPress={()=>{    
+            Api.GetRequestWithParam(DetailAuthorURL,this.props.item.id).then(res=>{
+              if(res)
+              {
+                this.props.context.toggleTeacher(res.data.payload)
+                this.props.navigation.navigate('TeachProfile')
+              }
+            })
           }}>
-            <Image style={this.props.strech} source={{uri: this.props.item.Avatar}}></Image>
+              <Image style={this.props.strech} source={{uri: this.props.item['user.avatar']}}></Image>
             </TouchableHighlight>
             <View style={{
               flex: 1,
@@ -36,11 +44,11 @@ class Itempath extends Component{
               <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.Name}</Text>
+            }}>{this.props.item['user.name']}</Text>
               <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.Nofca} courses</Text>
+            }}>{this.props.item.major}</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -111,7 +119,7 @@ class Itempath extends Component{
               justifyContent: 'center'
             }}>
                  <FlatList 
-                      data={Teachers}
+                      data={val.Teachers}
                       renderItem={({index, item})=>{
                       return(
                       <Itempath item={item} context={val} index={index} strech={styles.strech3} navigation={this.props.navigation} to='TeachProfile'></Itempath>

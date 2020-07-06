@@ -118,7 +118,7 @@ class Item extends Component{
   }
 }
 
-export default class ListCourses extends Component{
+export default class ListCoursesRates extends Component{
   render()
   {
     var val = this.context
@@ -131,7 +131,7 @@ export default class ListCourses extends Component{
       }}>
        
         <FlatList 
-          data={val.news}
+          data={val.rates}
           renderItem={({index, item})=>{
             return(
               <Item item={item} context={val} navigation={this.props.navigation} index={index}></Item>
@@ -146,7 +146,7 @@ export default class ListCourses extends Component{
 }
 
 
-ListCourses.contextType = Mycontext
+ListCoursesRates.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

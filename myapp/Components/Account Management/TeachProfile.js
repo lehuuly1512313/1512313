@@ -24,7 +24,7 @@ export default class TeachProfile extends Component{
               alignItems:'center',
               marginTop: 10
             }}>
-            <Image style={styles.strech} source={{uri: `${val.Teacher.Avatar}`}}></Image>
+            <Image style={styles.strech} source={{uri: `${val.Teacher.avatar}`}}></Image>
             </View>
         </View>
         <ScrollView style={{ alignSelf: 'stretch' }}>
@@ -55,28 +55,49 @@ export default class TeachProfile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name: {val.Teacher.Name}</Text>
+                  }}>Name: {val.Teacher.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Teacher.Email}</Text>
+                  }}>Email: {val.Teacher.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Phone: {val.Teacher.Phone}</Text>
+                  }}>Phone: {val.Teacher.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Country: {val.Teacher.Country}</Text>
+                  }}>Id: {val.Teacher.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Company: {val.Teacher.Company}</Text>
+                  }}>Major: {val.Teacher.major}</Text>
                   
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Intro: {val.Teacher.intro}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Skills: {val.Teacher.skills}</Text>
+
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Created At: {val.Teacher.createdAt}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>Updated At: {val.Teacher.updatedAt}</Text>        
               </View>
              
             </DropDownItem>
@@ -116,12 +137,28 @@ export default class TeachProfile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Number of courses attended: {val.Teacher.Nofca}</Text>
+                  }}>totalCourse: {val.Teacher.totalCourse}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Experience (years): {val.Teacher.Experience}</Text>
+                  }}>averagePoint: {val.Teacher.averagePoint}</Text><Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>countRating: {val.Teacher.countRating}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>ratedNumber: {val.Teacher.ratedNumber}</Text>
+                  <Text style={{
+                    color: `${val.Theme.Color}`,
+                    fontSize: 18,
+                    marginTop: 5
+                  }}>soldNumber: {val.Teacher.soldNumber}</Text>
+
+
               </View>
              </View>
             </DropDownItem>

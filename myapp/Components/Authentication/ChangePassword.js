@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
-import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
+import { Text, AsyncStorage,  View, StyleSheet, TouchableHighlight,TextInput,Image,ActivityIndicator } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
 import {changepasswordURL} from './../../API/Url'
+import Notification from './../Notification/Notification'
+
+const notification = 'Đang cập nhật lại mật khẩu vui lòng đợi trong giây lát!...'
+
 
 
 const Api = new API()
@@ -61,15 +65,22 @@ export default class ChangePassword extends Component{
               }
 
               console.log(Data)
-              Api.PostRequest(Data,changepasswordURL).then(res=>{
+              const config = {
+                headers: { Authorization: `Bearer ${val.Token}` }
+            };
+              Api.PostRequest(Data,changepasswordURL, config).then(res=>{
                 if(res)
                 {
                   val.togglePassword(password)
-                  alert('Đổi mật khẩu thành công!')
+                  this.refs.Notification.showshare()
                   setTimeout(() => {
                     this.props.navigation.navigate('Sum')
-                  }, 1000);
-    
+                  }, 2000);
+                }
+                else
+                {
+                  this.refs.Notification.close()
+                  alert('Đã xảy ra lỗi trong quá trình thay đổi mật khẩu xin thử lại!')
                 }
               })
             
@@ -123,6 +134,7 @@ export default class ChangePassword extends Component{
                 <View style={styles.flex2}>
                     <Text style={styles.txtbtn3}>Need help?</Text>
                 </View>
+                <Notification ref={'Notification'} notification={notification}></Notification>
             </View>
     )
   }
@@ -197,4 +209,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     
   },
+  txtbtn4:{
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold'
+  }
 });
