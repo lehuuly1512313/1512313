@@ -12,7 +12,6 @@ export default class CoursesDetail extends Component{
     var liststar = [];
     let count = 0
     var val = this.context
-    console.log(val.Courses)
     for (let index = 0; index < 4 - 0.5; index++) {
       count++;
       liststar.push(

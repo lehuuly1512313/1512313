@@ -38,7 +38,7 @@ export default class App extends Component{
       }
     })
 
-
+    
     this.toggleAccount = (Account) => {
       this.setState({
         Account
@@ -136,6 +136,23 @@ export default class App extends Component{
       this.setState({Token})
     }
 
+    this.toggleprocesscourses=(processcourses)=>{
+      this.setState({processcourses})
+    }
+
+    this.togglefavoritecourses=(favoritecourses)=>{
+      this.setState({favoritecourses})
+    }
+
+    this.togglerecommendcourse=(recommendcourse)=>{
+      this.setState({recommendcourse})
+    }
+
+    this.toggleHomes = (Homes)=>
+    {
+      this.setState({Homes}) 
+    }
+
     this.state={
       Teachers: [],
       Account: null,
@@ -154,7 +171,12 @@ export default class App extends Component{
       Token: '',
       news: '',
       rates: '',
+      processcourses: [],
+      favoritecourses: [],
+      recommendcourse: [],
+      Homes: [],
       toggleAccount: this.toggleAccount,
+      toggleHomes: this.toggleHomes,
       toggleTeacher: this.toggleTeacher,
       toggleCourses: this.toggleCourses,
       toggleVideo: this.toggleVideo,
@@ -171,8 +193,12 @@ export default class App extends Component{
       fyourCourses: this.fyourCourses,
       fAuthorsfollowed: this.fAuthorsfollowed,
       togglePassword:this.togglePassword,
-      toggleToken: this.toggleToken
+      toggleToken: this.toggleToken,
+      toggleprocesscourses: this.toggleprocesscourses,
+      togglefavoritecourses: this.togglefavoritecourses,
+      togglerecommendcourse: this.togglerecommendcourse
     }
+
 
   }
 

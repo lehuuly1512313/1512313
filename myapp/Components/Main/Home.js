@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import {Mycontext} from './../../Context/Mycontext'
+import API from './../../API/Api'
+import {courseinfoURL, DetailAuthorURL} from './../../API/Url'
+const Api = new API()
 
-
-export default class Home extends Component{
+export default class Home extends Component{  
 
   render()
   {
@@ -12,9 +14,9 @@ export default class Home extends Component{
     let screenheight = Dimensions.get('window').height
     var val =  this.context
     let paths = []
-    if(val.yourvideo.length > 0)
+    if(val.processcourses.length > 0)
     {
-    for (let index = 0; index < val.yourvideo.length; index++) {
+    for (let index = 0; index < val.processcourses.length; index++) {
       paths.push(
         <View style={{
             marginRight: 20,
@@ -26,10 +28,21 @@ export default class Home extends Component{
              justifyContent: 'center',
              alignItems: 'center',
           }} onStartShouldSetResponder={()=>{
-            val.toggleVideo(val.yourvideo[index])
-            this.props.navigation.navigate('Videoplayer');
+            Api.GetRequestWithParam(courseinfoURL, val.processcourses[index].id).then(res=>{
+              if(res)
+              {
+                val.toggleVideo(res.data.payload)
+                Api.GetRequestWithParam(DetailAuthorURL, val.processcourses[index]['instructorId']).then(res=>{
+                  if(res)
+                  {
+                    val.toggleTeacher(res.data.payload)             
+                    this.props.navigation.navigate('Videoplayer');
+                  }
+                })
+              }
+            }) 
           }}>
-            <Image source={{uri: val.yourvideo[index].img}} style={styles.strech4}></Image>
+            <Image source={{uri: val.processcourses[index].courseImage}} style={styles.strech4}></Image>
           </View>
           <View style={{
             backgroundColor: 'gray',
@@ -43,7 +56,7 @@ export default class Home extends Component{
               <Text style={{
                 fontSize: 18,
                 color: 'white'
-              }}>{val.yourvideo[index].name}</Text>
+              }}>{val.processcourses[index].courseTitle}</Text>
             </View>
           </View>
         </View>
@@ -121,9 +134,10 @@ export default class Home extends Component{
     }
 
     let courses = []
-    if(val.yourCourses.length > 0)
+
+    if(val.favoritecourses.length > 0)
     {
-    for (let index = 0; index < val.yourCourses.length; index++) {
+    for (let index = 0; index < val.favoritecourses.length; index++) {
       courses.push(
         <View style={{
             marginRight: 20,
@@ -135,7 +149,7 @@ export default class Home extends Component{
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Image source={{uri: val.yourCourses[index].img}} style={styles.strech3}></Image>
+            <Image source={{uri: val.favoritecourses[index].courseImage}} style={styles.strech4}></Image>
           </View>
           <View style={{
             backgroundColor: 'gray',
@@ -149,8 +163,7 @@ export default class Home extends Component{
               <Text style={{
                 fontSize: 18,
                 color: 'white'
-              }}>{val.yourCourses[index].name}</Text>
-              <Text style={styles.txtitem2}>{val.yourCourses[index].courses} courses</Text>
+              }}>{val.favoritecourses[index].courseTitle}</Text>
             </View>
           </View>
         </View>
@@ -203,7 +216,8 @@ export default class Home extends Component{
           justifyContent: 'center',
           
         }} onStartShouldSetResponder={()=>{
-          this.props.navigation.navigate('Listvideochannel')
+          val.toggleHomes(val.processcourses)
+          this.props.navigation.navigate('Listcourseschannel')
         }}>
           <Text style={{
             fontSize: 18,
@@ -230,7 +244,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Your courses</Text>
+        }}>Your favorite courses</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -243,6 +257,7 @@ export default class Home extends Component{
           justifyContent: 'center',
           
         }} onStartShouldSetResponder={()=>{
+          val.toggleHomes(val.favoritecourses)
           this.props.navigation.navigate('Listcourseschannel')
         }}>
           <Text style={{

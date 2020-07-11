@@ -62,10 +62,20 @@ class Item extends Component{
                 padding: 15
               }
             } onPress={()=>{
-              if(this.props.item.channel === false)
-              {
-                this.props.context.toggleyourCourses(this.props.item)
+              var data = {
+                courseId: this.props.item.id
+                
               }
+
+              const config = {
+                headers: { Authorization: `Bearer ${this.props.context.Token}` }
+            };
+              Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
+                if(res)
+                {
+                  console.log(res.data)
+                }
+              })
             }}>
                 <Icon name='exit-to-app' size={22} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>

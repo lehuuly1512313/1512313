@@ -4,7 +4,7 @@ import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
 
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL} from './../../API/Url'
+import {courseinfoURL, DetailAuthorURL, getfreecoursesURL} from './../../API/Url'
 
 
 const Api = new API()
@@ -62,10 +62,20 @@ class Item extends Component{
                 padding: 15
               }
             } onPress={()=>{
-              if(this.props.item.channel === false)
-              {
-                this.props.context.toggleyourCourses(this.props.item)
+              var data = {
+                courseId: this.props.item.id
+                
               }
+
+              const config = {
+                headers: { Authorization: `Bearer ${this.props.context.Token}` }
+            };
+              Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
+                if(res)
+                {
+                  console.log(res.data)
+                }
+              })
             }}>
                 <Icon name='exit-to-app' size={22} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>
@@ -131,7 +141,7 @@ export default class ListCourses extends Component{
       }}>
        
         <FlatList 
-          data={val.news}
+          data={val.recommendcourse}
           renderItem={({index, item})=>{
             return(
               <Item item={item} context={val} navigation={this.props.navigation} index={index}></Item>

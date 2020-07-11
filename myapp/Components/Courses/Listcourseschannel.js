@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight, Dimensions,TextInput,Image, FlatList } from 'react-native';
-import {Courses} from '../../Data/Courses'
-import {Teachers} from '../../Data/Teacher'
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
+import API from './../../API/Api'
+import {courseinfoURL, DetailAuthorURL} from './../../API/Url'
+
+const Api = new API()
 
 class NoContentDownload extends Component{
     render()
@@ -46,7 +48,7 @@ class Item extends Component{
             marginBottom: 10,
         }}>
           
-          <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
+          <Image style={styles.strech} source={{uri: this.props.item.courseImage}}></Image>
           
           <View style={{
             flex: 1,
@@ -58,12 +60,12 @@ class Item extends Component{
             <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.name}</Text>
+            }}>{this.props.item.courseTitle}</Text>
            
              <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.Videos} Videos</Text>
+            }}>{this.props.item.total} lessons</Text>
            
            
            
@@ -108,17 +110,19 @@ class Item extends Component{
               
               }
             } onPress={()=>{
-              this.props.context.toggleCourses(this.props.item)
-              var Teacher = null
-              for (let index = 0; index < Teachers.length; index++) {
-                if(Teachers[index].id === this.props.item.Teacher)
+              Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
+                if(res)
                 {
-                  Teacher = Teachers[index]
-                  break
+                  this.props.context.toggleCourses(res.data.payload)
+                  Api.GetRequestWithParam(DetailAuthorURL, this.props.item['instructorId']).then(res=>{
+                    if(res)
+                    {
+                      this.props.context.toggleTeacher(res.data.payload)              
+                      this.props.navigation.navigate('CoureseDetail')
+                    }
+                  })
                 }
-              }
-              this.props.context.toggleTeacher(Teacher)
-              this.props.navigation.navigate('CoureseDetail')
+              })
             }}>
                 <Icon name='search' size={22} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>
@@ -141,7 +145,7 @@ export default class Listcourseschannel extends Component{
   render()
   {
     var val = this.context
-    if(val.yourCourses[0])
+    if(val.Homes[0])
     {
     return(
       <View style={{
@@ -152,7 +156,7 @@ export default class Listcourseschannel extends Component{
       }}>
        
         <FlatList 
-          data={val.yourCourses}
+          data={val.Homes}
           renderItem={({index, item})=>{
             return(
               <Item item={item} context={val} navigation={this.props.navigation} index={index}></Item>

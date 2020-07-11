@@ -7,15 +7,18 @@ import {Courses} from '../../Data/Courses'
 
 import API from './../../API/Api'
 import {DetailAuthorURL} from './../../API/Url'
+import { color } from 'react-native-reanimated'
 
 const Api = new API()
 
 const data = ['Angular','JavaScript','C#','Java','ASP.NET','Node.js','Python','React']
 
+
+
 export default class Browser extends Component{
   render()
   {
-    
+     
     var val = this.context
     let popskills = []
     for (let index = 0; index < data.length; index++) {
@@ -95,7 +98,36 @@ export default class Browser extends Component{
         </View>
       )
     }
-
+    let path3s = []
+    for (let index = 0; index < val.recommendcourse.length; index++) {
+      path3s.push(
+        <View style={{
+            marginRight: 20,
+        }}>
+          <View style={{
+            backgroundColor: 'dimgray',
+            height: '50%',
+            width: 200,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Image source={{uri: val.recommendcourse[index].imageUrl}} style={styles.strech3}></Image>
+          </View>
+          <View style={{
+            backgroundColor: 'gray',
+            height: '50%',
+            width: 200
+          }}>
+            <View style={{
+              marginLeft: 10,
+              marginTop: 10
+            }}>
+              <Text style={styles.txtitem2}>{val.recommendcourse[index].title} videos</Text>
+            </View>
+          </View>
+        </View>
+      )
+    }
     let topau = []
     var Teachers = val.Teachers
     for (let index = 0; index < Teachers.length; index++) {
@@ -163,6 +195,47 @@ export default class Browser extends Component{
             height: 40,
             marginLeft: 20,
           }} >{popskills}</View>
+        </ScrollView>
+        <View style={{
+          flexDirection: 'row'
+        }}>
+        <Text style={{
+          marginLeft: 20,
+          fontSize: 18,
+          color: `${val.Theme.Color}`,
+          marginTop: 20,
+          marginBottom: 20,
+          flex: 1
+        }}>Recommend courses for you:</Text>
+        <View style={{
+          marginRight: 20,
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: 'gray',
+          borderRadius: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          
+        }} onStartShouldSetResponder={()=>{
+          this.props.navigation.navigate('ListCourses') 
+        }}>
+          <Text style={{
+            fontSize: 18,
+            color: `${val.Theme.Color}`,
+          }}>see all</Text>
+          <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
+          </View>
+        
+        </View>
+        <ScrollView horizontal={true}
+        showsHorizontalScrollIndicator={false}>
+          <View style={{
+            flexDirection:'row',
+            height: 160,
+            marginLeft: 20,
+          }}>{path3s}</View>
         </ScrollView>
         <View style={{
           flexDirection: 'row'
@@ -336,9 +409,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   strech3:{
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 200,
+    height: '100%',
+   
   },
   btn:{
       padding: 10,

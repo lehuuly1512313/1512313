@@ -59,15 +59,54 @@ export default class Videoplayer extends Component{
       super(props)
       this.state={
         contents: 'blue',
-        transcripts: 'gray'
+        transcripts: 'gray',
+        paused: false,
+        progress: 0,
+        duration: 0,
       }
+  
     }
+
+    handleMainButtonTouch = () => {
+      if (this.state.progress >= 1) {
+        this.player.seek(0);
+      }
+  
+      this.setState(state => {
+        return {
+          paused: !state.paused,
+        };
+      });
+    };
+  
+    handleProgressPress = e => {
+      const position = e.nativeEvent.locationX;
+      const progress = (position / 250) * this.state.duration;
+      const isPlaying = !this.state.paused;
+      
+      this.player.seek(progress);
+    };
+  
+    handleProgress = progress => {
+      this.setState({
+        progress: progress.currentTime / this.state.duration,
+      });
+    };
+  
+    handleEnd = () => {
+      this.setState({ paused: true });
+    };
+  
+    handleLoad = meta => {
+      this.setState({
+        duration: meta.duration,
+      });
+    };
+  
   
    render()
    {
     var val = this.context
-    let screenwidth = Dimensions.get('window').width
-    let screenheight = Dimensions.get('window').height
     var liststar = [];
     for (let index = 0; index < 4; index++) {
       liststar.push(
@@ -77,14 +116,7 @@ export default class Videoplayer extends Component{
         }}source={require('../../img/star.png')}></Image>
       )
     }
-    var teacher = null
-    Teachers.map((value)=>{
-      if(value.id === val.Video.Teacher)
-      {
-        teacher = value
-        return
-      }
-    })
+
     var date = new Date()
        return(
          <View style={{
@@ -93,40 +125,40 @@ export default class Videoplayer extends Component{
           backgroundColor: `${val.Theme.BackgroundColor}`,
          }}>
            <ScrollView>
-          {/* <Video source={{uri: "http://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4"}}
+              <Video source={{uri: val.Video.promoVidUrl}}
                 style={{
                   height: 300,
                 }}
-                rate={1.0}
                 resizeMode='contain'
                 muted={false}
-                volume={1.0}
+                volume={10}
                 repeat={false}
-                playInBackground={false}
-                playWhenInactive={false}
-                onError={err => requestAnimationFrame(() => {
-                  console.log(err);
-                }
-                ) }
-              /> */}
-
-              <YouTube
+                paused={this.state.paused}
+                onLoad={this.handleLoad}
+                onProgress={this.handleProgress}
+                onEnd={this.handleEnd}
+                ref={ref => {
+                  this.player = ref;
+                }}
+              />
+              {/* <YouTube
                 videoId="wIuAc2e7-rQ" // The YouTube video ID
                 apiKey = {YOUR_API_KEY}
-                play = {true}
+                play = {false}
                 fullscreen
                 onReady={e => this.setState({ isReady: true })}
                 onChangeState={e => this.setState({ status: e.state })}
                 onChangeQuality={e => this.setState({ quality: e.quality })}
                 onError={e => this.setState({ error: e.error })}
                 style={{ alignSelf: 'stretch', height: 300 }}
-              />
+                
+              /> */}
               <View style={styles.content}>
               <Text style={{
                  color: `${val.Theme.Color}`,
                  fontSize: 25,
                  flex: 1
-              }}>React: The big picture</Text>
+              }}>{val.Video.title}</Text>
               <View style={{
                 flexDirection: 'row',
                 justifyContent:'center',
@@ -148,10 +180,10 @@ export default class Videoplayer extends Component{
               }}></Image></View>
               </View>
               <View style={styles.teacher} onStartShouldSetResponder={()=>{
-                val.toggleTeacher(teacher)
+                
                 this.props.navigation.navigate('TeachProfile')
               }}>
-                    <Image source={{uri: `${teacher.Avatar}`}} style={{
+                    <Image source={{uri: `${val.Teacher.avatar}`}} style={{
                     width: 50,
                     height: 50,
                     borderRadius: 25,
@@ -161,7 +193,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-              }}>{teacher.Name}</Text>
+              }}>{val.Teacher.name}</Text>
                
               </View>
               <View style={styles.content}>

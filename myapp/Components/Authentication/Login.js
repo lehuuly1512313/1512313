@@ -4,6 +4,7 @@ import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
 import {LoginURL} from './../../API/Url'
 import Notification from './../Notification/Notification'
+import {getprocesscoursesURL,getfavoritecoursesURL,recommendcourseURL} from './../../API/Url'
 
 const Api = new API()
 
@@ -82,7 +83,29 @@ export default class Login extends Component{
               setTimeout(() => {
                 this.props.navigation.navigate('Sum')
               }, 1500);
-              
+              const config = {
+                headers: { Authorization: `Bearer ${res.data.token}` }
+            };
+                Api.GetRequestWithParameHeader(getprocesscoursesURL,'', config).then(res=>{
+                  if(res)
+                  {
+                  val.toggleprocesscourses(res.data.payload)
+                  }
+                })
+
+                Api.GetRequestWithParameHeader(getfavoritecoursesURL,'', config).then(res=>{
+                  if(res)
+                  {
+                  val.togglefavoritecourses(res.data.payload)
+                  }
+                })
+
+                Api.GetRequestWithThreeParam(recommendcourseURL,res.data.userInfo.id,10,1).then(res=>{
+                  if(res)
+                  {
+                    val.togglerecommendcourse(res.data.payload)
+                  }
+                })
             }
             else
             {
