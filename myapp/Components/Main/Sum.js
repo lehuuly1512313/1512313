@@ -117,6 +117,7 @@ export default class Sum extends Component{
         var val = this.context
         var img = null
         var change = null 
+        var changeEmail = null
         if(val.Account)
         {
             img = (
@@ -134,6 +135,15 @@ export default class Sum extends Component{
                  }}>
                  <Text style={{fontSize: 20}}>Change Password</Text>
                  </MenuOption>
+                 
+            )
+            changeEmail= (
+                <MenuOption onSelect={()=>{
+                    this.props.navigation.navigate('ChangeUserEmail')
+                 }}>
+                 <Text style={{fontSize: 20}}>Change User Email</Text>
+                 </MenuOption>
+                 
             )
         }
         else
@@ -198,10 +208,17 @@ export default class Sum extends Component{
                     <Text style={{fontSize: 20}}>Setting</Text>
                     </MenuOption>
                     {change}
+                    {changeEmail}
                     <MenuOption onSelect={()=>{
                         if(this.state.Signquestion === 'Sign out')
                         {
                             val.toggleAccount(null)
+                            val.toggleToken('')
+                            val.toggleprocesscourses([])
+                            val.togglefavoritecourses([])
+                            val.togglerecommendcourse([])
+                            val.toggleHomes([])
+                            val.togglePassword('')
                         }
                         this.state.Signquestion === 'Sign in' ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
                     }}>

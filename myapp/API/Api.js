@@ -45,6 +45,17 @@ class API {
       });
   }
 
+  GetRequestWithTwoParam=(url,param1,param2)=>{
+    return axios
+      .get(url+param1+'/'+param2)
+      .then(res=>{
+        return res;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   GetRequestWithThreeParam=(url,param1,param2,param3)=>{
     return axios

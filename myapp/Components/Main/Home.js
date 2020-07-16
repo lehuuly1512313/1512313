@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL} from './../../API/Url'
+import {courseinfoURL, DetailAuthorURL, detailwithlessonURL} from './../../API/Url'
 const Api = new API()
 
 export default class Home extends Component{  
@@ -28,7 +28,10 @@ export default class Home extends Component{
              justifyContent: 'center',
              alignItems: 'center',
           }} onStartShouldSetResponder={()=>{
-            Api.GetRequestWithParam(courseinfoURL, val.processcourses[index].id).then(res=>{
+            const config = {
+              headers: { Authorization: `Bearer ${val.Token}` }
+          };
+            Api.GetRequestWithParameHeader(detailwithlessonURL, val.processcourses[index].id,config).then(res=>{
               if(res)
               {
                 val.toggleVideo(res.data.payload)
@@ -148,6 +151,23 @@ export default class Home extends Component{
             width: 200,
             justifyContent: 'center',
             alignItems: 'center'
+          }} onStartShouldSetResponder={()=>{
+            const config = {
+              headers: { Authorization: `Bearer ${val.Token}` }
+          };
+            Api.GetRequestWithParameHeader(detailwithlessonURL, val.favoritecourses[index].id,config).then(res=>{
+              if(res)
+              {
+                val.toggleVideo(res.data.payload)
+                Api.GetRequestWithParam(DetailAuthorURL, val.favoritecourses[index]['instructorId']).then(res=>{
+                  if(res)
+                  {
+                    val.toggleTeacher(res.data.payload)             
+                    this.props.navigation.navigate('Videoplayer');
+                  }
+                })
+              }
+            }) 
           }}>
             <Image source={{uri: val.favoritecourses[index].courseImage}} style={styles.strech4}></Image>
           </View>

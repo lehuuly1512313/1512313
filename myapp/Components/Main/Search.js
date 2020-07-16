@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions, Alert } from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-import {Courses} from './../../Data/Courses'
 import {Teachers} from './../../Data/Teacher'
 import {Videos} from './../../Data/Videos'
 import {Mycontext} from './../../Context/Mycontext'
@@ -12,6 +11,13 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+
+import API from './../../API/Api'
+import {searchURL, getcoursedetailURL} from './../../API/Url'
+
+
+const Api = new API()
+
 
   class ItemHistory extends Component{
     render()
@@ -57,6 +63,7 @@ import {
   class Itempath extends Component{
     render()
     {
+      
       return(
         <View style={{
           flexDirection: 'column',
@@ -85,7 +92,7 @@ import {
             }}
           >
             
-            <Image style={this.props.strech} source={{uri: this.props.item.img}}></Image>
+            <Image style={this.props.strech} source={{uri: this.props.item.imageUrl}}></Image>
             </TouchableHighlight>
             <View style={{
               flex: 1,
@@ -97,11 +104,19 @@ import {
               <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 18
-              }}>{this.props.item.name}</Text>
+              }}>{this.props.item.title}</Text>
               <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 16
-              }}>{this.props.item.Videos} Videos</Text>
+              }}>Video number: {this.props.item.videoNumber} Videos</Text>
+              <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16
+              }}>{this.props.item.updatedAt}</Text>
+              <Text style={{
+                color: `${this.props.context.Theme.Color}`,
+                fontSize: 16
+              }}>price: {this.props.item.price} VND</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -143,7 +158,7 @@ import {
 
           }}>
             
-            <Image style={this.props.strech} source={{uri: this.props.item.Avatar}}></Image>
+            <Image style={this.props.strech} source={{uri: this.props.item.avatar}}></Image>
             </TouchableHighlight>
             <View style={{
               flex: 1,
@@ -155,11 +170,11 @@ import {
               <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 18
-              }}>{this.props.item.Name}</Text>
+              }}>{this.props.item.name}</Text>
               <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 16
-              }}>{this.props.item.Nofca} courses</Text>
+              }}>{this.props.item.totalCourse} courses</Text>
               <View style={{
                 flexDirection: 'row',
               }}>
@@ -219,7 +234,7 @@ import {
             this.props.navigation.navigate(this.props.to)
             
           }}>
-            <Image style={styles.strech} source={{uri: this.props.item.img}}></Image>
+            <Image style={styles.strech} source={{uri: this.props.imageUrl}}></Image>
             </TouchableHighlight>
             <View style={{
               flex: 1,
@@ -235,20 +250,11 @@ import {
               <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 16,
-              }}>{this.props.item.description}</Text>
-              <View style={{
-                flexDirection: 'row',
-              }}>
-                <Text style={{
+              }}>{this.props.item.createdAt}</Text>
+              <Text style={{
                 color: `${this.props.context.Theme.Color}`,
                 fontSize: 16,
-              }}>Ratting:  </Text>
-                {liststar}
-                <Text style={{
-                color: `${this.props.context.Theme.Color}`,
-                fontSize: 16,
-              }}>(200)</Text>
-              </View>
+              }}>Time: {this.props.item.hours} (hours)</Text>
             </View>
             <View style={{
             justifyContent: 'center',
@@ -308,25 +314,23 @@ import {
 class All extends Component{
     render()
     {
-     
-        var datacourse = []
-        if(this.props.videos[0] !== undefined)
-        {
-          datacourse.push(this.props.videos[0])
-          datacourse.push(this.props.videos[1])
-        }
-      
+
+      var datapaths = []
+      if(this.props.courses[0] !== undefined)
+      {
+        datapaths.push(this.props.courses[0])
+      }
+
         var dataauthors = []
         if(this.props.teachers[0] !== undefined)
         {
           dataauthors.push(this.props.teachers[0])
-          dataauthors.push(this.props.teachers[1])
         }
 
-        var datapaths = []
-        if(this.props.courses[0] !== undefined)
+        var datacourse = []
+        if(this.props.videos[0] !== undefined)
         {
-          datapaths.push(this.props.courses[0])
+          datacourse.push(this.props.videos[0])
         }
         
         return(
@@ -364,7 +368,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>{this.props.videos.length} Result ></Text>
+                    }>{this.props.videos.length} Result >>></Text>
                     </TouchableHighlight>
                   </View>
                   <View style={{
@@ -377,7 +381,7 @@ class All extends Component{
                     data={datacourse} 
                     renderItem={({index, item})=>{
                     return(
-                    <Item item={item} context={this.props.context} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
+                    <Item item={item} context={this.props.context} imageUrl={this.props.courses[0].imageUrl} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -409,7 +413,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>{this.props.courses.length} Result ></Text>
+                    }>{this.props.courses.length} Result >>></Text>
                     </TouchableHighlight>
                 </View>
                 <View style={{
@@ -455,7 +459,7 @@ class All extends Component{
                             marginTop: 10,
                             marginRight: 20
                         }
-                    }>{this.props.teachers.length} Result ></Text>
+                    }>{this.props.teachers.length} Result >>></Text>
                     </TouchableHighlight>
                 </View>
                 
@@ -499,7 +503,7 @@ class Coursess extends Component{
                       color: `${this.props.context.Theme.Color}`,
                       marginLeft: 20,
                       marginTop: 20,
-                    }}>Skill Levels ></Text>
+                    }}>Skill Levels >>></Text>
 
                   <View style={{
                   flexDirection: 'row',
@@ -522,7 +526,7 @@ class Coursess extends Component{
                 data={this.props.videos}
                 renderItem={({index, item})=>{
                     return(
-                    <Item context={this.props.context} item={item} index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
+                    <Item context={this.props.context} imageUrl={this.props.courses[0].imageUrl} item={item}  index={index} navigation={this.props.navigation} to='Videoplayer'></Item>
                     )
                 }}
                 >
@@ -531,12 +535,13 @@ class Coursess extends Component{
             </View>
         )
     }
+    
 }
 
 class Paths extends Component{
   render()
   {
-     
+   
       return(
           <View style={{
             width: '100%',
@@ -567,13 +572,14 @@ class Paths extends Component{
               
           </View>
       )
-  }
+  
+}
+
 }
 
 class Authors extends Component{
   render()
   {
-     
       return(
           <View style={{
             width: '100%',
@@ -592,7 +598,7 @@ class Authors extends Component{
                   marginLeft: 20
                 }}>{this.props.teachers.length} Result</Text>
             </View>
-               <FlatList 
+               <FlatList  
                     data={this.props.teachers}
                     renderItem={({index, item})=>{
                     return(
@@ -604,7 +610,7 @@ class Authors extends Component{
               
           </View>
       )
-  }
+}
 }
 
 class NonSearchKey extends Component{
@@ -643,9 +649,6 @@ export default class Search extends Component{
       courses: [],
       videos: [],
       teachers: [],
-      checkcourses: false,
-      checkvideos: false,
-      checkteachers: false
     };
 
   componentWillMount()
@@ -655,6 +658,7 @@ export default class Search extends Component{
   }
   
 
+
   updateSearch = search => {
     this.setState({ search });
     var val = this.context;
@@ -662,39 +666,34 @@ export default class Search extends Component{
     var videos = []
     var courses = []
     var teachers = []
-    var checkvideos = false
-    var checkcourses = false
-    var checkteachers = false
-    Videos.map((val)=>{
-      if(val.Tag.includes(search))
+    var data = {
+      keyword: "React"
+    }
+    Api.PostRequest(data, searchURL,null).then(res=>{
+      if(res)
       {
-        videos.push(val)
-        checkvideos = true
+          res.data.payload.rows.map((value)=>{
+          courses.push(value)
+          Api.GetRequestWithTwoParam(getcoursedetailURL, value.id, val.Account.id).then(res=>{
+            if(res)
+            {
+              teachers.push(res.data.payload.instructor)
+              res.data.payload.section.map((value1)=>{
+                value1.lesson.map((value2)=>{
+                  videos.push(value2)
+                })
+              })
+              this.setState({
+                courses, 
+                teachers,
+                videos,
+              })
+            }
+          }) 
+        })
       }
-    })
-    Courses.map((val)=>{
-      if(val.name.includes(search))
-      {
-        courses.push(val)
-        checkcourses = true
-      }
-    })
-    Teachers.map((val)=>{
-      if(val.Tag.includes(search))
-      {
-        teachers.push(val)
-        checkteachers = true
-      }
-    })
-   
-    this.setState({
-      videos,
-      courses, 
-      teachers,
-      checkvideos,
-      checkcourses,
-      checkteachers
-    })
+    }) 
+    
   };
 
 
@@ -772,7 +771,7 @@ export default class Search extends Component{
                         width: screenwidth,
                         height: screenheight-241,
                     }}>
-                       <Coursess context={val} s videos={videos} navigation={this.props.navigation}></Coursess>
+                       <Coursess context={val} courses={courses}  videos={videos} navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{

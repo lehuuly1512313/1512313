@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {forgetpassSendemailURL} from './../../API/Url'
+import {changeuseremailURL} from './../../API/Url'
 import Notification from './../Notification/Notification'
 
 
@@ -34,17 +34,27 @@ export default class ChangeUserEmail extends Component{
 
   Send = ()=>{
           var {Email} = this.state
-          var Data = {
-           email: Email
+          var data = {
+            newEmail: Email
           }
+          var val = this.context
+          const config = {
+            headers: { Authorization: `Bearer ${val.Token}` }
+         };
+
           this.refs.Notification.showshare()
-          Api.PostRequest(Data,forgetpassSendemailURL).then(res=>{
+          Api.PutRequest(data,changeuseremailURL, config).then(res=>{
             if(res)
             {
-              this.setState({notification: 'mail đã được gửi! hãy kiểm tra và làm theo hướng dẫn!...'})
+              this.setState({notification: 'Email đã được gửi xin kiểm tra và làm theo hướng dẫn'})
               setTimeout(() => {
                 this.props.navigation.navigate('Login')
-              }, 1000);
+              }, 2000);
+            }
+            else
+            {
+              this.refs.Notification.close()
+              alert('Đã xảy ra lỗi trong quá trình gửi email xin vui lòng thử lại')
             }
           })
   }
@@ -76,7 +86,7 @@ export default class ChangeUserEmail extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Enter your email address and we will send you a link to reset your password</Text>
+                    }}>Enter new email address and we will send you a link to change your user email</Text>
                     
                 </View>
       <View style={styles.flex}>

@@ -3,11 +3,10 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 
 import {Mycontext} from './../../Context/Mycontext'
-import {Courses} from '../../Data/Courses'
 
 import API from './../../API/Api'
 import {DetailAuthorURL} from './../../API/Url'
-import { color } from 'react-native-reanimated'
+
 
 const Api = new API()
 

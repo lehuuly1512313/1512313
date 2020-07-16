@@ -15,7 +15,7 @@ export default class Share extends Component{
       <Modal
       ref={'me'}
        style={{
-        height: '45%',
+        height: '50%',
         
         backgroundColor: 'white'
       }}

@@ -21,8 +21,8 @@ export default class Login extends Component{
         this._storeData = this._storeData.bind(this)
         this.Login = this.Login.bind(this)
         this.state={
-            username: '',
-            password: '',
+            username: 'lehuuly1512313@gmail.com',
+            password: '123456789',
             notification: 'Đang xác thực thông tin!...'
         }
       }

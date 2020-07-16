@@ -3,27 +3,131 @@ import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInp
 import Video from 'react-native-video';
 import Share from './Share'
 import {Mycontext} from './../../Context/Mycontext'
-import {Teachers} from './../../Data/Teacher'
+import DropDownItem from "react-native-drop-down-item"
+import { Icon } from 'react-native-elements'
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 import YouTube from 'react-native-youtube';
 const YOUR_API_KEY = "AIzaSyC3dckHHZ81DgCQvCMS_1g2OzvQAQ_xPts";
+
+class Item extends Component{
+
+
+  render()
+  {
+    return(
+      <View style={{
+        flexDirection: 'column'
+      }}>
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          marginLeft: 20,
+          marginRight: 20,
+          marginTop: 10,
+            marginBottom: 10,
+        }}>
+          
+          <Image style={styles.strech} source={{uri: this.props.imageUrl}}></Image>
+          
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            height: 120,
+            paddingLeft: 10,
+            justifyContent: 'center'
+          }}>
+            
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.name} </Text>
+            <View style={{
+            flexDirection: 'row',
+          }}>
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>Time: {this.props.item.hours} (hours) </Text>
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>Order: {this.props.item.numberOrder} </Text>
+            </View>
+           
+          </View>
+          
+        </View>
+        <View style={{
+          height: 1,
+          backgroundColor: `${this.props.context.Theme.Color}`,
+          marginLeft: 20,
+          marginRight: 20,
+        }}></View>
+      </View>
+    )
+  }
+}
+
+class ListVideo extends Component{
+  render()
+  {
+    return(
+      <View style={{
+        backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+      }}>
+        <Text style={{
+              marginLeft: 10,
+              marginRight: 20,
+              marginTop: 10,
+              marginBottom: 10,
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 24
+            }}>{this.props.item.name} </Text>
+        <FlatList 
+          data={this.props.item.lesson}
+          renderItem={({index, item})=>{
+            return(
+              <Item item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
+            ) 
+          }}
+          >
+        </FlatList>
+        
+      </View>
+    )
+  }
+}
 
 
 class Contents extends Component{
   render()
   {
+    
     return(
       <View style={{
-        height: 120,
-        backgroundColor: 'gray',
-        margin: 20,
-        justifyContent: 'center',
-        alignItems:'center'
+        height: 400,
+        borderColor: `${this.props.context.Theme.Color}`,
+        borderWidth: 1,
+        marginTop: 20,
+        marginLeft:  20,
+        marginRight: 20,
       }}>
-        <Text style={{
-                  color: `${this.props.context.Theme.Color}`,
-                  fontSize: 18,
-                  fontWeight:'bold'
-                }}>Contents</Text>
+        
+         <FlatList 
+         nestedScrollEnabled={true}
+          data={this.props.context.Video.section}
+          renderItem={({index, item})=>{
+            return(
+              <ListVideo item={item} imageUrl={this.props.imageUrl} context={this.props.context} index={index}></ListVideo>
+            ) 
+          }}
+          >
+        </FlatList>
       </View>
     )
   }
@@ -34,19 +138,49 @@ class Transcripts extends Component{
   {
     return(
       <View style={{
-        height: 100,
-        backgroundColor: 'gray',
+        height: 400,
+        borderColor: `${this.props.context.Theme.Color}`,
+        borderWidth: 1,
         marginTop: 20,
         marginLeft:  20,
         marginRight: 20,
         justifyContent: 'center',
         alignItems:'center'
       }}>
-        <Text style={{
-                  color: `${this.props.context.Theme.Color}`,
-                  fontSize: 18,
-                  fontWeight:'bold'
-                }}>Transcripts</Text>
+        <Menu>
+                <MenuTrigger>
+                   <View style={{
+                      borderRadius: 12,
+                      borderColor: 'gray',
+                      borderWidth: 2,
+                      padding: 5,
+                      flexDirection: 'row',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      marginLeft: 20,
+                      width: 200
+                   }}>
+                     <Text style={{
+                       fontSize: 24,
+                       color: `${this.props.context.Theme.Color}`,
+                       flex: 1
+                     }}>{this.props.context.Theme.Name}</Text>
+                     <Icon name='keyboard-arrow-down' size={28} color={`${this.props.context.Theme.Color}`}/>
+                   </View>
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption>
+                    <Text style={{fontSize: 20}}>English</Text>
+                    </MenuOption>
+                    
+                    <MenuOption>
+                    <Text style={{fontSize: 20}} >Vietnamese</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
       </View>
     )
   }
@@ -124,23 +258,25 @@ export default class Videoplayer extends Component{
           height: '100%',
           backgroundColor: `${val.Theme.BackgroundColor}`,
          }}>
-           <ScrollView>
-              <Video source={{uri: val.Video.promoVidUrl}}
+           <Video source={{uri: val.Video.promoVidUrl}}
                 style={{
                   height: 300,
                 }}
+                paused={true}
                 resizeMode='contain'
                 muted={false}
                 volume={10}
                 repeat={false}
-                paused={this.state.paused}
+               // paused={this.state.paused}
                 onLoad={this.handleLoad}
                 onProgress={this.handleProgress}
                 onEnd={this.handleEnd}
                 ref={ref => {
                   this.player = ref;
                 }}
+                
               />
+
               {/* <YouTube
                 videoId="wIuAc2e7-rQ" // The YouTube video ID
                 apiKey = {YOUR_API_KEY}
@@ -153,6 +289,9 @@ export default class Videoplayer extends Component{
                 style={{ alignSelf: 'stretch', height: 300 }}
                 
               /> */}
+           <ScrollView>
+              
+              
               <View style={styles.content}>
               <Text style={{
                  color: `${val.Theme.Color}`,
@@ -326,15 +465,21 @@ export default class Videoplayer extends Component{
                 }}>Transcripts</Text>
                 </View>
               </View>
+             
               {this.state.contents === 'blue' ? (
-                    <Contents context={val}></Contents>
+                <View>
+                    <Contents context={val} imageUrl={val.Video.imageUrl}></Contents>
+                </View>
                 ): null}
                 {this.state.transcripts === 'blue' ? (
+                  <View>
                     <Transcripts context={val}></Transcripts>
+                  </View>
                 ): null}
-                <Share ref={'share'}></Share>
-              </ScrollView>
               
+               
+              </ScrollView>
+              <Share ref={'share'}></Share>
             </View>
        )
    }
