@@ -154,7 +154,7 @@ class Item extends Component{
                 }}>
 
                    
-                    <MenuOption onSelect={()=>{
+                <MenuOption onSelect={()=>{
                       const config = {
                         headers: { Authorization: `Bearer ${this.props.context.Token}` }
                     };
@@ -162,15 +162,19 @@ class Item extends Component{
                       courseId: this.props.item.id
                       
                     }
-                      Api.PostRequest(data, likecourseURL, config).then(res=>{
+                      Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
                         if(res)
                         {
-                          alert('Bạn đã thêm khóa học này vào danh sách yêu thích')
+                          alert('Bạn đã đăng ký khóa học này thành công')
+                        }
+                        else
+                        {
+                          alert('Đây không phải là một khóa học miễn phí bạn cần tốn chi phí mới đăng ký được khóa học này')
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}}>Add to favorite</Text>
-                    </MenuOption>
+                    <Text style={{fontSize: 20}}>Erol me</Text>
+                    </MenuOption >
                 
                     <MenuOption onSelect={()=>{
                        Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
@@ -206,7 +210,7 @@ class Item extends Component{
   }
 }
 
-export default class Listcourseschannel extends Component{
+export default class Listcoursesfavorite extends Component{
   render()
   {
     var val = this.context
@@ -240,7 +244,7 @@ export default class Listcourseschannel extends Component{
 }
 
 
-Listcourseschannel.contextType = Mycontext
+Listcoursesfavorite.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

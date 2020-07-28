@@ -17,3 +17,19 @@ export const detailwithlessonURL = 'https://api.itedu.me/course/detail-with-less
 export const changeuseremailURL = 'https://api.itedu.me/user/change-user-email'
 export const getcoursedetailURL = 'https://api.itedu.me/course/get-course-detail/'
 export const searchURL = 'https://api.itedu.me/course/search'
+export const categoryallURL = 'https://api.itedu.me/category/all'
+export const categoryURL = 'https://api.itedu.me/category/'
+
+
+export const updatefavoritecategoriesURL = 'https://api.itedu.me/user/update-favorite-categories'
+export const coursesuserfavoritecategoriesURL = 'https://api.itedu.me/course/courses-user-favorite-categories'
+
+// tìm kiếm tất cả các khóa học của một lĩnh vực
+// {
+//     "keyword": "",
+//     "opt": {
+//       "category": [
+//         "4eb0c150-8212-44ef-a90b-fcd40130ac01"
+//       ]
+//     }
+//   }

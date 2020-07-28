@@ -3,17 +3,15 @@ import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 import {Teachers} from './../../Data/Teacher'
-import {Videos} from './../../Data/Videos'
-import {Mycontext} from './../../Context/Mycontext'
 import {
   Menu,
   MenuOptions,
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-
+import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {searchURL, getcoursedetailURL} from './../../API/Url'
+import {searchURL, getcoursedetailURL, detailwithlessonURL, DetailAuthorURL, likecourseURL, courseinfoURL, getfreecoursesURL} from './../../API/Url'
 
 
 const Api = new API()
@@ -78,17 +76,28 @@ const Api = new API()
           }} >
             <TouchableHighlight onPress={
             ()=>{
-              this.props.context.toggleCourses(this.props.item)
-              var Teacher = null
-              for (let index = 0; index < Teachers.length; index++) {
-                if(Teachers[index].id === this.props.item.Teacher)
+              var val = this.props.context
+              const config = {
+                headers: { Authorization: `Bearer ${val.Token}` }
+            };
+
+              Api.GetRequestWithParameHeader(detailwithlessonURL, this.props.item.id,config).then(res=>{
+                if(res)
                 {
-                  Teacher = Teachers[index]
-                  break
+                  val.toggleVideo(res.data.payload)
+                  Api.GetRequestWithParam(DetailAuthorURL, this.props.teachers[this.props.index].id).then(res=>{
+                    if(res)
+                    {
+                      val.toggleTeacher(res.data.payload)             
+                      this.props.navigation.navigate('Videoplayer');
+                    }
+                  })
                 }
-              }
-              this.props.context.toggleTeacher(Teacher)
-              this.props.navigation.navigate('CoureseDetail')
+                else
+                {
+                  alert('Bạn chưa đăng ký khóa học này! để xem được hãy vui lòng đăng ký khóa học bằng các click vào icon 3 chấm bên phải rồi sao đó ấn Erol me')
+                }
+              }) 
             }}
           >
             
@@ -122,7 +131,80 @@ const Api = new API()
               }}>
               </View>
             </View>
+            <View style={{
+            justifyContent: 'center',
+            alignItems:'center',
             
+          }}>
+            <Menu>
+                <MenuTrigger>
+                    <Icon
+                name='more-vert'
+                size={40}
+                color={`${this.props.context.Theme.Color}`}
+                />
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption onSelect={()=>{
+                      const config = {
+                        headers: { Authorization: `Bearer ${this.props.context.Token}` }
+                    };
+                    var data = {
+                      courseId: this.props.item.id
+                      
+                    }
+                      Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
+                        if(res)
+                        {
+                          alert('Bạn đã đăng ký khóa học này thành công')
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}}>Erol me</Text>
+                    </MenuOption >
+                   
+                    <MenuOption onSelect={()=>{
+                      const config = {
+                        headers: { Authorization: `Bearer ${this.props.context.Token}` }
+                    };
+                    var data = {
+                      courseId: this.props.item.id
+                      
+                    }
+                      Api.PostRequest(data, likecourseURL, config).then(res=>{
+                        if(res)
+                        {
+                          alert('Bạn đã thêm khóa học này vào danh sách yêu thích')
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}}>Add to favorite</Text>
+                    </MenuOption>
+                
+                    <MenuOption onSelect={()=>{
+                       Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
+                        if(res)
+                        {
+                          this.props.context.toggleCourses(res.data.payload)
+                          Api.GetRequestWithParam(DetailAuthorURL, this.props.teachers[this.props.index].id).then(res=>{
+                            if(res)
+                            {
+                              this.props.context.toggleTeacher(res.data.payload)              
+                              this.props.navigation.navigate('CoureseDetail')
+                            }
+                          })
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}} >Detail</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
+            
+          </View>
   
           </View>
           <View style={{
@@ -256,6 +338,7 @@ const Api = new API()
                 fontSize: 16,
               }}>Time: {this.props.item.hours} (hours)</Text>
             </View>
+
             <View style={{
             justifyContent: 'center',
             alignItems:'center',
@@ -273,18 +356,6 @@ const Api = new API()
                    justifyContent: 'center',
                    alignItems: 'center',
                 }}>
-                    <MenuOption>
-                    <Text style={{fontSize: 20}}>BookMarked</Text>
-                    </MenuOption >
-                   
-                    <MenuOption onSelect={()=>{
-                      if(this.props.item.channel === false)
-                      {
-                        this.props.context.toggleyourvideo(this.props.item)
-                      }
-                    }}>
-                    <Text style={{fontSize: 20}}>Add to channels</Text>
-                    </MenuOption>
                     
                     <MenuOption onSelect={()=>{
                       if(this.props.item.download === false)
@@ -293,6 +364,16 @@ const Api = new API()
                         }
                     }}>
                     <Text style={{fontSize: 20}} >Download</Text>
+                    
+                    </MenuOption> 
+                    <MenuOption onSelect={()=>{
+                      if(this.props.item.download === false)
+                        {
+                          this.props.context.toggledownload(this.props.item)
+                        }
+                    }}>
+                    <Text style={{fontSize: 20}} >Add to favorite</Text>
+                    
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>
@@ -564,7 +645,7 @@ class Paths extends Component{
                     data={this.props.courses}
                     renderItem={({index, item})=>{
                     return(
-                    <Itempath context={this.props.context} item={item} index={index} strech={styles.strech} navigation={this.props.navigation} to='CoureseDetail'></Itempath>
+                    <Itempath context={this.props.context}  teachers={this.props.teachers} item={item} index={index} strech={styles.strech} navigation={this.props.navigation} to='CoureseDetail'></Itempath>
                     )
                 }}
                 >
@@ -621,7 +702,7 @@ class NonSearchKey extends Component{
     return(
     <View style={{
       width: screenwidth,
-      height: screenheight-191,
+      height: screenheight-255,
       backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
     }}>
       
@@ -643,32 +724,59 @@ class NonSearchKey extends Component{
 
 export default class Search extends Component{
 
-  state = {
+  constructor(props)
+  {
+    super(props)
+    this.state = {
       search: '',
       index: 0,
       courses: [],
       videos: [],
       teachers: [],
+      category:'All',
+      idcategory: null,
     };
+    this.updateSearch = this.updateSearch.bind(this)
+  }
 
+  
   componentWillMount()
   {
     var val = this.context
     this.updateSearch(val.searchkey)
   }
   
-
-
   updateSearch = search => {
     this.setState({ search });
     var val = this.context;
-    val.togglesearchkey(search)
     var videos = []
     var courses = []
     var teachers = []
+    this.setState({
+      courses, 
+      teachers,
+      videos,
+    })
     var data = {
-      keyword: "React"
+      keyword: search,
+      opt: {
+              category: [
+                this.state.idcategory
+              ]
+            }
     }
+    if(this.state.idcategory === null)
+    {
+      data = {
+        keyword: search,
+        opt: {
+                category: [
+                ]
+              }
+      }
+    }
+
+
     Api.PostRequest(data, searchURL,null).then(res=>{
       if(res)
       {
@@ -710,7 +818,7 @@ export default class Search extends Component{
   Scroll = (loca)=>{
     this.scroll.scrollTo({x: loca})
   }
-    
+   
     render()
     {
       var { search, videos, teachers, courses} = this.state;
@@ -719,6 +827,18 @@ export default class Search extends Component{
       let screenheight = Dimensions.get('window').height
       var {index} = this.state
       var val = this.context
+      var menu = []
+      
+      val.categoryall.map(value=>{
+        menu.push(<MenuOption onSelect={()=>{
+        this.setState({
+          category: value.name,
+          idcategory: value.id
+        })
+        }}>
+              <Text style={{fontSize: 20}}>{value.name}</Text>
+          </MenuOption>)
+      })
       if(this.state.search==='')
       {
         rend = (
@@ -762,28 +882,28 @@ export default class Search extends Component{
                 >
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-241,
+                        height: screenheight-305,
                                 
                     }}>
                        <All context={val} Scroll={this.Scroll} screenwidth={screenwidth} setState={this.setIndex} index={index} videos={videos} courses={courses} teachers={teachers} navigation={this.props.navigation}></All>
                     </View>
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-241,
+                        height: screenheight-305,
                     }}>
                        <Coursess context={val} courses={courses}  videos={videos} navigation={this.props.navigation}></Coursess>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-241,
+                        height: screenheight-305,
                     }}>
-                       <Paths context={val} courses={courses} navigation={this.props.navigation}></Paths>
+                       <Paths context={val} courses={courses} teachers={teachers} navigation={this.props.navigation}></Paths>
                     </View>
 
                     <View style={{
                         width: screenwidth,
-                        height: screenheight-241,
+                        height: screenheight-305,
                     }}>
                        <Authors context={val} teachers={teachers} navigation={this.props.navigation}></Authors>
                     </View>
@@ -803,7 +923,50 @@ export default class Search extends Component{
                         value={search}
                         round={true}
                         lightTheme={true}
+                        on
                       />
+                      <View style={{
+                        flexDirection:'row',
+                        justifyContent: 'center',
+                        alignItems:'center'
+                      }}>
+                      <Text style={{
+                       fontSize: 20,
+                       color: `black`
+                     }}>category</Text>
+                      <Menu> 
+                <MenuTrigger>
+                   <View style={{
+                      borderRadius: 12,
+                      borderColor: 'gray',
+                      borderWidth: 2,
+                      padding: 5,
+                      flexDirection: 'row',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      marginLeft: 10,
+                      width: 350,
+                      marginBottom: 10,
+                      marginTop: 10,
+                      marginRight: 10,
+                   }}>
+                     <Text style={{
+                       fontSize: 20,
+                       color: `black`,
+                       flex: 1
+                     }}>{this.state.category}</Text>
+                     <Icon name='keyboard-arrow-down' size={28} color={`black`}/>
+                   </View>
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    {menu}
+                </MenuOptions>
+                </Menu>
+                
+                </View>
                 {rend}
             </View>
         )
@@ -870,15 +1033,14 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     btn2:{
-        padding: 10,
-        paddingLeft: 50,
-        paddingRight: 50,
-        borderWidth: 3,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderWidth: 2,
         borderRadius: 50,
         borderColor: 'blue',
         backgroundColor: '#1b2133',
         alignItems: 'center'
-        
     },
     txtbtn2:{
       color: 'white',

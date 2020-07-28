@@ -155,6 +155,7 @@ export default class Home extends Component{
             const config = {
               headers: { Authorization: `Bearer ${val.Token}` }
           };
+
             Api.GetRequestWithParameHeader(detailwithlessonURL, val.favoritecourses[index].id,config).then(res=>{
               if(res)
               {
@@ -223,7 +224,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Continue learning</Text>
+        }}>Your courses</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -278,7 +279,7 @@ export default class Home extends Component{
           
         }} onStartShouldSetResponder={()=>{
           val.toggleHomes(val.favoritecourses)
-          this.props.navigation.navigate('Listcourseschannel')
+          this.props.navigation.navigate('Listcoursesfavorite')
         }}>
           <Text style={{
             fontSize: 18,

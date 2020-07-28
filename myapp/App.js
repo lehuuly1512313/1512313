@@ -4,7 +4,7 @@ import {Mycontext} from './Context/Mycontext'
 import { MenuProvider } from 'react-native-popup-menu';
 import {Theme} from './Data/Theme'
 import API from './API/Api'
-import {ListAuthorsURL, topnewURL,toprateURL} from './API/Url'
+import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
 
 
 const Api = new API()
@@ -13,6 +13,14 @@ export default class App extends Component{
 
   constructor(props){
     super(props)
+
+    Api.GetRequest(categoryallURL).then(res=>{
+      if(res)
+      {
+      this.setState({categoryall: res.data.payload})
+      }
+    })
+
 
     Api.GetRequest(ListAuthorsURL).then(res=>{
       if(res)
@@ -175,6 +183,7 @@ export default class App extends Component{
       favoritecourses: [],
       recommendcourse: [],
       Homes: [],
+      categoryall: [],
       toggleAccount: this.toggleAccount,
       toggleHomes: this.toggleHomes,
       toggleTeacher: this.toggleTeacher,

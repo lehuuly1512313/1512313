@@ -19,6 +19,7 @@ import ListAuthors from '../../Components/Authors/ListAuthors'
 import Listvideochannel from '../../Components/Videos/Listvideochannel'
 import Listauthorschannel from '../../Components/Authors/Listauthorschannel'
 import Listcourseschannel from '../../Components/Courses/Listcourseschannel'
+import Listcoursesfavorite from '../../Components/Courses/Listcoursesfavorite'
 import Subscription from '../../Components/Others/Subscription'
 import Contact from '../../Components/Others/Contact'
 import ChangePassword from '../../Components/Authentication/ChangePassword'
@@ -53,6 +54,7 @@ class Screen extends Component {
           <Stack.Screen name="ListCourses" component={ListCourses} />
           <Stack.Screen name="ListCoursesNews" component={ListCoursesNews} />
           <Stack.Screen name="ListCoursesRates" component={ListCoursesRates} />
+          <Stack.Screen name="Listcoursesfavorite" component={Listcoursesfavorite} />
           <Stack.Screen name="CoureseDetail" component={CoureseDetail} />
           <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Videoplayer" component={Videoplayer}/>

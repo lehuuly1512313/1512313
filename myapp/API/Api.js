@@ -12,6 +12,18 @@ class API {
         });
     }
 
+
+    DownloadFile = (url)=>{
+      return axios
+      .get(url)
+      .then(res=>{
+        return res
+      })
+      .catch(function(err){
+        console.log(res)
+      })
+    }
+
     PutRequest=(Data, url, header)=>{
       return axios
       .put(url,Data,header)

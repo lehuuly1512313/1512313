@@ -3,7 +3,6 @@ import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInp
 import Video from 'react-native-video';
 import Share from './Share'
 import {Mycontext} from './../../Context/Mycontext'
-import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
 import {
   Menu,
@@ -11,8 +10,8 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import YouTube from 'react-native-youtube';
-const YOUR_API_KEY = "AIzaSyC3dckHHZ81DgCQvCMS_1g2OzvQAQ_xPts";
+import ReactNativeYouTube from './ReactNativeYouTube';
+
 
 class Item extends Component{
 
@@ -31,8 +30,11 @@ class Item extends Component{
           marginTop: 10,
             marginBottom: 10,
         }}>
-          
+          <TouchableHighlight onPress={()=>{
+            this.props.setStateVideoURL(this.props.item.videoUrl)
+          }}>
           <Image style={styles.strech} source={{uri: this.props.imageUrl}}></Image>
+          </TouchableHighlight>
           
           <View style={{
             flex: 1,
@@ -92,7 +94,7 @@ class ListVideo extends Component{
           data={this.props.item.lesson}
           renderItem={({index, item})=>{
             return(
-              <Item item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
+              <Item setStateVideoURL={this.props.setStateVideoURL} item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
             ) 
           }}
           >
@@ -123,7 +125,7 @@ class Contents extends Component{
           data={this.props.context.Video.section}
           renderItem={({index, item})=>{
             return(
-              <ListVideo item={item} imageUrl={this.props.imageUrl} context={this.props.context} index={index}></ListVideo>
+              <ListVideo setStateVideoURL={this.props.setStateVideoURL} item={item} imageUrl={this.props.imageUrl} context={this.props.context} index={index}></ListVideo>
             ) 
           }}
           >
@@ -194,50 +196,28 @@ export default class Videoplayer extends Component{
       this.state={
         contents: 'blue',
         transcripts: 'gray',
-        paused: false,
-        progress: 0,
+        videourl: '',
+        isReady: false,
+        status: null,
+        quality: null,
+        error: null,
+        isPlaying: false,
+        isLooping: true,
         duration: 0,
+        currentTime: 0,
+        fullscreen: false,
+        playerWidth: Dimensions.get('window').width,
       }
-  
+      this.setStateVideoURL = this.setStateVideoURL.bind(this)
     }
 
-    handleMainButtonTouch = () => {
-      if (this.state.progress >= 1) {
-        this.player.seek(0);
-      }
-  
-      this.setState(state => {
-        return {
-          paused: !state.paused,
-        };
-      });
-    };
-  
-    handleProgressPress = e => {
-      const position = e.nativeEvent.locationX;
-      const progress = (position / 250) * this.state.duration;
-      const isPlaying = !this.state.paused;
-      
-      this.player.seek(progress);
-    };
-  
-    handleProgress = progress => {
-      this.setState({
-        progress: progress.currentTime / this.state.duration,
-      });
-    };
-  
-    handleEnd = () => {
-      this.setState({ paused: true });
-    };
-  
-    handleLoad = meta => {
-      this.setState({
-        duration: meta.duration,
-      });
-    };
-  
-  
+    setStateVideoURL = (videourl)=>{
+      this.setState({videourl})
+    }
+
+    
+  _youTubeRef = React.createRef();
+
    render()
    {
     var val = this.context
@@ -251,6 +231,27 @@ export default class Videoplayer extends Component{
       )
     }
 
+    var video = null
+    if(this.state.videourl.includes('https://youtube.com/embed/'))
+    {
+      var slit = this.state.videourl.split('/')
+      video = (<ReactNativeYouTube id={slit[slit.length-1]}></ReactNativeYouTube>
+      )
+    }
+    else
+    {
+      video = (
+      <Video source={{uri: val.Video.promoVidUrl}}
+        style={{
+          height: 300,
+        }}
+        resizeMode='contain'
+        muted={false}
+        volume={10}
+        repeat={false}
+      />)
+    }
+
     var date = new Date()
        return(
          <View style={{
@@ -258,37 +259,8 @@ export default class Videoplayer extends Component{
           height: '100%',
           backgroundColor: `${val.Theme.BackgroundColor}`,
          }}>
-           <Video source={{uri: val.Video.promoVidUrl}}
-                style={{
-                  height: 300,
-                }}
-                paused={true}
-                resizeMode='contain'
-                muted={false}
-                volume={10}
-                repeat={false}
-               // paused={this.state.paused}
-                onLoad={this.handleLoad}
-                onProgress={this.handleProgress}
-                onEnd={this.handleEnd}
-                ref={ref => {
-                  this.player = ref;
-                }}
-                
-              />
-
-              {/* <YouTube
-                videoId="wIuAc2e7-rQ" // The YouTube video ID
-                apiKey = {YOUR_API_KEY}
-                play = {false}
-                fullscreen
-                onReady={e => this.setState({ isReady: true })}
-                onChangeState={e => this.setState({ status: e.state })}
-                onChangeQuality={e => this.setState({ quality: e.quality })}
-                onError={e => this.setState({ error: e.error })}
-                style={{ alignSelf: 'stretch', height: 300 }}
-                
-              /> */}
+           
+           {video}
            <ScrollView>
               
               
@@ -387,7 +359,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Add to channels</Text>
+                }}>Add to favorite</Text>
                 </View>
                 <View style={{
                   alignItems: 'center',
@@ -468,7 +440,7 @@ export default class Videoplayer extends Component{
              
               {this.state.contents === 'blue' ? (
                 <View>
-                    <Contents context={val} imageUrl={val.Video.imageUrl}></Contents>
+                    <Contents setStateVideoURL={this.setStateVideoURL} context={val} imageUrl={val.Video.imageUrl}></Contents>
                 </View>
                 ): null}
                 {this.state.transcripts === 'blue' ? (

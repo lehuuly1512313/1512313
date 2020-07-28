@@ -2,9 +2,14 @@ import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
-
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL} from './../../API/Url'
+import {courseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
 
 
 const Api = new API()
@@ -47,72 +52,82 @@ class Item extends Component{
           </View>
 
           <View style={{
-            flexDirection: 'column',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            alignItems:'center',
+            
           }}>
-            <View style={{
-              backgroundColor: 'gray',
-              borderRadius: 5,
-              marginBottom: 2
-            }}>
-            <TouchableHighlight style={
-              {
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 15
-              }
-            } onPress={()=>{
-              var data = {
-                courseId: this.props.item.id
-                
-              }
-
-              const config = {
-                headers: { Authorization: `Bearer ${this.props.context.Token}` }
-            };
-              Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
-                if(res)
-                {
-                  console.log(res.data)
-                }
-              })
-            }}>
-                <Icon name='exit-to-app' size={22} color={`${this.props.context.Theme.Color}`}/>
-            </TouchableHighlight>
-            </View>
-            <View style={{
-              backgroundColor: '#1b2133',
-              borderRadius: 5,
-              marginTop: 2,
-              borderWidth: 1,
-              borderColor: 'white'
-            }}>
-            <TouchableHighlight style={
-              {
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 15
-              
-              }
-            } onPress={()=>{
-
-              Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
-                if(res)
-                {
-                  this.props.context.toggleCourses(res.data.payload)
-                  Api.GetRequestWithParam(DetailAuthorURL, this.props.item['instructorId']).then(res=>{
-                    if(res)
-                    {
-                      this.props.context.toggleTeacher(res.data.payload)              
-                      this.props.navigation.navigate('CoureseDetail')
+            <Menu>
+                <MenuTrigger>
+                    <Icon
+                name='more-vert'
+                size={40}
+                color={`${this.props.context.Theme.Color}`}
+                />
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption onSelect={()=>{
+                      const config = {
+                        headers: { Authorization: `Bearer ${this.props.context.Token}` }
+                    };
+                    var data = {
+                      courseId: this.props.item.id
+                      
                     }
-                  })
-                }
-              })
-            }}>
-                <Icon name='search' size={22} color={`${this.props.context.Theme.Color}`}/>
-            </TouchableHighlight>
-            </View>
+                      Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
+                        if(res)
+                        {
+                          alert('Bạn đã đăng ký khóa học này thành công')
+                        }
+                        else
+                        {
+                          alert('Đây không phải là một khóa học miễn phí bạn cần tốn chi phí mới đăng ký được khóa học này')
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}}>Erol me</Text>
+                    </MenuOption >
+                   
+                    <MenuOption onSelect={()=>{
+                      const config = {
+                        headers: { Authorization: `Bearer ${this.props.context.Token}` }
+                    };
+                    var data = {
+                      courseId: this.props.item.id
+                      
+                    }
+                      Api.PostRequest(data, likecourseURL, config).then(res=>{
+                        if(res)
+                        {
+                          alert('Bạn đã thêm khóa học này vào danh sách yêu thích')
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}}>Add to favorite</Text>
+                    </MenuOption>
+                
+                    <MenuOption onSelect={()=>{
+                       Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
+                        if(res)
+                        {
+                          this.props.context.toggleCourses(res.data.payload)
+                          Api.GetRequestWithParam(DetailAuthorURL, this.props.item['instructorId']).then(res=>{
+                            if(res)
+                            {
+                              this.props.context.toggleTeacher(res.data.payload)              
+                              this.props.navigation.navigate('CoureseDetail')
+                            }
+                          })
+                        }
+                      })
+                    }}>
+                    <Text style={{fontSize: 20}} >Detail</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
+            
           </View>
          
         </View>
