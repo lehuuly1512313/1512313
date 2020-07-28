@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import { Text, View, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements'
-import {Videos} from './../../Data/Videos'
 import {Mycontext} from './../../Context/Mycontext'
+import info from './../../DownloadFilePro/info.json';
+
+const image = 'https://achaumedia.vn/wp-content/uploads/2020/06/dich-vu-san-xuat-video-tai-hue-2.jpg'
 
 class NoContentDownload extends Component{
   render()
   {
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
+    console.log(info.videos); 
     return(
     <View style={{
       justifyContent: 'center',
@@ -80,7 +83,7 @@ class Item extends Component{
             marginRight: 20
         }}>
           <TouchableHighlight onPress={this.handelvideoplayer}>
-          <Image style={styles.strech} key={this.props.item.key} source={{uri: this.props.item.img}}></Image>
+          <Image style={styles.strech} key={this.props.item.key} source={{uri: image}}></Image>
           </TouchableHighlight>
           
           <View style={{
@@ -93,7 +96,7 @@ class Item extends Component{
             <Text onPress={this.handlePressSSO} style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.name}</Text>
+            }}>{this.props.item.title}</Text>
             <View style={{
               flexDirection: 'row',
               
@@ -112,10 +115,6 @@ class Item extends Component{
             
           }}>
             <TouchableHighlight onPress={()=>{
-              var arr = this.props.context.download
-              arr.splice(this.props.index, 1);
-              this.props.context.fdownload(arr)
-              this.props.item.download = false
             }}>
               <Icon name='delete' size={40} color={`${this.props.context.Theme.Color}`}/>
             </TouchableHighlight>
@@ -144,7 +143,7 @@ export default class Download extends Component{
     let screenwidth = Dimensions.get('window').width
     let screenheight = Dimensions.get('window').height
     var val = this.context
-    if(val.download[0])
+    if(info.videos[0])
     {
       return(
         <View style={{
@@ -171,8 +170,7 @@ export default class Download extends Component{
               marginRight: 10,
               justifyContent:'flex-end'
             }} onStartShouldSetResponder={()=>{
-              var arr = []
-              val.fdownload(arr)
+
             }}>
             <Text style={{
               fontSize: 20,
@@ -184,7 +182,7 @@ export default class Download extends Component{
            
           </View>
           <FlatList 
-            data={val.download}
+            data={info.videos}
             renderItem={({index, item})=>{
               return(
                   <Item context={val} item={item} index={index} navigation={this.props.navigation}></Item>

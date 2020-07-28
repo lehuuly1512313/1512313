@@ -1,6 +1,8 @@
 import React from 'react';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { Text, View , TouchableHighlight} from 'react-native';
+import API from './../../API/Api'
+const Api = new API()
 
 export default class ReactNativeYouTube extends React.Component {
 
@@ -32,17 +34,6 @@ export default class ReactNativeYouTube extends React.Component {
           showClosedCaptions: true
         }}
 />
-        <TouchableHighlight onPress={ ()=>{
-          // this.refs.me.getCurrentTime().then(currentTime => 
-          //   {
-          //     console.log(currentTime)
-          //   });
-          // this.refs.me.seekTo(22)
-        }}>
-          <Text>
-            Download
-          </Text>
-        </TouchableHighlight>
 </View>
     );
   }

@@ -27,7 +27,7 @@ import ChangeInfo from '../../Components/Account Management/ChangeInfo'
 import ChangeUserEmail from '../../Components/Account Management/ChangeUserEmail'
 import ListCoursesNews from '../../Components/Courses/ListCoursesNews'
 import ListCoursesRates from '../../Components/Courses/ListCoursesRates'
-
+import Downloadfile from '../../Components//Others/Downloadfile'
 const Stack = createStackNavigator();
 
 class Screen extends Component {
@@ -70,6 +70,7 @@ class Screen extends Component {
           <Stack.Screen name="ChangePassword" component={ChangePassword}/>
           <Stack.Screen name="ChangeInfo" component={ChangeInfo}/>
           <Stack.Screen name="ChangeUserEmail" component={ChangeUserEmail}/>
+          <Stack.Screen name="Downloadfile" component={Downloadfile}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

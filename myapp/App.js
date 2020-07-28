@@ -161,12 +161,17 @@ export default class App extends Component{
       this.setState({Homes}) 
     }
 
+    this.toggleUrlVideoDownload = (UrlVideoDownload)=>{
+      this.setState({UrlVideoDownload})
+    }
+
     this.state={
       Teachers: [],
       Account: null,
       Teacher: null,
       Courses: null,
       Video: null,
+      UrlVideoDownload: null,
       Password: '',
       download: [],
       searchkey: '',
@@ -205,7 +210,8 @@ export default class App extends Component{
       toggleToken: this.toggleToken,
       toggleprocesscourses: this.toggleprocesscourses,
       togglefavoritecourses: this.togglefavoritecourses,
-      togglerecommendcourse: this.togglerecommendcourse
+      togglerecommendcourse: this.togglerecommendcourse,
+      toggleUrlVideoDownload:this.toggleUrlVideoDownload
     }
 
 

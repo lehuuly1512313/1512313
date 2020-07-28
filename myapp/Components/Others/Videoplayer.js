@@ -230,7 +230,6 @@ export default class Videoplayer extends Component{
         }}source={require('../../img/star.png')}></Image>
       )
     }
-
     var video = null
     if(this.state.videourl.includes('https://youtube.com/embed/'))
     {
@@ -366,10 +365,8 @@ export default class Videoplayer extends Component{
                   flex: 1
                 }}>
                   <TouchableHighlight onPress={()=>{
-                    if(val.Video.download === false)
-                    {
-                      val.toggledownload(val.Video)
-                    }
+                    val.toggleUrlVideoDownload(this.state.videourl)
+                    this.props.navigation.navigate('Downloadfile');
                   }}>
                 <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQc4nTt2VJgWKBIRaxf7JRAlx-9qEhfz8eJOMQ8w2r2cG6lbKZS&usqp=CAU'}} style={{
                 width: 60,
