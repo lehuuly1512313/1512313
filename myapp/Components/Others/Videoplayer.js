@@ -11,6 +11,7 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import ReactNativeYouTube from './ReactNativeYouTube';
+import ReactNativeVideo from './ReactNativeVideo'
 
 
 class Item extends Component{
@@ -231,25 +232,18 @@ export default class Videoplayer extends Component{
       )
     }
     var video = null
-    if(this.state.videourl.includes('https://youtube.com/embed/'))
+    
+    if(this.state.videourl && this.state.videourl.includes('https://youtube.com/embed/'))
     {
       var slit = this.state.videourl.split('/')
       video = (<ReactNativeYouTube id={slit[slit.length-1]}></ReactNativeYouTube>
       )
     }
-    else
+    else 
     {
-      video = (
-      <Video source={{uri: val.Video.promoVidUrl}}
-        style={{
-          height: 300,
-        }}
-        resizeMode='contain'
-        muted={false}
-        volume={10}
-        repeat={false}
-      />)
+      video = (<ReactNativeVideo url={val.Video.promoVidUrl}></ReactNativeVideo>)
     }
+  
 
     var date = new Date()
        return(

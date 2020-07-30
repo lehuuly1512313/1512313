@@ -46,7 +46,7 @@ class Item extends Component{
 
   handelvideoplayer = ()=>{
     this.props.context.toggleVideo(this.props.item)
-    this.props.navigation.navigate('Videoplayer');
+    this.props.navigation.navigate('PlayVideoDownload');
   }
 
   render()

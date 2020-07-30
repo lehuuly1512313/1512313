@@ -144,8 +144,9 @@ class Item extends Component{
                     };
                     var data = {
                       courseId: this.props.item.id
-                      
                     }
+
+                    console.log(data)
                       Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
                         if(res)
                         {
@@ -153,7 +154,7 @@ class Item extends Component{
                         }
                         else
                         {
-                          alert('Đây không phải là một khóa học miễn phí bạn cần tốn chi phí mới đăng ký được khóa học này')
+                          alert('Bạn đã đăng ký khóa học này rồi hoặc đây không phải là một khóa học miễn phí')
                         }
                       })
                     }}>

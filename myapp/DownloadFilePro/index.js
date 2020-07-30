@@ -87,3 +87,21 @@ app.post("/downloadyoutubevideo", (req,res)=>{
 
 
 
+app.get('/createjs', (req,res)=>{
+  const fs = require('fs');
+  let rawdata = fs.readFileSync('info.json');
+  let videos = JSON.parse(rawdata);
+  let lyrics = `export default urls={\n`
+  for (let index = 0; index < videos.videos.length; index++) {
+    lyrics = lyrics + `"${videos.videos[index].id}": require('./../../DownloadFilePro/${videos.videos[index].id}.mp4'),\n`
+  }
+  lyrics = lyrics + '}'
+
+    fs.writeFile('./../Components/Others/info.js', lyrics, (err) => {
+    
+    if (err) throw err;
+
+    console.log('Lyric saved!');
+});
+  res.send('done')
+})

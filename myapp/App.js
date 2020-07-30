@@ -5,6 +5,8 @@ import { MenuProvider } from 'react-native-popup-menu';
 import {Theme} from './Data/Theme'
 import API from './API/Api'
 import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
+import ReactNativeVideo from './Components/Others/ReactNativeVideo'
+import PlayVideoDownload from './Components/Others/PlayVideoDownload'
 
 
 const Api = new API()
@@ -224,8 +226,8 @@ export default class App extends Component{
 
       <Mycontext.Provider value={this.state}>
         <MenuProvider>
-          <Screen></Screen>
-          </MenuProvider> 
+         <Screen></Screen>
+        </MenuProvider> 
       </Mycontext.Provider>
     )
   }

@@ -50,11 +50,16 @@ export default class Downloadfile extends Component{
                             if(res.data === 'done')
                              {
                                  this.setState({notification: 'Video đã được tải xuống thành công!...'})
-                                 setTimeout(() => {
-                                    
-                                    this.refs.Notification.close()
-                                    this.setState({notification: 'Đang tải xuống vui lòng đợi trong giây lát!...'})
-                                  }, 200);
+                                 Api.GetRequest('http://192.168.1.5:4000/createjs').then(res=>{
+                                   if(res.data === 'done')
+                                   {
+                                    setTimeout(() => {
+                                      this.refs.Notification.close()
+                                      this.setState({notification: 'Đang tải xuống vui lòng đợi trong giây lát!...'})
+                                    }, 200);
+  
+                                   }
+                                 })
                              }
                           })
                     }} style={styles.btn}>

@@ -1,18 +1,6 @@
 import axios from 'axios'
 
 class API {
-
-
-  translate = (data) => {
-    return axios
-      .post('http://192.168.1.5:80/downloadyoutubevideo',data)
-      .then(response=> {
-          return response.data
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-  }
     PostRequest=(Data, url, header)=>{
         return axios
         .post(url,Data,header)
@@ -22,18 +10,6 @@ class API {
         .catch(function (error) {
           console.log(error);
         });
-    }
-
-
-    DownloadFile = (url)=>{
-      return axios
-      .get(url)
-      .then(res=>{
-        return res
-      })
-      .catch(function(err){
-        console.log(res)
-      })
     }
 
     PutRequest=(Data, url, header)=>{
