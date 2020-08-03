@@ -3,9 +3,10 @@ import Screen from './Components/MainScreen/Screen'
 import {Mycontext} from './Context/Mycontext'
 import { MenuProvider } from 'react-native-popup-menu';
 import {Theme} from './Data/Theme'
+import {Language} from './Data/Language'
 import API from './API/Api'
 import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
-import Downloadfile from './Components/Others/Downloadfile'
+
 
 
 const Api = new API()
@@ -129,6 +130,10 @@ export default class App extends Component{
       this.setState({Theme})
     }
 
+    this.toggleLanguage = (Language)=>{
+      this.setState({Language})
+    }
+
     this.fyourvideo = (yourvideo)=>{
       this.setState({yourvideo})
     }
@@ -185,11 +190,13 @@ export default class App extends Component{
       Token: '',
       news: '',
       rates: '',
+      Language: Language[0],
       processcourses: [],
       favoritecourses: [],
       recommendcourse: [],
       Homes: [],
       categoryall: [],
+      toggleLanguage: this.toggleLanguage,
       toggleAccount: this.toggleAccount,
       toggleHomes: this.toggleHomes,
       toggleTeacher: this.toggleTeacher,

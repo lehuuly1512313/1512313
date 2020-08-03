@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, lazy} from 'react'
 import { Text,Picker, Switch, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import { Icon } from 'react-native-elements'
@@ -10,6 +10,7 @@ import {
 } from 'react-native-popup-menu';
 import {Mycontext} from './../../Context/Mycontext'
 import {Theme} from './../../Data/Theme'
+import {Language} from './../../Data/Language'
 
 
 export default class Setting extends Component{
@@ -142,6 +143,83 @@ export default class Setting extends Component{
                     
                     }}>
                     <Text style={{fontSize: 20}} >Light</Text>
+                    </MenuOption> 
+                </MenuOptions>
+                </Menu>
+             </View>
+             
+           </View>
+          </DropDownItem>
+
+          <DropDownItem
+            key={1}
+            style={styles.dropDownItem}
+            contentVisible={false}
+            header={
+              <View style={{
+                flexDirection:'row',
+                backgroundColor:'gray',
+                borderRadius: 30,
+                padding:15,
+                marginLeft: 20,
+                marginRight: 20,
+                marginTop: 20,
+                
+              }}>
+                <Text style={{
+                  fontSize: 18,
+                  color: 'white',
+                  flex: 1,
+                }}>Language</Text>
+                <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
+              </View>
+            }>
+           <View style={{
+             justifyContent:'center',
+           }}>
+             <View style={{
+               alignItems:'center',
+               flex: 1,
+             }}>
+               <Menu>
+                <MenuTrigger>
+                   <View style={{
+                      borderRadius: 12,
+                      borderColor: 'gray',
+                      borderWidth: 2,
+                      padding: 5,
+                      flexDirection: 'row',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      marginLeft: 20,
+                      width: 200
+                   }}>
+                     <Text style={{
+                       fontSize: 24,
+                       color: `${val.Theme.Color}`,
+                       flex: 1
+                     }}>{val.Language.Name}</Text>
+                     <Icon name='keyboard-arrow-down' size={28} color={`${val.Theme.Color}`}/>
+                   </View>
+                </MenuTrigger>
+                <MenuOptions style={{
+                   justifyContent: 'center',
+                   alignItems: 'center',
+                }}>
+                    <MenuOption onSelect={()=>{
+                      
+                      val.toggleLanguage(Language[0])
+                      
+                    }}>
+                    <Text style={{fontSize: 20}}>English</Text>
+                    </MenuOption>
+                    
+                    <MenuOption onSelect={()=>{
+                      
+                      val.toggleLanguage(Language[1])
+                    
+                    }}>
+                    <Text style={{fontSize: 20}}>Vietnamese</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>
