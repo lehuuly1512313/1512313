@@ -5,7 +5,7 @@ import API from './../../API/Api'
 import {LoginURL} from './../../API/Url'
 import Notification from './../Notification/Notification'
 import {getprocesscoursesURL,getfavoritecoursesURL,recommendcourseURL} from './../../API/Url'
-
+import { GoogleSignin, GoogleSigninButton, statusCodes} from '@react-native-community/google-signin';
 const Api = new API()
 
 const img = {uri : 'https://user-images.githubusercontent.com/4683221/34775011-89bb46c2-f609-11e7-8bd1-d7a70d2277fd.jpg'}
@@ -20,10 +20,14 @@ export default class Login extends Component{
         this.handlePassword = this.handlePassword.bind(this)
         this._storeData = this._storeData.bind(this)
         this.Login = this.Login.bind(this)
+        
         this.state={
             username: 'lehuuly1512313@gmail.com',
             password: '123456789',
-            notification: 'Đang xác thực thông tin!...'
+            notification: 'Đang xác thực thông tin!...',
+            userInfo: null,
+            error: null,
+            gettingLoginStatus: true,
         }
       }
     
@@ -31,6 +35,84 @@ export default class Login extends Component{
       {
         this.props.navigation.navigate('Sum');
       }
+
+    componentDidMount() {
+        //initial configuration
+        GoogleSignin.configure({
+          //It is mandatory to call this method before attempting to call signIn()
+          scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+          // Repleace with your webClientId generated from Firebase console
+          webClientId: '216421450333-prkfafg3u1goc34uuqisdksivincj7q8.apps.googleusercontent.com',// my clientID
+          offlineAccess: false
+        });
+        //Check if user is already signed in
+        this._isSignedIn();
+      }
+
+      _isSignedIn = async () => {
+        const isSignedIn = await GoogleSignin.isSignedIn();
+        if (isSignedIn) {
+          alert('User is already signed in');
+          //Get the User details as user is already signed in
+          this._getCurrentUserInfo();
+        } else {
+          //alert("Please Login");
+          console.log('Please Login');
+        }
+        this.setState({ gettingLoginStatus: false });
+      };
+
+      _getCurrentUserInfo = async () => {
+        try {
+          const userInfo = await GoogleSignin.signInSilently();
+          console.log('User Info --> ', userInfo);
+          this.setState({ userInfo: userInfo });
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+            alert('User has not signed in yet');
+            console.log('User has not signed in yet');
+          } else {
+            alert("Something went wrong. Unable to get user's info");
+            console.log("Something went wrong. Unable to get user's info");
+          }
+        }
+      };
+
+      _signOut = async () => {
+        //Remove user session from the device.
+        try {
+          await GoogleSignin.revokeAccess();
+          await GoogleSignin.signOut();
+          this.setState({ userInfo: null }); // Remove the user from your app's state as well
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      _signIn = async () => {
+        //Prompts a modal to let the user sign in into your application.
+        try {
+          await GoogleSignin.hasPlayServices({
+            //Check if device has Google Play Services installed.
+            //Always resolves to true on iOS.
+            showPlayServicesUpdateDialog: true,
+          });
+          const userInfo = await GoogleSignin.signIn();
+          console.log('User Info --> ', userInfo);
+          this.setState({ userInfo: userInfo });
+        } catch (error) {
+          console.log('Message', error.message);
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            console.log('User Cancelled the Login Flow');
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            console.log('Signing In');
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            console.log('Play Services Not Available or Outdated');
+          } else {
+            console.log('Some Other Error Happened');
+          }
+        }
+      };
 
       handleforgetpassword=()=>
       {
@@ -157,6 +239,12 @@ export default class Login extends Component{
                         <Text style={styles.txtbtn}>SIGN IN</Text>
                     </TouchableHighlight>
                 </View>
+                <GoogleSigninButton
+                  size={GoogleSigninButton.Size.Standard}
+                  color={GoogleSigninButton.Color.Auto}
+                  onPress={this._signIn.bind(this)}
+                   />
+
                 <View style={styles.flex2}>
                     <Text style={styles.txtbtn3}>Need help?</Text>
                 </View>

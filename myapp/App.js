@@ -5,8 +5,7 @@ import { MenuProvider } from 'react-native-popup-menu';
 import {Theme} from './Data/Theme'
 import API from './API/Api'
 import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
-import ReactNativeVideo from './Components/Others/ReactNativeVideo'
-import PlayVideoDownload from './Components/Others/PlayVideoDownload'
+import Downloadfile from './Components/Others/Downloadfile'
 
 
 const Api = new API()

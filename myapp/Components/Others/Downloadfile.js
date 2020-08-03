@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight, Image} from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator, Image} from 'react-native';
 import API from './../../API/Api'
 const Api = new API()
 import Notification from './../Notification/Notification'
@@ -15,10 +15,32 @@ export default class Downloadfile extends Component{
             notification: 'Đang tải xuống vui lòng đợi trong giây lát!...'
         }
       }
+
+  componentWillMount()
+  {
+    var val = this.context
+    var data = {
+      url: val.UrlVideoDownload
+    }
+    Api.PostRequest(data,'http://192.168.1.3:4000/downloadyoutubevideo',null).then(res=>{
+      if(res.data === 'done')
+       {
+           this.setState({notification: 'Video đã được tải xuống thành công!...'})
+           Api.GetRequest('http://192.168.1.3:4000/createjs').then(res=>{
+             if(res.data === 'done')
+             {
+              setTimeout(() => {
+                this.props.navigation.goBack()
+              }, 1000);
+
+             }
+           })
+       }
+    })
+  }    
   render()
   {
     var val = this.context
-    console.log(val.UrlVideoDownload)
     return(
       <View style={{
         width: '100%',
@@ -27,7 +49,7 @@ export default class Downloadfile extends Component{
         backgroundColor: `${val.Theme.BackgroundColor}`,
       }}>
 
-<View style={{
+                <View style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -38,35 +60,25 @@ export default class Downloadfile extends Component{
                               color: `${val.Theme.Color}`,
                               fontSize: 40,
                               fontWeight: 'bold'}}
-                        >PLURALSIGHT</Text></View>
+                        >DOWNLOAD FILE</Text></View>
+                        <View>   
+              </View>
                 </View>
-                <View style={styles.flex}>
-                    <TouchableHighlight onPress={()=>{
-                        var data = {
-                            url: val.UrlVideoDownload
-                          }
-                          this.refs.Notification.showshare()
-                          Api.PostRequest(data,'http://192.168.1.5:4000/downloadyoutubevideo',null).then(res=>{
-                            if(res.data === 'done')
-                             {
-                                 this.setState({notification: 'Video đã được tải xuống thành công!...'})
-                                 Api.GetRequest('http://192.168.1.5:4000/createjs').then(res=>{
-                                   if(res.data === 'done')
-                                   {
-                                    setTimeout(() => {
-                                      this.refs.Notification.close()
-                                      this.setState({notification: 'Đang tải xuống vui lòng đợi trong giây lát!...'})
-                                    }, 200);
-  
-                                   }
-                                 })
-                             }
-                          })
-                    }} style={styles.btn}>
-                        <Text style={styles.txtbtn}>DOWNLOAD</Text>
-                    </TouchableHighlight>
-                </View>
-                <Notification ref={'Notification'} notification={this.state.notification}></Notification>
+                <View style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginRight: 10,
+                        marginLeft: 20,
+                        borderColor: 'white',
+                        borderRadius: 20,
+                        borderWidth: 4,
+                        paddingTop: 20,
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                        paddingBottom: 20,
+                        }}><Text style={styles.text1}>{this.state.notification}</Text>
+                        <ActivityIndicator size={50} color="#0000ff" />
+              </View>
   </View>
     )
   }
