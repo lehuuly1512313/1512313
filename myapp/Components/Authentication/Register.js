@@ -76,7 +76,7 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Username</Text>
+                    }}>{val.Language.Register.Username}</Text>
                     <TextInput onChangeText={this.handleUsername} style={{
                       padding: 10,
                       fontSize: 20,
@@ -87,7 +87,7 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Email</Text>
+                    }}>{val.Language.Register.Email}</Text>
                     <TextInput onChangeText={this.handleEmail} style={{
                       padding: 10,
                       fontSize: 20,
@@ -98,7 +98,7 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Phone </Text>
+                    }}>{val.Language.Register.Phone} </Text>
                     <TextInput onChangeText={this.handlePhone} style={{
                       padding: 10,
                       fontSize: 20,
@@ -108,15 +108,15 @@ export default class Register extends Component{
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
-                        <Text style={styles.txtbtn}>Continue</Text>
+                        <Text style={styles.txtbtn}>{val.Language.Register.Continue}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.txtbtn3}>Need help?</Text>
+                    <Text style={styles.txtbtn3}>{val.Language.Register.Needhelp}</Text>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePressSignIn} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>SIGN IN</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Register.SIGNIN}</Text>
                     </TouchableHighlight>
                 </View>
             </View>

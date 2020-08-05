@@ -25,7 +25,7 @@ class NoContentDownload extends Component{
           fontSize: 30,
           color: `${this.props.context.Theme.Color}`,
         }
-      }>No content</Text>
+      }>{this.props.context.Language.Download.Nocontent}</Text>
     </View>
     )
   }
@@ -104,7 +104,7 @@ class Item extends Component{
               <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 16
-            }}>Ratting:  </Text>
+            }}>{this.props.context.Language.Download.Ratting}:  </Text>
               {liststar}
             </View>
           </View>
@@ -176,7 +176,7 @@ export default class Download extends Component{
               fontSize: 20,
               color: '#0000ff',
               marginLeft: 10,
-            }}>Remove all</Text>
+            }}>{val.Language.Download.Removeall}</Text>
             </View>
             
            

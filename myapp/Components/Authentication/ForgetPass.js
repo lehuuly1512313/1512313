@@ -81,7 +81,7 @@ export default class ForgetPass extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Enter your email address and we will send you a link to reset your password</Text>
+                    }}>{val.Language.ForgetPass.str}</Text>
                     
                 </View>
       <View style={styles.flex}>
@@ -89,7 +89,7 @@ export default class ForgetPass extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Email</Text>
+                    }}>{val.Language.ForgetPass.Email}</Text>
                     <TextInput onChangeText={this.handleEmail} style={{
                       padding: 10,
                       fontSize: 20,
@@ -99,12 +99,12 @@ export default class ForgetPass extends Component{
                 </View>
       <View style={styles.flex}>
                     <TouchableHighlight onPress={this.Send} style={styles.btn}>
-                        <Text style={styles.txtbtn}>SEND EMAIL</Text>
+                        <Text style={styles.txtbtn}>{val.Language.ForgetPass.SENDEMAIL}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn2}>
-                        <Text style={styles.txtbtn}>CANCEL</Text>
+                        <Text style={styles.txtbtn}>{val.Language.ForgetPass.CANCEL}</Text>
                     </TouchableHighlight>
                     
                 </View>

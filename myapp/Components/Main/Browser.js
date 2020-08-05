@@ -91,7 +91,7 @@ export default class Browser extends Component{
               marginLeft: 10,
               marginTop: 10
             }}>
-              <Text style={styles.txtitem2}>{val.rates[index].title} videos</Text>
+              <Text style={styles.txtitem2}>{val.rates[index].title} {val.Language.Browser.videos}</Text>
             </View>
           </View>
         </View>
@@ -121,7 +121,7 @@ export default class Browser extends Component{
               marginLeft: 10,
               marginTop: 10
             }}>
-              <Text style={styles.txtitem2}>{val.recommendcourse[index].title} videos</Text>
+              <Text style={styles.txtitem2}>{val.recommendcourse[index].title} {val.Language.Browser.videos}</Text>
             </View>
           </View>
         </View>
@@ -186,7 +186,7 @@ export default class Browser extends Component{
           color: `${val.Theme.Color}`,
           marginTop: 20,
           marginBottom: 20
-        }}>Popular Skills</Text>
+        }}>{val.Language.Browser.PopularSkills}</Text>
         <ScrollView horizontal={true}
         showsHorizontalScrollIndicator={false}>
           <View style={{
@@ -205,7 +205,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Recommend courses for you:</Text>
+        }}>{val.Language.Browser.Recommendcoursesforyou}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -223,7 +223,7 @@ export default class Browser extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Browser.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         
@@ -246,7 +246,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Top new courses</Text>
+        }}>{val.Language.Browser.Topnewcourses}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -264,7 +264,7 @@ export default class Browser extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Browser.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         
@@ -287,7 +287,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Top rate courses</Text>
+        }}>{val.Language.Browser.Topratecourses}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -305,7 +305,7 @@ export default class Browser extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Browser.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         
@@ -328,7 +328,7 @@ export default class Browser extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Top authors</Text>
+        }}>{val.Language.Browser.Topauthors}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -346,7 +346,7 @@ export default class Browser extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Browser.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         </View>

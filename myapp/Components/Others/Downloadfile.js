@@ -60,7 +60,7 @@ export default class Downloadfile extends Component{
                               color: `${val.Theme.Color}`,
                               fontSize: 40,
                               fontWeight: 'bold'}}
-                        >DOWNLOAD FILE</Text></View>
+                        >{val.Language.Downloadfile.DOWNLOADFILE}</Text></View>
                         <View>   
               </View>
                 </View>

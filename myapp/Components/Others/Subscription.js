@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList } from 'react-native';
-
+import {Mycontext} from './../../Context/Mycontext'
 export default class Subscription extends Component{
   render()
   {
+    var val = this.context
     var date = new Date()
     return(
       <View style={styles.container}>
@@ -18,7 +19,7 @@ export default class Subscription extends Component{
             marginTop: 20
           }
         }>
-            <Text style={styles.txtitem}>Subscription</Text>   
+            <Text style={styles.txtitem}>{val.Language.Subscription.Subscription}</Text>   
             
             
         </View> 
@@ -27,12 +28,12 @@ export default class Subscription extends Component{
             margin:20
           }
         }>
-            <Text style={styles.txtitem2}>Subscription type:        individual</Text> 
-            <Text style={styles.txtitem2}>Expirition date:           {date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()}</Text> 
+            <Text style={styles.txtitem2}>{val.Language.Subscription.Subscriptiontype}:        {val.Language.Subscription.individual}</Text> 
+            <Text style={styles.txtitem2}>{val.Language.Subscription.Expiritiondate}:           {date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()}</Text> 
         </View>
         <View style={styles.flex}>
                     <TouchableHighlight style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>Manage your subscription</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Subscription.Manageyoursubscription}</Text>
                     </TouchableHighlight>
                 </View>
         <View style={{
@@ -48,25 +49,25 @@ export default class Subscription extends Component{
               borderWidth: 2,
               borderColor: 'white',
               padding: 10,
-            }}>Get support</Text>
+            }}>{val.Language.Subscription.Getsupport}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Send Feedback</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.SendFeedback}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Feature</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.Feature}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Authors</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.Authors}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Mobile and offline app</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.Mobileandofflineapp}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Blog</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.Blog}</Text>
         </TouchableHighlight>
         <TouchableHighlight >
-            <Text style={styles.txtbtn3}>Contact</Text>
+            <Text style={styles.txtbtn3}>{val.Language.Subscription.Contact}</Text>
         </TouchableHighlight>
         </View>
         </ScrollView>
@@ -74,6 +75,8 @@ export default class Subscription extends Component{
     )
   }
 }
+
+Subscription.contextType = Mycontext
 
 const styles = StyleSheet.create({
   container:{

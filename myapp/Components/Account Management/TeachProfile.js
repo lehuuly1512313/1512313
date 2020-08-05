@@ -45,7 +45,7 @@ export default class TeachProfile extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Personal Infomation</Text>
+                  }}>{val.Language.TeachProfile.PersonalInfomation}</Text>
                   <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
                 </View>
               }>
@@ -55,49 +55,49 @@ export default class TeachProfile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name: {val.Teacher.name}</Text>
+                  }}>{val.Language.TeachProfile.Name}: {val.Teacher.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Teacher.email}</Text>
+                  }}>{val.Language.TeachProfile.Email}: {val.Teacher.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Phone: {val.Teacher.phone}</Text>
+                  }}>{val.Language.TeachProfile.Phone}: {val.Teacher.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Id: {val.Teacher.id}</Text>
+                  }}>{val.Language.TeachProfile.ID}: {val.Teacher.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Major: {val.Teacher.major}</Text>
+                  }}>{val.Language.TeachProfile.Major}: {val.Teacher.major}</Text>
                   
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Intro: {val.Teacher.intro}</Text>
+                  }}>{val.Language.TeachProfile.Intro}: {val.Teacher.intro}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Skills: {val.Teacher.skills}</Text>
+                  }}>{val.Language.TeachProfile.Skills}: {val.Teacher.skills}</Text>
 
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Created At: {val.Teacher.createdAt}</Text>
+                  }}>{val.Language.TeachProfile.Createdat}: {val.Teacher.createdAt}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Updated At: {val.Teacher.updatedAt}</Text>        
+                  }}>{val.Language.TeachProfile.Updatedat}: {val.Teacher.updatedAt}</Text>        
               </View>
              
             </DropDownItem>
@@ -118,7 +118,7 @@ export default class TeachProfile extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Courses history</Text>
+                  }}>{val.Language.TeachProfile.Courseshistory}</Text>
                     <Icon name='keyboard-arrow-down' size={28} color={'black'}/>              
                 </View>
               }>
@@ -137,26 +137,26 @@ export default class TeachProfile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>totalCourse: {val.Teacher.totalCourse}</Text>
+                  }}>{val.Language.TeachProfile.totalCourse}: {val.Teacher.totalCourse}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>averagePoint: {val.Teacher.averagePoint}</Text><Text style={{
+                  }}>{val.Language.TeachProfile.averagePoint}: {val.Teacher.averagePoint}</Text><Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>countRating: {val.Teacher.countRating}</Text>
+                  }}>{val.Language.TeachProfile.countRating}: {val.Teacher.countRating}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>ratedNumber: {val.Teacher.ratedNumber}</Text>
+                  }}>{val.Language.TeachProfile.ratedNumber}: {val.Teacher.ratedNumber}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>soldNumber: {val.Teacher.soldNumber}</Text>
+                  }}>{val.Language.TeachProfile.soldNumber}: {val.Teacher.soldNumber}</Text>
 
 
               </View>

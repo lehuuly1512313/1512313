@@ -46,12 +46,12 @@ export default class Start extends Component{
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePressSignIn} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>SIGN IN</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Start.SIGNIN}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePressSignUp} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>SIGN UP</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Start.SIGNUP}</Text>
                     </TouchableHighlight>
                 </View>
             </View>

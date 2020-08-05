@@ -71,7 +71,7 @@ export default class Setting extends Component{
                   marginBottom: 10,
                   color: 'white',
                   flex: 1,
-                }}>Subcription</Text>
+                }}>{val.Language.Setting.Subcription}</Text>
                 <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
           <DropDownItem
@@ -93,7 +93,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>Theme</Text>
+                }}>{val.Language.Setting.Theme}</Text>
                 <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
               </View>
             }>
@@ -134,7 +134,7 @@ export default class Setting extends Component{
                       val.toggleTheme(Theme[0])
                       
                     }}>
-                    <Text style={{fontSize: 20}}>Dark</Text>
+                    <Text style={{fontSize: 20}}>{val.Language.Setting.Dark}</Text>
                     </MenuOption>
                     
                     <MenuOption onSelect={()=>{
@@ -142,7 +142,7 @@ export default class Setting extends Component{
                       val.toggleTheme(Theme[1])
                     
                     }}>
-                    <Text style={{fontSize: 20}} >Light</Text>
+                    <Text style={{fontSize: 20}} >{val.Language.Setting.Light}</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>
@@ -170,7 +170,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>Language</Text>
+                }}>{val.Language.Setting.Language}</Text>
                 <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
               </View>
             }>
@@ -211,7 +211,7 @@ export default class Setting extends Component{
                       val.toggleLanguage(Language[0])
                       
                     }}>
-                    <Text style={{fontSize: 20}}>English</Text>
+                    <Text style={{fontSize: 20}}>{val.Language.Setting.English}</Text>
                     </MenuOption>
                     
                     <MenuOption onSelect={()=>{
@@ -219,7 +219,7 @@ export default class Setting extends Component{
                       val.toggleLanguage(Language[1])
                     
                     }}>
-                    <Text style={{fontSize: 20}}>Vietnamese</Text>
+                    <Text style={{fontSize: 20}}>{val.Language.Setting.Vietnamese}</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>
@@ -242,7 +242,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>Require Wi Fi for streaming</Text>
+                }}>{val.Language.Setting.RequireWiFiforstreaming}</Text>
                 <Switch
                   trackColor={{ false: "darkgray", true: "#006400" }}
                   thumbColor={ "#f4f3f4"}
@@ -267,7 +267,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>Require Wi Fi for Downloading</Text>
+                }}>{val.Language.Setting.RequireWiFiforDownloading}</Text>
               
                  <Switch
                   trackColor={{ false: "darkgray", true: "#006400" }}
@@ -298,7 +298,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>Contact support</Text>
+              }}>{val.Language.Setting.Contactsupport}</Text>
                <Icon name='keyboard-arrow-right' size={28} color={'black'}/>
               </View>
            
@@ -320,7 +320,7 @@ export default class Setting extends Component{
                   fontSize: 18,
                   color: 'white',
                   flex: 1,
-                }}>App version</Text>
+                }}>{val.Language.Setting.Appversion}</Text>
                 <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
               </View>
             }>
@@ -344,7 +344,7 @@ export default class Setting extends Component{
                     <TouchableHighlight onPress={()=>{
                       this.props.navigation.navigate('Start')
                     }} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>Sign out</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Setting.Signout}</Text>
                     </TouchableHighlight>
                 </View>
         </ScrollView>

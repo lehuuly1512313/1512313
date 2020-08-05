@@ -44,7 +44,7 @@ export default class Profile extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Your Infomation</Text>
+                  }}>{val.Language.Profile.YourInfomation}</Text>
                   <Icon name='keyboard-arrow-down' size={28} color={'black'}/>
                 </View>
               }>
@@ -54,43 +54,43 @@ export default class Profile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Your ID: {val.Account.id}</Text>
+                  }}>{val.Language.Profile.YourID}: {val.Account.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name: {val.Account.name}</Text>
+                  }}>{val.Language.Profile.Name}: {val.Account.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Account.email}</Text>
+                  }}>{val.Language.Profile.Email}: {val.Account.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Phone: {val.Account.phone}</Text>
+                  }}>{val.Language.Profile.Phone}: {val.Account.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Type: {val.Account.type}</Text>
+                  }}>{val.Language.Profile.Type}: {val.Account.type}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Created at: {val.Account.createdAt}</Text>
+                  }}>{val.Language.Profile.Createdat}: {val.Account.createdAt}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Updated at: {val.Account.updatedAt}</Text>
+                  }}>{val.Language.Profile.Updatedat}: {val.Account.updatedAt}</Text>
                   
               </View>
               <TouchableHighlight style={styles.btn} onPress={()=>{
                 this.props.navigation.navigate('ChangeInfo')
               }}>
-                    <Text style={styles.txtitem2}>Edit</Text>
+                    <Text style={styles.txtitem2}>{val.Language.Profile.Edit}</Text>
               </TouchableHighlight>
             </DropDownItem>
             <DropDownItem
@@ -110,7 +110,7 @@ export default class Profile extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Courses history</Text>
+                  }}>{val.Language.Profile.Courseshistory}</Text>
                     <Icon name='keyboard-arrow-down' size={28} color={'black'}/>              
                 </View>
               }>
@@ -129,22 +129,22 @@ export default class Profile extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Number of courses attended: {val.Account.Nofca}</Text>
+                  }}>{val.Language.Profile.Numberofcoursesattended}: {val.Account.Nofca}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Experience (years): {val.Account.Experience}</Text>
+                  }}>{val.Language.Profile.Experience}: {val.Account.Experience}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>highest point: {val.Account.highest}</Text> 
+                  }}>{val.Language.Profile.highestpoint}: {val.Account.highest}</Text> 
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Bonus (times): {val.Account.Bonus}</Text> 
+                  }}>{val.Language.Profile.Bonus}: {val.Account.Bonus}</Text> 
               </View>
              </View>
             </DropDownItem>

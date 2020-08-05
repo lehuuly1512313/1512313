@@ -33,6 +33,7 @@ class Item extends Component{
         }}>
           <TouchableHighlight onPress={()=>{
             this.props.setStateVideoURL(this.props.item.videoUrl)
+            this.props.setStatelessonId(this.props.item.id)
           }}>
           <Image style={styles.strech} source={{uri: this.props.imageUrl}}></Image>
           </TouchableHighlight>
@@ -55,11 +56,11 @@ class Item extends Component{
              <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>Time: {this.props.item.hours} (hours) </Text>
+            }}>{this.props.context.Language.Videoplayer.Time}: {this.props.item.hours} ({this.props.context.Language.Videoplayer.hours}) </Text>
              <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>Order: {this.props.item.numberOrder} </Text>
+            }}>{this.props.context.Language.Videoplayer.Order}: {this.props.item.numberOrder} </Text>
             </View>
            
           </View>
@@ -95,7 +96,7 @@ class ListVideo extends Component{
           data={this.props.item.lesson}
           renderItem={({index, item})=>{
             return(
-              <Item setStateVideoURL={this.props.setStateVideoURL} item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
+              <Item setStatelessonId={this.props.setStatelessonId} setStateVideoURL={this.props.setStateVideoURL} item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
             ) 
           }}
           >
@@ -126,7 +127,7 @@ class Contents extends Component{
           data={this.props.context.Video.section}
           renderItem={({index, item})=>{
             return(
-              <ListVideo setStateVideoURL={this.props.setStateVideoURL} item={item} imageUrl={this.props.imageUrl} context={this.props.context} index={index}></ListVideo>
+              <ListVideo setStatelessonId={this.props.setStatelessonId} setStateVideoURL={this.props.setStateVideoURL} item={item} imageUrl={this.props.imageUrl} context={this.props.context} index={index}></ListVideo>
             ) 
           }}
           >
@@ -198,6 +199,7 @@ export default class Videoplayer extends Component{
         contents: 'blue',
         transcripts: 'gray',
         videourl: '',
+        lessonId: '',
         isReady: false,
         status: null,
         quality: null,
@@ -216,9 +218,11 @@ export default class Videoplayer extends Component{
       this.setState({videourl})
     }
 
-    
-  _youTubeRef = React.createRef();
+    setStatelessonId = (lessonId)=>{
+      this.setState({lessonId})
+    }
 
+    
    render()
    {
     var val = this.context
@@ -236,7 +240,7 @@ export default class Videoplayer extends Component{
     if(this.state.videourl && this.state.videourl.includes('https://youtube.com/embed/'))
     {
       var slit = this.state.videourl.split('/')
-      video = (<ReactNativeYouTube id={slit[slit.length-1]}></ReactNativeYouTube>
+      video = (<ReactNativeYouTube ref={'youtube'} lessonId={this.state.lessonId} id={slit[slit.length-1]}></ReactNativeYouTube>
       )
     }
     else 
@@ -277,7 +281,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Share</Text><Image source={{uri: 'https://purepng.com/public/uploads/large/share-icon-7nl.png'}} style={{
+                }}>{val.Language.Videoplayer.Share}</Text><Image source={{uri: 'https://purepng.com/public/uploads/large/share-icon-7nl.png'}} style={{
                 width: 40,
                 height: 40,
                 borderRadius: 20,
@@ -300,25 +304,45 @@ export default class Videoplayer extends Component{
               }}>{val.Teacher.name}</Text>
                
               </View>
-              <View style={styles.content}>
-                <Text style={{
+              <View style={{
+                borderWidth: 3,
+                borderRadius: 10,
+                borderColor: `${val.Theme.Color}`,
+                marginRight: 20,
+                marginLeft: 20,
+                paddingBottom: 20,
+                marginTop: 20
+              }}>
+              <View style={styles.content}><Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 25,
+                  fontWeight:'bold'
+                }}>{val.Language.Videoplayer.Ratting}</Text></View>
+              <View style={styles.content}><Text style={{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Beginer: {date.getDate() + '/' + date.getMonth()+ '/' + date.getFullYear()+ ' ' + date.getHours()+ ':' + date.getMinutes()}</Text>
-                <View style={{marginLeft: 10, flexDirection: 'row'}}>{liststar}</View>
-                <Text style={{
+                }}>{val.Language.Videoplayer.formalityPoint}: {val.Video.formalityPoint} ({val.Language.Videoplayer.Point})</Text></View>
+              <View style={styles.content}><Text style={{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>   (444)</Text>
-              </View>
+                }}>{val.Language.Videoplayer.contentPoint}:  {val.Video.contentPoint} ({val.Language.Videoplayer.Point})</Text></View>
+              <View style={styles.content}> 
+              <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>{val.Language.Videoplayer.presentationPoint}:  {val.Video.presentationPoint} ({val.Language.Videoplayer.Point})</Text></View>
+                </View>
               <View style={styles.content}>
                 <View style={{
                   alignItems: 'center',
                   flex: 1
+                }} onStartShouldSetResponder={()=>{
+                  this.props.navigation.navigate('Rating')
                 }}>
-                <Image source={{uri: 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/book_bookmark.png'}} style={{
+                <Image source={{uri: 'https://cms-assets.tutsplus.com/uploads/users/34/posts/30118/preview_image/star-rating.jpg'}} style={{
                 width: 60,
                 height: 60,
                 borderRadius: 10,
@@ -328,7 +352,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>BookMarked</Text>
+                }}>{val.Language.Videoplayer.BookMarked}</Text>
                 </View>
                 <View style={{
                   alignItems: 'center',
@@ -352,7 +376,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Add to favorite</Text>
+                }}>{val.Language.Videoplayer.Addtofavorite}</Text>
                 </View>
                 <View style={{
                   alignItems: 'center',
@@ -372,7 +396,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Download</Text>
+                }}>{val.Language.Videoplayer.Download}</Text>
                 </View>
               </View>
               <View >
@@ -380,12 +404,12 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Related paths and courses</Text></TouchableHighlight>
+                }}>{val.Language.Videoplayer.Relatedpathsandcourses}</Text></TouchableHighlight>
                 <TouchableHighlight style={styles.btn11}><Text style={{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Take learning check</Text></TouchableHighlight>
+                }}>{val.Language.Videoplayer.Takelearningcheck}</Text></TouchableHighlight>
               </View>
               <View style={styles.content}>
                 <View style={
@@ -405,7 +429,7 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Contents</Text>
+                }}>{val.Language.Videoplayer.Contents}</Text>
                 </View>
                 <View style={
                   {
@@ -425,13 +449,13 @@ export default class Videoplayer extends Component{
                   color: `${val.Theme.Color}`,
                   fontSize: 18,
                   fontWeight:'bold'
-                }}>Transcripts</Text>
+                }}>{val.Language.Videoplayer.Transcripts}</Text>
                 </View>
               </View>
              
               {this.state.contents === 'blue' ? (
                 <View>
-                    <Contents setStateVideoURL={this.setStateVideoURL} context={val} imageUrl={val.Video.imageUrl}></Contents>
+                    <Contents setStateVideoURL={this.setStateVideoURL} setStatelessonId={this.setStatelessonId} context={val} imageUrl={val.Video.imageUrl}></Contents>
                 </View>
                 ): null}
                 {this.state.transcripts === 'blue' ? (

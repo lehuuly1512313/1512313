@@ -241,15 +241,15 @@ export default class PlayVideoDownload extends Component{
             fontSize: 20,
             color: `${val.Theme.Color}`,
             marginTop: 20
-          }}>***Title:  {val.Video.title}</Text>
+          }}>***{val.Language.PlayVideoDownload.Title}:  {val.Video.title}</Text>
           <Text style={{
             fontSize: 20,
             color: `${val.Theme.Color}`,
-          }}>***Path:  {path}</Text>
+          }}>***{val.Language.PlayVideoDownload.Path}:  {path}</Text>
           <Text style={{
             fontSize: 20,
             color: `${val.Theme.Color}`,
-          }}>***Size:  45MB</Text>
+          }}>***{val.Language.PlayVideoDownload.Size}:  45MB</Text>
     </View>
     )
   }

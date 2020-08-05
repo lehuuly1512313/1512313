@@ -19,10 +19,12 @@ export const getcoursedetailURL = 'https://api.itedu.me/course/get-course-detail
 export const searchURL = 'https://api.itedu.me/course/search'
 export const categoryallURL = 'https://api.itedu.me/category/all'
 export const categoryURL = 'https://api.itedu.me/category/'
-
+export const ratingcourseURL = 'https://api.itedu.me/course/rating-course'
+export const updatecurrenttimelearnvideoURL = 'https://api.itedu.me/lesson/update-current-time-learn-video'
 
 export const updatefavoritecategoriesURL = 'https://api.itedu.me/user/update-favorite-categories'
 export const coursesuserfavoritecategoriesURL = 'https://api.itedu.me/course/courses-user-favorite-categories'
+
 
 // tìm kiếm tất cả các khóa học của một lĩnh vực
 // {

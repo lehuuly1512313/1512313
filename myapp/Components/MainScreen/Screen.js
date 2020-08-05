@@ -29,6 +29,7 @@ import ListCoursesNews from '../../Components/Courses/ListCoursesNews'
 import ListCoursesRates from '../../Components/Courses/ListCoursesRates'
 import Downloadfile from '../../Components//Others/Downloadfile'
 import PlayVideoDownload from '../../Components/Others/PlayVideoDownload'
+import Rating from '../../Components/Others/Rating'
 const Stack = createStackNavigator();
 
 class Screen extends Component {
@@ -73,6 +74,7 @@ class Screen extends Component {
           <Stack.Screen name="ChangeUserEmail" component={ChangeUserEmail}/>
           <Stack.Screen name="Downloadfile" component={Downloadfile}/>
           <Stack.Screen name="PlayVideoDownload" component={PlayVideoDownload}/>
+          <Stack.Screen name="Rating" component={Rating}/>
           <Stack.Screen name="Sum" component={Sum} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>

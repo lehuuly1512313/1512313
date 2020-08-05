@@ -49,7 +49,7 @@ export default class Splashscreen extends Component{
                        color: `${val.Theme.Color}`,
                        fontSize: 40,
                        fontWeight: 'bold'
-                    }}>LOADING...{this.state.status}%</Text></View>
+                    }}>{val.Language.Splashscreen.LOADING}...{this.state.status}%</Text></View>
                 </View>
             </View>
     )

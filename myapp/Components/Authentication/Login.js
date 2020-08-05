@@ -215,7 +215,7 @@ export default class Login extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Email or Username </Text>
+                    }}>{val.Language.Login.EmailorUsername} </Text>
                     <TextInput onChangeText={this.handleAccount} style={{
                       padding: 10,
                       fontSize: 20,
@@ -226,7 +226,7 @@ export default class Login extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Password </Text>
+                    }}>{val.Language.Login.Password} </Text>
                     <TextInput onChangeText={this.handlePassword} style={{
                       padding: 10,
                       fontSize: 20,
@@ -236,7 +236,7 @@ export default class Login extends Component{
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.Login} style={styles.btn}>
-                        <Text style={styles.txtbtn}>SIGN IN</Text>
+                        <Text style={styles.txtbtn}>{val.Language.Login.SIGNIN}</Text>
                     </TouchableHighlight>
                 </View>
                 <GoogleSigninButton
@@ -246,16 +246,16 @@ export default class Login extends Component{
                    />
 
                 <View style={styles.flex2}>
-                    <Text style={styles.txtbtn3}>Need help?</Text>
+                    <Text style={styles.txtbtn3}>{val.Language.Login.Needhelp}</Text>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handleforgetpassword} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>Forget Password</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Login.ForgetPassword}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePressSSO} style={styles.btn2}>
-                        <Text style={styles.txtbtn2}>Use single sign-on (sso)</Text>
+                        <Text style={styles.txtbtn2}>{val.Language.Login.Usesinglesignonsso}</Text>
                     </TouchableHighlight>
                 </View>
                 <Notification ref={'Notification'} notification={this.state.notification}></Notification>

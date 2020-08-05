@@ -31,7 +31,7 @@ class NoContentDownload extends Component{
             fontSize: 30,
             color: `${this.props.context.Theme.Color}`,
           }
-        }>No content</Text>
+        }>{this.props.context.Language.ListCourses.Nocontent}</Text>
       </View>
       )
     }
@@ -71,7 +71,7 @@ class Item extends Component{
              <Text style={{
               color: `${this.props.context.Theme.Color}`,
               fontSize: 18
-            }}>{this.props.item.total} lessons</Text>
+            }}>{this.props.item.total} {this.props.context.Language.ListCourses.lessons}</Text>
            
            
            
@@ -169,7 +169,7 @@ class Item extends Component{
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}}>Add to favorite</Text>
+                    <Text style={{fontSize: 20}}>{this.props.context.Language.ListCourses.Addtofavorite}</Text>
                     </MenuOption>
                 
                     <MenuOption onSelect={()=>{
@@ -187,7 +187,7 @@ class Item extends Component{
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}} >Detail</Text>
+                    <Text style={{fontSize: 20}} >{this.props.context.Language.ListCourses.Detail}</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>

@@ -6,6 +6,7 @@ import {Theme} from './Data/Theme'
 import {Language} from './Data/Language'
 import API from './API/Api'
 import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
+import Rating from './Components/Others/Rating'
 
 
 
@@ -190,7 +191,7 @@ export default class App extends Component{
       Token: '',
       news: '',
       rates: '',
-      Language: Language[0],
+      Language: Language[1],
       processcourses: [],
       favoritecourses: [],
       recommendcourse: [],

@@ -80,7 +80,7 @@ export default class Home extends Component{
     }><Text style={{
       color: `${val.Theme.Color}`,
       fontSize: 30
-    }}>No content</Text></View>)
+    }}>{val.Language.Home.Nocontent}</Text></View>)
   }
   
     let authors = []
@@ -133,7 +133,7 @@ export default class Home extends Component{
       }><Text style={{
         color:`${val.Theme.Color}`,
         fontSize: 30
-      }}>No content</Text></View>)
+      }}>{val.Language.Home.Nocontent}</Text></View>)
     }
 
     let courses = []
@@ -205,7 +205,7 @@ export default class Home extends Component{
     }><Text style={{
       color: `${val.Theme.Color}`,
       fontSize: 30
-    }}>No content</Text></View>)
+    }}>{val.Language.Home.Nocontent}</Text></View>)
   }
     return(
       <View style={{
@@ -224,7 +224,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Your courses</Text>
+        }}>{val.Language.Home.Yourcourses}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -243,7 +243,7 @@ export default class Home extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Home.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         </View>
@@ -265,7 +265,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Your favorite courses</Text>
+        }}>{val.Language.Home.Yourfavoritecourses}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -284,7 +284,7 @@ export default class Home extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Home.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         
@@ -307,7 +307,7 @@ export default class Home extends Component{
           marginTop: 20,
           marginBottom: 20,
           flex: 1
-        }}>Authors Followed</Text>
+        }}>{val.Language.Home.AuthorsFollowed}</Text>
         <View style={{
           marginRight: 20,
           marginTop: 20,
@@ -325,7 +325,7 @@ export default class Home extends Component{
           <Text style={{
             fontSize: 18,
             color: `${val.Theme.Color}`,
-          }}>see all</Text>
+          }}>{val.Language.Home.seeall}</Text>
           <Icon name='forward' size={30} color={`${val.Theme.Color}`}/>
           </View>
         </View>

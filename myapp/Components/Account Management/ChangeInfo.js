@@ -96,7 +96,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Name</Text>
+                    }}>{val.Language.ChangeInfo.Name}</Text>
                     <TextInput onChangeText={this.handleName} style={{
                       padding: 10,
                       fontSize: 20,
@@ -107,7 +107,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }} >Phone</Text>
+                    }} >{val.Language.ChangeInfo.Phone}</Text>
                     <TextInput onChangeText={this.handlePhone} style={{
                       padding: 10,
                       fontSize: 20,
@@ -118,7 +118,7 @@ export default class ChangeInfo extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }} >Avatar</Text>
+                    }} >{val.Language.ChangeInfo.Avatar}</Text>
                     <TextInput onChangeText={this.handleAvatar} style={{
                       padding: 10,
                       fontSize: 20,
@@ -128,11 +128,11 @@ export default class ChangeInfo extends Component{
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.Changeinfo} style={styles.btn}>
-                        <Text style={styles.txtbtn}>Change</Text>
+                        <Text style={styles.txtbtn}>{val.Language.ChangeInfo.Change}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.txtbtn3}>Need help?</Text>
+                    <Text style={styles.txtbtn3}>{val.Language.ChangeInfo.Needhelp}</Text>
                 </View>
                 <Notification ref={'Notification'} notification={notification}></Notification>
             </View>

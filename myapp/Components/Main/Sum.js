@@ -23,6 +23,8 @@ export default class Sum extends Component{
         this.showbrowse = this.showbrowse.bind(this)
         this.showsearch = this.showsearch.bind(this)
         this._retrieveData = this._retrieveData.bind(this)
+        // var val = this.context
+        // console.log(val.Language.Sum.Signout)
         this.state ={
             showhome: true,
             showdownload: false,
@@ -105,7 +107,7 @@ export default class Sum extends Component{
         if(val.Account === null)
         {
             this.setState({
-                Signquestion: 'Sign in'
+                Signquestion: val.Language.Sum.Signin
             })
         }
     }
@@ -133,7 +135,7 @@ export default class Sum extends Component{
                 <MenuOption onSelect={()=>{
                     this.props.navigation.navigate('ChangePassword')
                  }}>
-                 <Text style={{fontSize: 20}}>Change Password</Text>
+                 <Text style={{fontSize: 20}}>{val.Language.Sum.ChangePassword}</Text>
                  </MenuOption>
                  
             )
@@ -141,7 +143,7 @@ export default class Sum extends Component{
                 <MenuOption onSelect={()=>{
                     this.props.navigation.navigate('ChangeUserEmail')
                  }}>
-                 <Text style={{fontSize: 20}}>Change User Email</Text>
+                 <Text style={{fontSize: 20}}>{val.Language.Sum.ChangeUserEmail}</Text>
                  </MenuOption>
                  
             )
@@ -200,17 +202,17 @@ export default class Sum extends Component{
                     <MenuOption onSelect={()=>{
                          val.Account !== null ? this.props.navigation.navigate('Profile'):null
                     }}>
-                    <Text style={{fontSize: 20}}>Profile</Text>
+                    <Text style={{fontSize: 20}}>{val.Language.Sum.Profile}</Text>
                     </MenuOption >
                     <MenuOption onSelect={()=>{
                        this.props.navigation.navigate('Setting')
                     }}>
-                    <Text style={{fontSize: 20}}>Setting</Text>
+                    <Text style={{fontSize: 20}}>{val.Language.Sum.Setting}</Text>
                     </MenuOption>
                     {change}
                     {changeEmail}
                     <MenuOption onSelect={()=>{
-                        if(this.state.Signquestion === 'Sign out')
+                        if(this.state.Signquestion === val.Language.Sum.Signout)
                         {
                             val.toggleAccount(null)
                             val.toggleToken('')
@@ -220,7 +222,7 @@ export default class Sum extends Component{
                             val.toggleHomes([])
                             val.togglePassword('')
                         }
-                        this.state.Signquestion === 'Sign in' ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
+                        this.state.Signquestion === val.Language.Sum.Signin ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
                     }}>
                     <Text style={{fontSize: 20}} >{this.state.Signquestion}</Text>
                     </MenuOption> 
@@ -250,10 +252,10 @@ export default class Sum extends Component{
                     backgroundColor: 'white',
                     
                 }}>
-                    <View style={styles.txtitem} onStartShouldSetResponder={this.showhome}><Icon name='home' size={28} color={this.state.showhome ? '#517fa4':'black'}/><Text style={{color: this.state.showhome ? '#517fa4':'black', fontSize: 16}}>Home</Text></View>
-                    <View style={styles.txtitem} onStartShouldSetResponder={this.showdownload}><Icon name='file-download' size={28} color={this.state.showdownload ? '#517fa4':'black'}/><Text style={{color: this.state.showdownload ? '#517fa4':'black', fontSize: 16}}>Download</Text></View>
-                    <View style={styles.txtitem} onStartShouldSetResponder={this.showbrowse}><Icon name='open-in-browser' size={28} color={this.state.showbrowse ? '#517fa4':'black'}/><Text style={{color: this.state.showbrowse ? '#517fa4':'black', fontSize: 16}}>Browse</Text></View>
-                    <View style={styles.txtitem} onStartShouldSetResponder={this.showsearch}><Icon name='search' size={28} color={this.state.showsearch ? '#517fa4':'black'}/><Text style={{color: this.state.showsearch ? '#517fa4':'black', fontSize: 16}}>Search</Text></View>
+                    <View style={styles.txtitem} onStartShouldSetResponder={this.showhome}><Icon name='home' size={28} color={this.state.showhome ? '#517fa4':'black'}/><Text style={{color: this.state.showhome ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Home}</Text></View>
+                    <View style={styles.txtitem} onStartShouldSetResponder={this.showdownload}><Icon name='file-download' size={28} color={this.state.showdownload ? '#517fa4':'black'}/><Text style={{color: this.state.showdownload ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Download}</Text></View>
+                    <View style={styles.txtitem} onStartShouldSetResponder={this.showbrowse}><Icon name='open-in-browser' size={28} color={this.state.showbrowse ? '#517fa4':'black'}/><Text style={{color: this.state.showbrowse ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Browse}</Text></View>
+                    <View style={styles.txtitem} onStartShouldSetResponder={this.showsearch}><Icon name='search' size={28} color={this.state.showsearch ? '#517fa4':'black'}/><Text style={{color: this.state.showsearch ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Search}</Text></View>
                 </View>
             </View>
         )

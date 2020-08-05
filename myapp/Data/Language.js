@@ -21,7 +21,9 @@ export var Language = [
         VerifyPassword: 
         {
             Password: 'Password',
-            Confirmpassword: 'Confirm password'
+            Confirmpassword: 'Confirm password',
+            Needhelp: 'Need help?',
+            Done: 'Done'
         },
         Start:{
             SIGNIN: 'SIGN IN',
@@ -70,6 +72,7 @@ export var Language = [
             averagePoint:'averagePoint'
         },
         Setting: {
+            Subcription:'Subcription',
             Theme: 'Theme',
             Language: 'Language',
             Dark:'Dark',
@@ -95,8 +98,147 @@ export var Language = [
             Numberofcoursesattended:'Number of courses attended',
             Experience:'Experience (years)',
             highestpoint:'highest point',
-            Bonus:'Bonus (times)'
+            Bonus:'Bonus (times)',
+            Edit: 'Edit'
         },
+        Splashscreen:{
+            LOADING:'LOADING'
+        },
+        ListAuthors: {
+            Follow:'Follow'
+        },
+        ListCourses: {
+            Erolme: 'Erol me',
+            Addtofavorite: 'Add to favorite',
+            Detail: 'Detail',
+            Nocontent:'No content',
+            lessons: 'lessons'
+        },
+        CoureseDetail: {
+            Coureses: 'Coureses',
+            Title: 'Title',
+            Subtitle: 'Subtitle',
+            Description:'Description',
+            learnWhat:'learn What',
+            Price:'Price',
+            Author:'Author',
+            Name:'Name',
+            Email:'Email',
+            Phone:'Phone',
+            Id:'Id',
+            Major:'Major',
+            Intro:'Intro',
+            Skills: 'Skills',
+            Createdat:'Created at',
+            Updatedat:'Updated at',
+            Ratting: 'Ratting'
+        },
+        Browser: {
+            PopularSkills: 'Popular Skills',
+            Recommendcoursesforyou:'Recommend courses for you',
+            seeall: 'see all',
+            Topnewcourses:'Top new courses',
+            Topratecourses:'Top rate courses',
+            Topauthors:'Top authors'
+        },
+        Download: {
+            Nocontent: 'No content',
+            Ratting: 'Ratting',
+            Removeall: 'Remove all'
+        },
+        Home: {
+            Nocontent: 'No content',
+            Yourcourses: 'Your courses',
+            seeall: 'see all',
+            Yourfavoritecourses: 'Your favorite courses',
+            AuthorsFollowed: 'Authors FollowedC'
+        },
+        Search: {
+            Videonumber: 'Video number',
+            Videos: 'Videos',
+            price: 'price',
+            Erolme: 'Erol me',
+            Addtofavorite: 'Add to favorite',
+            Detail: 'Detail',
+            Nocontent:'No content',
+            courses:'courses',
+            Time:'Time',
+            hours: '(hours)',
+            Download: 'Download',
+            Result: 'Result',
+            SkillLevels: 'Skill Levels',
+            Newest: 'Newest',
+            ALL: 'ALL',
+            VIDEOS: 'VIDEOS',
+            COURSES: 'COURSES',
+            AUTHORS: 'AUTHORS',
+            category: 'category'
+        },
+        Sum: {
+            Signout: 'Sign out',
+            Home: 'Home',
+            Download: 'Download',
+            Browse:'Browse',
+            Search: 'Search',
+            Signin: 'Sign in',
+            ChangePassword: 'Change Password',
+            ChangeUserEmail: 'Change User Email',
+            Profile: 'Profile',
+            Setting: 'Setting',
+        },
+        Notification: {
+            Notification: 'Notification'
+        },
+        Contact: {
+            str:'Enter your email address and then send your feed back for us',
+            Email: 'Email',
+            Contentyourfeedback: `Content's your feed back`,
+            SENDFEEDBACK:'SEND FEED BACK'
+        },
+        Downloadfile: {
+            DOWNLOADFILE: 'DOWNLOAD FILE'
+        },
+        PlayVideoDownload: {
+            Title: 'Title',
+            Path: 'Path',
+            Size: 'Size'
+        },
+        Share: {
+            Sharecourses: 'Share courses',
+            Mylocateddrive: 'My located drive'
+        },
+        Subscription: {
+            Subscriptiontype: 'Subscription type',
+            Expiritiondate: 'Expirition date',
+            Manageyoursubscription: 'Manage your subscription',
+            individual: 'individual',
+            Getsupport: 'Get support',
+            SendFeedback:'Send Feedback',
+            Feature: 'Feature',
+            Authors: 'Authors',
+            Mobileandofflineapp: 'Mobile and offline app',
+            Blog: 'Blog',
+            Contact: 'Contact'
+        },
+        Videoplayer: {
+            Time: 'Time',
+            hours: 'hours',
+            Order: 'Order',
+            Share: 'Share',
+            Beginer: 'Beginer',
+            BookMarked: 'Rating',
+            Addtofavorite: 'Add to favorite',
+            Download: 'Download',
+            Relatedpathsandcourses: 'Comment list',
+            Takelearningcheck: 'Take learning check',
+            Contents:'Contents',
+            Transcripts: 'Transcripts',
+            Ratting: 'Ratting',
+            formalityPoint: 'Formality',
+            contentPoint: 'Content',
+            presentationPoint: 'Presentation',
+            Point: 'Points'
+       }
     },
     {
          Name:'Vietnamese',
@@ -120,7 +262,9 @@ export var Language = [
         VerifyPassword: 
         {
             Password: 'Mật khẩu',
-            Confirmpassword: 'Nhập lại mật khẩu'
+            Confirmpassword: 'Nhập lại mật khẩu',
+            Needhelp: 'Trợ giúp?',
+            Done: 'Hoàn thành'
         },
         Start:{
             SIGNIN: 'ĐĂNG NHẬP',
@@ -169,6 +313,7 @@ export var Language = [
             averagePoint:'Điểm trung bình'
         },
         Setting: {
+            Subcription:'Subcription',
             Theme: 'Chủ đề',
             Language: 'Ngôn ngử',
             Dark:'Tối',
@@ -194,7 +339,146 @@ export var Language = [
             Numberofcoursesattended:'Số khóa học đã tham gia',
             Experience:'Kinh nghiệm (năm)',
             highestpoint:'Điểm cao nhất',
-            Bonus:'Điểm cộng (Lần)'
+            Bonus:'Điểm cộng (Lần)',
+            Edit: 'Chỉnh sửa'
         },
+        Splashscreen:{
+            LOADING:'ĐANG TẢI'
+        },
+        ListAuthors: {
+            Follow:'Theo dõi'
+        },
+        ListCourses: {
+            Erolme: 'Đăng ký',
+            Addtofavorite: 'Thêm vào yêu thích',
+            Detail: 'Chi tiết',
+            Nocontent:'Trống',
+            lessons: 'Bài học'
+        },
+        CoureseDetail: {
+            Coureses: 'Khóa học',
+            Title: 'Tiêu đề',
+            Subtitle: 'Phụ đề',
+            Description:'Miêu tả',
+            learnWhat:'Học cái gì',
+            Price:'Giá',
+            Author:'Giáo viên',
+            Name:'Tên',
+            Email:'Email',
+            Phone:'Số điện thoại',
+            Id:'Id',
+            Major:'Chuyên nghành',
+            Intro:'Giới thiệu',
+            Skills: 'Kỹ năng',
+            Createdat:'Khởi tạo',
+            Updatedat:'Cập nhật',
+            Ratting: 'Đánh giá'
+        },
+        Browser: {
+            PopularSkills: 'Kỹ năng phổ biến',
+            Recommendcoursesforyou:'Khóa học đề xuất',
+            seeall: 'Tất cả',
+            Topnewcourses:'Mới nhất hành đầu',
+            Topratecourses:'Đánh giá cao nhất',
+            Topauthors:'Giáo viên hàng đầu'
+        },
+        Download: {
+            Nocontent: 'Trống',
+            Ratting: 'Đánh giá',
+            Removeall: 'Xóa tất cả'
+        },
+        Home: {
+            Nocontent: 'Trống',
+            Yourcourses: 'Khóa học của bạn',
+            seeall: 'Tất cả',
+            Yourfavoritecourses: 'Khóa học yêu thích',
+            AuthorsFollowed: 'Giáo viên bạn theo dõi'
+        },
+        Search: {
+            Videonumber: 'Số video',
+            Videos: 'Videos',
+            price: 'Giá',
+            Erolme: 'Đăng ký',
+            Addtofavorite: 'Thêm vào yêu thích',
+            Detail: 'Chi tiết',
+            Nocontent:'Trống',
+            courses:'Khóa học',
+            Time:'Thời gian',
+            hours: '(Giờ)',
+            Download: 'Tải xuống',
+            Result: 'Kết quả',
+            SkillLevels: 'Cấp độ kỹ năng',
+            Newest: 'Mới nhất',
+            ALL: 'TẤT CẢ',
+            VIDEOS: 'VIDEOS',
+            COURSES: 'KHÓA HỌC',
+            AUTHORS: 'GIÁO VIÊN',
+            category: 'Danh mục'
+        },
+        Sum: {
+            Signout: 'Đăng xuất',
+            Home: 'Trang chủ',
+            Download: 'Tải xuống',
+            Browse:'Khám phá',
+            Search: 'Tìm kiếm',
+            Signin: 'Đăng nhập',
+            ChangePassword: 'Đổi mật khẩu',
+            ChangeUserEmail: 'Đổi email',
+            Profile: 'Thông tin cá nhân',
+            Setting: 'Cài đặt',
+        },
+        Notification: {
+            Notification: 'Thông báo'
+        },
+        Contact: {
+            str:'Nhập địa chỉ email của bạn và sau đó gửi lại nguồn cấp dữ liệu của bạn cho chúng tôi',
+            Email: 'Email',
+            Contentyourfeedback: `Nội dung`,
+            SENDFEEDBACK:'GỬI'
+        },
+        Downloadfile: {
+            DOWNLOADFILE: 'TẢI XUỐNG'
+        },
+        PlayVideoDownload: {
+            Title: 'Tiêu đề',
+            Path: 'Đường dẫn',
+            Size: 'Kích thước'
+        },
+        Share: {
+            Sharecourses: 'Chia sẽ khóa học',
+            Mylocateddrive: 'Tập tin'
+        },
+        Subscription: {
+            Subscriptiontype: 'Loại đăng ký',
+            Expiritiondate: 'Ngày hết hạn',
+            Manageyoursubscription: 'Quản lý đăng ký của bạn',
+            individual: 'cá nhân',
+            Getsupport: 'Nhận hỗ trợ',
+            SendFeedback:'Gửi thông tin phản hồi',
+            Feature: 'Đặc tính',
+            Authors: 'Giáo viên',
+            Mobileandofflineapp: 'Ứng dụng di động và ngoại tuyến',
+            Blog: 'Blog',
+            Contact: 'Liên hệ'
+        },
+        Videoplayer: {
+            Time: 'Thời gian',
+            hours: 'Giờ',
+            Order: 'Thứ tự',
+            Share: 'Chia sẻ',
+            Beginer: 'Người mới',
+            BookMarked: 'Đánh giá',
+            Addtofavorite: 'Thêm vào yêu thích',
+            Download: 'Tải xuống',
+            Relatedpathsandcourses: 'Danh sách bình luận',
+            Takelearningcheck: 'Bài tập',
+            Contents:'Nội dung',
+            Transcripts: 'Bảng điểm',
+            Ratting: 'Đánh giá của học viên',
+            formalityPoint: 'Hình thức',
+            contentPoint: 'Nội dung',
+            presentationPoint: 'Trình bày',
+            Point: 'Điểm'
+       }
     }
  ]

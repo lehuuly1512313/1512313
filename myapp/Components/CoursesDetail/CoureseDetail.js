@@ -3,15 +3,13 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,Sc
 import DropDownItem from "react-native-drop-down-item"
 import {Mycontext} from './../../Context/Mycontext'
 
-
-
-
 export default class CoursesDetail extends Component{
   render()
   {
     var liststar = [];
     let count = 0
     var val = this.context
+    console.log(val.Language.ListCourses)
     for (let index = 0; index < 4 - 0.5; index++) {
       count++;
       liststar.push(
@@ -47,7 +45,7 @@ export default class CoursesDetail extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Coureses</Text>
+                  }}>{val.Language.CoureseDetail.Coureses}</Text>
                   <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
                 </View>
               }>
@@ -67,27 +65,27 @@ export default class CoursesDetail extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Title: {val.Courses.title}</Text>
+                  }}>{val.Language.CoureseDetail.Title}: {val.Courses.title}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Subtitle: {val.Courses.subtitle}</Text>
+                  }}>{val.Language.CoureseDetail.Subtitle}: {val.Courses.subtitle}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Description: {val.Courses.description}</Text>
+                  }}>{val.Language.CoureseDetail.Description}: {val.Courses.description}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>learn What: {val.Courses.learnWhat}</Text>
+                  }}>{val.Language.CoureseDetail.learnWhat}: {val.Courses.learnWhat}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Price: {val.Courses.price}</Text>
+                  }}>{val.Language.CoureseDetail.Price}: {val.Courses.price}</Text>
               </View>
              </View>
             </DropDownItem>
@@ -108,7 +106,7 @@ export default class CoursesDetail extends Component{
                     fontSize: 18,
                     color: 'white',
                     flex: 1,
-                  }}>Author</Text>
+                  }}>{val.Language.CoureseDetail.Author}</Text>
                     <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>              
                 </View>
               }>
@@ -128,49 +126,49 @@ export default class CoursesDetail extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Name: {val.Teacher.name}</Text>
+                  }}>{val.Language.CoureseDetail.Name}: {val.Teacher.name}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Email: {val.Teacher.email}</Text>
+                  }}>{val.Language.CoureseDetail.Email}: {val.Teacher.email}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Phone: {val.Teacher.phone}</Text>
+                  }}>{val.Language.CoureseDetail.Phone}: {val.Teacher.phone}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Id: {val.Teacher.id}</Text>
+                  }}>{val.Language.CoureseDetail.Id}: {val.Teacher.id}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Major: {val.Teacher.major}</Text>
+                  }}>{val.Language.CoureseDetail.Major}: {val.Teacher.major}</Text>
                   
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Intro: {val.Teacher.intro}</Text>
+                  }}>{val.Language.CoureseDetail.Intro}: {val.Teacher.intro}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Skills: {val.Teacher.skills}</Text>
+                  }}>{val.Language.CoureseDetail.Skills}: {val.Teacher.skills}</Text>
 
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Created At: {val.Teacher.createdAt}</Text>
+                  }}>{val.Language.CoureseDetail.Createdat}: {val.Teacher.createdAt}</Text>
                   <Text style={{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Updated At: {val.Teacher.updatedAt}</Text> 
+                  }}>{val.Language.CoureseDetail.Updatedat}: {val.Teacher.updatedAt}</Text> 
                   <View style={{
                     flexDirection: 'row'
                   }}>
@@ -178,7 +176,7 @@ export default class CoursesDetail extends Component{
                     color: `${val.Theme.Color}`,
                     fontSize: 18,
                     marginTop: 5
-                  }}>Ratting: </Text>
+                  }}>{val.Language.CoureseDetail.Ratting}: </Text>
                     <View style={{
                       marginTop: 10,
                       flexDirection: 'row'

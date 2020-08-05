@@ -30,7 +30,7 @@ export default class Contact extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Enter your email address and then send your feed back for us</Text>
+                    }}>{val.Language.Contact.str}</Text>
                     
                 </View>
       <View style={styles.flex}>
@@ -38,7 +38,7 @@ export default class Contact extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Email</Text>
+                    }}>{val.Language.Contact.Email}</Text>
                     <TextInput onChangeText={this.handleAccount} style={{
                       padding: 10,
                       fontSize: 20,
@@ -51,7 +51,7 @@ export default class Contact extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Content's your feed back</Text>
+                    }}>{val.Language.Contact.Contentyourfeedback}</Text>
                     <TextInput onChangeText={this.handleAccount} multiline={true} style={{
                       padding: 10,
                       fontSize: 20,
@@ -63,7 +63,7 @@ export default class Contact extends Component{
                 </View>
       <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
-                        <Text style={styles.txtbtn}>SEND FEED BACK</Text>
+                        <Text style={styles.txtbtn}>{val.Language.Contact.SENDFEEDBACK}</Text>
                     </TouchableHighlight>
                 </View>
                 

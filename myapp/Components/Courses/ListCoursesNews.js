@@ -155,7 +155,7 @@ class Item extends Component{
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}}>Erol me</Text>
+                    <Text style={{fontSize: 20}}>{this.props.context.Language.ListCourses.Erolme}</Text>
                     </MenuOption >
                    
                     <MenuOption onSelect={()=>{
@@ -173,7 +173,7 @@ class Item extends Component{
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}}>Add to favorite</Text>
+                    <Text style={{fontSize: 20}}>{this.props.context.Language.ListCourses.Addtofavorite}</Text>
                     </MenuOption>
                 
                     <MenuOption onSelect={()=>{
@@ -191,7 +191,7 @@ class Item extends Component{
                         }
                       })
                     }}>
-                    <Text style={{fontSize: 20}} >Detail</Text>
+                    <Text style={{fontSize: 20}} >{this.props.context.Language.ListCourses.Detail}</Text>
                     </MenuOption> 
                 </MenuOptions>
                 </Menu>

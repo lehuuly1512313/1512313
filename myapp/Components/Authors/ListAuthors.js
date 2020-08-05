@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions } from 'react-native'
-import {Teachers} from '../../Data/Teacher'
 import {Mycontext} from '../../Context/Mycontext'
 
 import API from './../../API/Api'
@@ -90,7 +89,7 @@ class Itempath extends Component{
                   fontSize: 16,
                   color: 'white',
                   fontWeight: 'bold'
-                }}>Follow</Text>
+                }}>{this.props.context.Language.ListAuthors.Follow}</Text>
             </TouchableHighlight>
             </View>
           </View>

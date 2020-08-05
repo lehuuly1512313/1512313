@@ -146,7 +146,7 @@ export default class VerifyPassword extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Password</Text>
+                    }}>{val.Language.VerifyPassword.Password}</Text>
                     <TextInput onChangeText={this.handlePassword} secureTextEntry={true}  style={{
                       padding: 10,
                       fontSize: 20,
@@ -157,7 +157,7 @@ export default class VerifyPassword extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>Confirm password</Text>
+                    }}>{val.Language.VerifyPassword.Confirmpassword}</Text>
                     <TextInput onChangeText={this.handleConPassword} secureTextEntry={true} style={{
                       padding: 10,
                       fontSize: 20,
@@ -167,11 +167,11 @@ export default class VerifyPassword extends Component{
                 </View>
                 <View style={styles.flex}>
                     <TouchableHighlight onPress={this.handlePress} style={styles.btn}>
-                        <Text style={styles.txtbtn}>Done</Text>
+                        <Text style={styles.txtbtn}>{val.Language.VerifyPassword.Done}</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.txtbtn3}>Need help?</Text>
+                    <Text style={styles.txtbtn3}>{val.Language.VerifyPassword.Needhelp}</Text>
                 </View>
                 <Notification ref={'Notification'} second={this.state.status}></Notification>
             </View>
