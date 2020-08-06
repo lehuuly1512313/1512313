@@ -20,6 +20,7 @@ export default class ReactNativeYouTube extends React.Component {
 
   render() {
     var val = this.context
+    console.log(this.props.currentTime)
     return (
       <View>
       <YoutubePlayer
@@ -50,7 +51,12 @@ export default class ReactNativeYouTube extends React.Component {
           }
         }
         }
-        onReady={() => console.log("ready")}
+        onReady={() => {
+          if(this.props.currentTime)
+            {
+            this.refs.me.seekTo(this.props.currentTime)
+            }
+        }}
         onError={e => console.log(e)}
         onPlaybackQualityChange={q => console.log(q)}
         volume={50}

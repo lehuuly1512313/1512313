@@ -12,11 +12,16 @@ import {
 } from 'react-native-popup-menu';
 import ReactNativeYouTube from './ReactNativeYouTube';
 import ReactNativeVideo from './ReactNativeVideo'
+import API from './../../API/Api'
+import {listexerciselessonURL} from './../../API/Url'
+const Api = new API()
 
+
+const examimg = 'https://img.freepik.com/free-photo/test-score-sheet-with-answers_93675-5220.jpg?size=626&ext=jpg'
 
 class Item extends Component{
 
-
+  
   render()
   {
     return(
@@ -32,6 +37,7 @@ class Item extends Component{
             marginBottom: 10,
         }}>
           <TouchableHighlight onPress={()=>{
+            console.log(this.props.item.videoUrl)
             this.props.setStateVideoURL(this.props.item.videoUrl)
             this.props.setStatelessonId(this.props.item.id)
           }}>
@@ -77,6 +83,97 @@ class Item extends Component{
   }
 }
 
+class ItemExam extends Component{
+
+  constructor(props)
+  {
+    super(props)
+    this.state={
+      exam: null
+    }
+  }
+
+  componentWillMount()
+  {
+    var val = this.context
+    const config = {
+      headers: { Authorization: `Bearer ${val.Token}` }
+  };
+    const data={
+      lessonId: this.props.item.id
+    }
+
+    Api.PostRequest(data,listexerciselessonURL,config).then(res=>{
+      if(res)
+      {
+        this.setState({exam: res.data.payload.exercises[0]})
+      }
+    })
+  }
+
+  render()
+  {
+    if(this.state.exam)
+    {
+    return(
+      <View style={{
+        flexDirection: 'column'
+      }}>
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          marginLeft: 20,
+          marginRight: 20,
+          marginTop: 10,
+            marginBottom: 10,
+        }}>
+          <TouchableHighlight onPress={()=>{
+            
+          }}>
+          <Image style={styles.strech} source={{uri: examimg}}></Image>
+          </TouchableHighlight>
+          
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            height: 120,
+            paddingLeft: 10,
+            justifyContent: 'center'
+          }}>
+            
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.name} </Text>
+            
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.context.Language.Videoplayer.title}: {this.state.exam.title} </Text>
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.context.Language.Videoplayer.numberQuestion}: {this.state.exam.numberQuestion}</Text>
+            
+           
+          </View>
+          
+        </View>
+        <View style={{
+          height: 1,
+          backgroundColor: `${this.props.context.Theme.Color}`,
+          marginLeft: 20,
+          marginRight: 20,
+        }}></View>
+      </View>
+    )
+      }
+      return null
+  }
+}
+
+ItemExam.contextType = Mycontext
+
 class ListVideo extends Component{
   render()
   {
@@ -97,6 +194,36 @@ class ListVideo extends Component{
           renderItem={({index, item})=>{
             return(
               <Item setStatelessonId={this.props.setStatelessonId} setStateVideoURL={this.props.setStateVideoURL} item={item} context={this.props.context} imageUrl={this.props.imageUrl} index={index}></Item>
+            ) 
+          }}
+          >
+        </FlatList>
+        
+      </View>
+    )
+  }
+}
+
+class ListExam extends Component{
+  render()
+  {
+    return(
+      <View style={{
+        backgroundColor: `${this.props.context.Theme.BackgroundColor}`,
+      }}>
+        <Text style={{
+              marginLeft: 10,
+              marginRight: 20,
+              marginTop: 10,
+              marginBottom: 10,
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 24
+            }}>{this.props.item.name}</Text>
+        <FlatList 
+          data={this.props.item.lesson}
+          renderItem={({index, item})=>{
+            return(
+              <ItemExam  item={item} context={this.props.context} index={index}></ItemExam>
             ) 
           }}
           >
@@ -148,43 +275,18 @@ class Transcripts extends Component{
         marginTop: 20,
         marginLeft:  20,
         marginRight: 20,
-        justifyContent: 'center',
-        alignItems:'center'
       }}>
-        <Menu>
-                <MenuTrigger>
-                   <View style={{
-                      borderRadius: 12,
-                      borderColor: 'gray',
-                      borderWidth: 2,
-                      padding: 5,
-                      flexDirection: 'row',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      marginLeft: 20,
-                      width: 200
-                   }}>
-                     <Text style={{
-                       fontSize: 24,
-                       color: `${this.props.context.Theme.Color}`,
-                       flex: 1
-                     }}>{this.props.context.Theme.Name}</Text>
-                     <Icon name='keyboard-arrow-down' size={28} color={`${this.props.context.Theme.Color}`}/>
-                   </View>
-                </MenuTrigger>
-                <MenuOptions style={{
-                   justifyContent: 'center',
-                   alignItems: 'center',
-                }}>
-                    <MenuOption>
-                    <Text style={{fontSize: 20}}>English</Text>
-                    </MenuOption>
-                    
-                    <MenuOption>
-                    <Text style={{fontSize: 20}} >Vietnamese</Text>
-                    </MenuOption> 
-                </MenuOptions>
-                </Menu>
+        
+         <FlatList 
+          nestedScrollEnabled={true}
+          data={this.props.context.Video.section}
+          renderItem={({index, item})=>{
+            return(
+              <ListExam item={item} context={this.props.context} index={index}></ListExam >
+            ) 
+          }}
+          >
+        </FlatList>
       </View>
     )
   }
@@ -222,7 +324,7 @@ export default class Videoplayer extends Component{
       this.setState({lessonId})
     }
 
-    
+
    render()
    {
     var val = this.context
@@ -236,16 +338,23 @@ export default class Videoplayer extends Component{
       )
     }
     var video = null
-    
     if(this.state.videourl && this.state.videourl.includes('https://youtube.com/embed/'))
     {
+
       var slit = this.state.videourl.split('/')
       video = (<ReactNativeYouTube ref={'youtube'} lessonId={this.state.lessonId} id={slit[slit.length-1]}></ReactNativeYouTube>
       )
     }
+
+    else if(val.VideoHistory.videoUrl && val.VideoHistory.videoUrl.includes('https://youtube.com/embed/'))
+    {
+      var slit = val.VideoHistory.videoUrl.split('/')
+      video = (<ReactNativeYouTube ref={'youtube'} currentTime={val.VideoHistory.currentTime} lessonId={val.VideoHistory.lessonId} id={slit[slit.length-1]}></ReactNativeYouTube>
+      )
+    }
     else 
     {
-      video = (<ReactNativeVideo url={val.Video.promoVidUrl}></ReactNativeVideo>)
+      video = (<ReactNativeVideo url={val.VideoHistory.videoUrl}></ReactNativeVideo>)
     }
   
 

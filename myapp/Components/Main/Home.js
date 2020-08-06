@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL, detailwithlessonURL} from './../../API/Url'
+import {courseinfoURL, DetailAuthorURL, detailwithlessonURL,lastwatchedlessonURL} from './../../API/Url'
 const Api = new API()
 
 export default class Home extends Component{  
@@ -35,6 +35,13 @@ export default class Home extends Component{
               if(res)
               {
                 val.toggleVideo(res.data.payload)
+                console.log(val.processcourses[index].id)
+                Api.GetRequestWithParameHeader(lastwatchedlessonURL, val.processcourses[index].id,config).then(res=>{
+                  if(res)
+                  {
+                    val.toggleVideoHistory(res.data.payload)         
+                  }
+                })
                 Api.GetRequestWithParam(DetailAuthorURL, val.processcourses[index]['instructorId']).then(res=>{
                   if(res)
                   {
@@ -42,6 +49,7 @@ export default class Home extends Component{
                     this.props.navigation.navigate('Videoplayer');
                   }
                 })
+                
               }
             }) 
           }}>
@@ -167,6 +175,7 @@ export default class Home extends Component{
                     this.props.navigation.navigate('Videoplayer');
                   }
                 })
+                
               }
             }) 
           }}>

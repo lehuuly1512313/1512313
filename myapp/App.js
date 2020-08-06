@@ -172,6 +172,10 @@ export default class App extends Component{
       this.setState({UrlVideoDownload})
     }
 
+    this.toggleVideoHistory = (VideoHistory)=>{
+      this.setState({VideoHistory})
+    }
+
     this.state={
       Teachers: [],
       Account: null,
@@ -197,6 +201,8 @@ export default class App extends Component{
       recommendcourse: [],
       Homes: [],
       categoryall: [],
+      VideoHistory: [],
+      toggleVideoHistory: this.toggleVideoHistory,
       toggleLanguage: this.toggleLanguage,
       toggleAccount: this.toggleAccount,
       toggleHomes: this.toggleHomes,

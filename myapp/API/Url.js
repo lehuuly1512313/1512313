@@ -21,6 +21,8 @@ export const categoryallURL = 'https://api.itedu.me/category/all'
 export const categoryURL = 'https://api.itedu.me/category/'
 export const ratingcourseURL = 'https://api.itedu.me/course/rating-course'
 export const updatecurrenttimelearnvideoURL = 'https://api.itedu.me/lesson/update-current-time-learn-video'
+export const listexerciselessonURL = 'https://api.itedu.me/exercise/student/list-exercise-lesson'
+export const lastwatchedlessonURL = 'https://api.itedu.me/course/last-watched-lesson/'
 
 export const updatefavoritecategoriesURL = 'https://api.itedu.me/user/update-favorite-categories'
 export const coursesuserfavoritecategoriesURL = 'https://api.itedu.me/course/courses-user-favorite-categories'

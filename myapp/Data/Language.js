@@ -230,14 +230,16 @@ export var Language = [
             Addtofavorite: 'Add to favorite',
             Download: 'Download',
             Relatedpathsandcourses: 'Comment list',
-            Takelearningcheck: 'Take learning check',
+            Takelearningcheck: 'List of ratings',
             Contents:'Contents',
-            Transcripts: 'Transcripts',
+            Transcripts: 'Exercises',
             Ratting: 'Ratting',
             formalityPoint: 'Formality',
             contentPoint: 'Content',
             presentationPoint: 'Presentation',
-            Point: 'Points'
+            Point: 'Points',
+            title: 'Title',
+            numberQuestion: 'Number question',
        }
     },
     {
@@ -471,14 +473,16 @@ export var Language = [
             Addtofavorite: 'Thêm vào yêu thích',
             Download: 'Tải xuống',
             Relatedpathsandcourses: 'Danh sách bình luận',
-            Takelearningcheck: 'Bài tập',
+            Takelearningcheck: 'Danh sách đánh giá',
             Contents:'Nội dung',
-            Transcripts: 'Bảng điểm',
+            Transcripts: 'Bài tập',
             Ratting: 'Đánh giá của học viên',
             formalityPoint: 'Hình thức',
             contentPoint: 'Nội dung',
             presentationPoint: 'Trình bày',
-            Point: 'Điểm'
+            Point: 'Điểm',
+            title: 'Tiêu đề bài kiểm tra',
+            numberQuestion: 'Số câu hỏi',
        }
     }
  ]
