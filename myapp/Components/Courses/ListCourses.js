@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
+import {Linking, Alert, Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
 import {
@@ -8,9 +8,8 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
+import {getcourseinfoURL, courseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
 
 
 const Api = new API()
@@ -21,16 +20,15 @@ class Item extends Component{
   render()
   {
     return(
-      <View style={{
-        flexDirection: 'column'
-      }}>
+     
+      <View >
         <View style={{
           flex: 1,
           flexDirection: 'row',
           marginLeft: 20,
           marginRight: 20,
           marginTop: 10,
-            marginBottom: 10,
+          marginBottom: 10,
         }}>
           
           <Image style={styles.strech} source={{uri: this.props.item.imageUrl}}></Image>
@@ -145,16 +143,38 @@ class Item extends Component{
                     var data = {
                       courseId: this.props.item.id
                     }
-
-                    console.log(data)
+                    
                       Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
                         if(res)
                         {
-                          alert('Bạn đã đăng ký khóa học này thành công')
+                          alert('Đăng ký khóa học này thành công')
                         }
                         else
                         {
-                          alert('Bạn đã đăng ký khóa học này rồi hoặc đây không phải là một khóa học miễn phí')
+                          Api.GetRequestWithParameHeader(getcourseinfoURL, this.props.item.id, config).then(res=>{
+                            if(res.data.payload.price === 0)
+                            {
+                              alert('Bạn đã đăng ký khóa học này rồi')
+                            }
+                            else
+                            {
+                              Alert.alert(
+                                "Thông báo",
+                                "Đây không phải là một khóa học miễn phí! nhấn tiếp tục nếu bạn muốn mua khóa học này!",
+                                [
+                                  {
+                                    text: "Hủy",
+                                    style: "cancel"
+                                  },
+                                  { text: "Tiếp tục", onPress: () => {
+                                    var uri = `https://itedu.me/payment/${this.props.item.id}`
+                                    Linking.openURL(uri)
+                                  } }
+                                ],
+                                { cancelable: false }
+                              );
+                            }
+                          })
                         }
                       })
                     }}>
@@ -167,7 +187,6 @@ class Item extends Component{
                     };
                     var data = {
                       courseId: this.props.item.id
-                      
                     }
                       Api.PostRequest(data, likecourseURL, config).then(res=>{
                         if(res)
@@ -209,6 +228,7 @@ class Item extends Component{
           marginRight: 20,
         
         }}></View>
+        
       </View>
     )
   }
@@ -318,5 +338,15 @@ const styles = StyleSheet.create({
   txtitem:{
     color: 'white',
     fontSize: 16,
+  },
+  txtbtn4:{
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold'
+  },
+  txtbtn5:{
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 });

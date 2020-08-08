@@ -23,9 +23,7 @@ export const ratingcourseURL = 'https://api.itedu.me/course/rating-course'
 export const updatecurrenttimelearnvideoURL = 'https://api.itedu.me/lesson/update-current-time-learn-video'
 export const listexerciselessonURL = 'https://api.itedu.me/exercise/student/list-exercise-lesson'
 export const lastwatchedlessonURL = 'https://api.itedu.me/course/last-watched-lesson/'
-
-export const updatefavoritecategoriesURL = 'https://api.itedu.me/user/update-favorite-categories'
-export const coursesuserfavoritecategoriesURL = 'https://api.itedu.me/course/courses-user-favorite-categories'
+export const getcourseinfoURL = 'https://api.itedu.me/payment/get-course-info/'
 
 
 // tìm kiếm tất cả các khóa học của một lĩnh vực

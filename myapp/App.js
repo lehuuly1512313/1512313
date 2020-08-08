@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useReducer} from 'react'
 import Screen from './Components/MainScreen/Screen'
 import {Mycontext} from './Context/Mycontext'
 import { MenuProvider } from 'react-native-popup-menu';
@@ -6,17 +6,14 @@ import {Theme} from './Data/Theme'
 import {Language} from './Data/Language'
 import API from './API/Api'
 import {ListAuthorsURL, topnewURL,toprateURL,categoryallURL} from './API/Url'
-import Rating from './Components/Others/Rating'
-
-
 
 const Api = new API()
 
 export default class App extends Component{
 
+
   constructor(props){
     super(props)
-
     Api.GetRequest(categoryallURL).then(res=>{
       if(res)
       {

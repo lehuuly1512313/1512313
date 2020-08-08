@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight, Dimensions,TextInput,Image, FlatList } from 'react-native';
+import { Text, Linking, View, StyleSheet, TouchableHighlight, Dimensions,TextInput,Image, FlatList } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
 import API from './../../API/Api'
@@ -9,7 +9,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import {courseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
+import {courseinfoURL,getcourseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
 
 const Api = new API()
 
@@ -169,7 +169,30 @@ class Item extends Component{
                         }
                         else
                         {
-                          alert('Bạn đã đăng ký khóa học này rồi hoặc đây không phải là một khóa học miễn phí')
+                          Api.GetRequestWithParameHeader(getcourseinfoURL, this.props.item.id, config).then(res=>{
+                            if(res.data.payload.price === 0)
+                            {
+                              alert('Bạn đã đăng ký khóa học này rồi')
+                            }
+                            else
+                            {
+                              Alert.alert(
+                                "Thông báo",
+                                "Đây không phải là một khóa học miễn phí! nhấn tiếp tục nếu bạn muốn mua khóa học này!",
+                                [
+                                  {
+                                    text: "Hủy",
+                                    style: "cancel"
+                                  },
+                                  { text: "Tiếp tục", onPress: () => {
+                                    var uri = `https://itedu.me/payment/${this.props.item.id}`
+                                    Linking.openURL(uri)
+                                  } }
+                                ],
+                                { cancelable: false }
+                              );
+                            }
+                          })
                         }
                       })
                     }}>
