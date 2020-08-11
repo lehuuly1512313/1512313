@@ -24,6 +24,7 @@ export const updatecurrenttimelearnvideoURL = 'https://api.itedu.me/lesson/updat
 export const listexerciselessonURL = 'https://api.itedu.me/exercise/student/list-exercise-lesson'
 export const lastwatchedlessonURL = 'https://api.itedu.me/course/last-watched-lesson/'
 export const getcourseinfoURL = 'https://api.itedu.me/payment/get-course-info/'
+export const logingooglemobileURL = 'https://api.itedu.me/user/login-google-mobile'
 
 
 // tìm kiếm tất cả các khóa học của một lĩnh vực

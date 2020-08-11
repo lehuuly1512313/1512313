@@ -4,7 +4,7 @@ import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
 import {LoginURL} from './../../API/Url'
 import Notification from './../Notification/Notification'
-import {getprocesscoursesURL,getfavoritecoursesURL,recommendcourseURL} from './../../API/Url'
+import {logingooglemobileURL, getprocesscoursesURL,getfavoritecoursesURL,recommendcourseURL} from './../../API/Url'
 import { GoogleSignin, GoogleSigninButton, statusCodes} from '@react-native-community/google-signin';
 const Api = new API()
 
@@ -42,7 +42,7 @@ export default class Login extends Component{
           //It is mandatory to call this method before attempting to call signIn()
           scopes: ['https://www.googleapis.com/auth/drive.readonly'],
           // Repleace with your webClientId generated from Firebase console
-          webClientId: '',// my clientID
+          webClientId: '1057330335216-b6pdknun5vig30ioeq4naddn5hqg4uck.apps.googleusercontent.com',// my clientID
           offlineAccess: false
         });
         //Check if user is already signed in
@@ -65,7 +65,6 @@ export default class Login extends Component{
       _getCurrentUserInfo = async () => {
         try {
           const userInfo = await GoogleSignin.signInSilently();
-          console.log('User Info --> ', userInfo);
           this.setState({ userInfo: userInfo });
         } catch (error) {
           if (error.code === statusCodes.SIGN_IN_REQUIRED) {
@@ -83,7 +82,6 @@ export default class Login extends Component{
         try {
           await GoogleSignin.revokeAccess();
           await GoogleSignin.signOut();
-          this.setState({ userInfo: null }); // Remove the user from your app's state as well
         } catch (error) {
           console.error(error);
         }
@@ -97,9 +95,54 @@ export default class Login extends Component{
             //Always resolves to true on iOS.
             showPlayServicesUpdateDialog: true,
           });
+          var {username, password} = this.state
+          let val = this.context
           const userInfo = await GoogleSignin.signIn();
-          console.log('User Info --> ', userInfo);
           this.setState({ userInfo: userInfo });
+          var data = {
+            user:{
+              email: userInfo.user.email,
+              id: userInfo.user.id
+            }
+          }
+          this.refs.Notification.showshare()
+          Api.PostRequest(data,logingooglemobileURL, null).then(res=>{
+            if(res)
+            {
+              this.setState({notification: 'đang đăng nhập vui lòng đợi trong giây lát!...'})
+              val.toggleAccount(res.data.userInfo)
+              val.togglePassword(password)
+              val.toggleToken(res.data.token)
+              val.toggleggAccount(true)
+              setTimeout(() => {
+                this.props.navigation.navigate('Sum')
+              }, 1500);
+              console.log(res.data.userInfo)
+              const config = {
+                headers: { Authorization: `Bearer ${res.data.token}` }
+            };
+                Api.GetRequestWithParameHeader(getprocesscoursesURL,'', config).then(res=>{
+                  if(res)
+                  {
+                  val.toggleprocesscourses(res.data.payload)
+                  }
+                })
+
+                Api.GetRequestWithParameHeader(getfavoritecoursesURL,'', config).then(res=>{
+                  if(res)
+                  {
+                  val.togglefavoritecourses(res.data.payload)
+                  }
+                })
+
+                Api.GetRequestWithThreeParam(recommendcourseURL,res.data.userInfo.id,10,1).then(res=>{
+                  if(res)
+                  {
+                    val.togglerecommendcourse(res.data.payload)
+                  }
+                })
+            }
+          })
         } catch (error) {
           console.log('Message', error.message);
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {

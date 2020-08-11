@@ -1,4 +1,4 @@
-package com.myapp;
+package lehuuly.casestudy;
 
 import android.app.Application;
 import android.content.Context;

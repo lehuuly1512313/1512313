@@ -418,7 +418,7 @@ export var Language = [
             category: 'Danh mục'
         },
         Sum: {
-            Signout: 'Đăng xuất',
+            Signout: 'Sign out',
             Home: 'Trang chủ',
             Download: 'Tải xuống',
             Browse:'Khám phá',

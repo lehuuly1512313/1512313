@@ -1,4 +1,4 @@
-package com.myapp;
+package lehuuly.casestudy;
 
 import com.facebook.react.ReactActivity;
 

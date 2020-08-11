@@ -173,7 +173,12 @@ export default class App extends Component{
       this.setState({VideoHistory})
     }
 
+    this.toggleggAccount =(ggAccount)=>{
+      this.setState({ggAccount})
+    }
+
     this.state={
+      ggAccount: false,
       Teachers: [],
       Account: null,
       Teacher: null,
@@ -199,6 +204,7 @@ export default class App extends Component{
       Homes: [],
       categoryall: [],
       VideoHistory: [],
+      toggleggAccount: this.toggleggAccount,
       toggleVideoHistory: this.toggleVideoHistory,
       toggleLanguage: this.toggleLanguage,
       toggleAccount: this.toggleAccount,

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1057330335216",
+    "firebase_url": "https://login-e23c7.firebaseio.com",
+    "project_id": "login-e23c7",
+    "storage_bucket": "login-e23c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057330335216:android:79b933dd8e9789f18de135",
+        "android_client_info": {
+          "package_name": "lehuuly.casestudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057330335216-mma13lo5p5m000b04r2iaf4ufk2cm2t2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lehuuly.casestudy",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1057330335216-b6pdknun5vig30ioeq4naddn5hqg4uck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAihQuWbk5b3uSW8Zdl-3jsXSi86U4d21c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057330335216-b6pdknun5vig30ioeq4naddn5hqg4uck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

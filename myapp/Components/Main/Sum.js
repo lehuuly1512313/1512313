@@ -12,6 +12,8 @@ import {
     MenuOption,
     MenuTrigger,
   } from 'react-native-popup-menu';
+  import { GoogleSignin} from '@react-native-community/google-signin';
+  import Notification from './../Notification/Notification'
 
 export default class Sum extends Component{
 
@@ -32,7 +34,8 @@ export default class Sum extends Component{
             showsearch: false,
             name: 'Home',
             Account: null,
-            Signquestion: 'Sign out'
+            Signquestion: 'Sign out',
+            notification: 'Đang đăng xuất vui lòng đợi trong giây lát!...',
         }
         
     }
@@ -100,6 +103,18 @@ export default class Sum extends Component{
         })
         
     }
+
+
+    _signOut = async () => {
+        //Remove user session from the device.
+        try {
+          await GoogleSignin.revokeAccess();
+          await GoogleSignin.signOut();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
     componentWillMount()
     {
         var val = this.context
@@ -131,6 +146,8 @@ export default class Sum extends Component{
 
           }}></Image>
             )
+            if(!val.ggAccount)
+            {
             change = (
                 <MenuOption onSelect={()=>{
                     this.props.navigation.navigate('ChangePassword')
@@ -139,6 +156,7 @@ export default class Sum extends Component{
                  </MenuOption>
                  
             )
+            
             changeEmail= (
                 <MenuOption onSelect={()=>{
                     this.props.navigation.navigate('ChangeUserEmail')
@@ -147,6 +165,7 @@ export default class Sum extends Component{
                  </MenuOption>
                  
             )
+                }
         }
         else
         {
@@ -212,8 +231,10 @@ export default class Sum extends Component{
                     {change}
                     {changeEmail}
                     <MenuOption onSelect={()=>{
+                        this.refs.Notification.showshare()
                         if(this.state.Signquestion === val.Language.Sum.Signout)
                         {
+                            setTimeout(() => {
                             val.toggleAccount(null)
                             val.toggleToken('')
                             val.toggleprocesscourses([])
@@ -221,8 +242,17 @@ export default class Sum extends Component{
                             val.togglerecommendcourse([])
                             val.toggleHomes([])
                             val.togglePassword('')
+                              }, 200);
+                            if(val.ggAccount)
+                            {
+                                this._signOut()
+                                val.toggleggAccount(false)
+                            }
                         }
-                        this.state.Signquestion === val.Language.Sum.Signin ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
+                        setTimeout(() => {
+                            this.state.Signquestion === val.Language.Sum.Signin ? this.props.navigation.navigate('Login') : this.props.navigation.navigate('Start')
+                          }, 200);
+                        
                     }}>
                     <Text style={{fontSize: 20}} >{this.state.Signquestion}</Text>
                     </MenuOption> 
@@ -257,6 +287,7 @@ export default class Sum extends Component{
                     <View style={styles.txtitem} onStartShouldSetResponder={this.showbrowse}><Icon name='open-in-browser' size={28} color={this.state.showbrowse ? '#517fa4':'black'}/><Text style={{color: this.state.showbrowse ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Browse}</Text></View>
                     <View style={styles.txtitem} onStartShouldSetResponder={this.showsearch}><Icon name='search' size={28} color={this.state.showsearch ? '#517fa4':'black'}/><Text style={{color: this.state.showsearch ? '#517fa4':'black', fontSize: 16}}>{val.Language.Sum.Search}</Text></View>
                 </View>
+                <Notification ref={'Notification'} notification={this.state.notification}></Notification>
             </View>
         )
     }
