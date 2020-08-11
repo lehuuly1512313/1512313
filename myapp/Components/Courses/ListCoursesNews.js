@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, Linking, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
+import { Text, View, Linking,Alert, StyleSheet, TouchableHighlight,TextInput,Image, FlatList } from 'react-native';
 import {Mycontext} from './../../Context/Mycontext'
 import { Icon } from 'react-native-elements'
 import {

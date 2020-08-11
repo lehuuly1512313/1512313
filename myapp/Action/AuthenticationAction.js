@@ -8,7 +8,6 @@ export const Login = (dispatch)=> (username, password) =>{
             email: username,
             password,
           }
-          
           Api.PostRequest(Data,LoginURL,null).then(res=>{
             if(res.status === 200)
             {
