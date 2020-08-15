@@ -131,7 +131,8 @@ export var Language = [
             Skills: 'Skills',
             Createdat:'Created at',
             Updatedat:'Updated at',
-            Ratting: 'Ratting'
+            Ratting: 'Ratting',
+            coursesLikeCategory: 'coursesLikeCategory'
         },
         Browser: {
             PopularSkills: 'Popular Skills',
@@ -240,6 +241,7 @@ export var Language = [
             Point: 'Points',
             title: 'Title',
             numberQuestion: 'Number question',
+            Comments: 'Comments'
        }
     },
     {
@@ -374,7 +376,8 @@ export var Language = [
             Skills: 'Kỹ năng',
             Createdat:'Khởi tạo',
             Updatedat:'Cập nhật',
-            Ratting: 'Đánh giá'
+            Ratting: 'Đánh giá',
+            coursesLikeCategory: 'Khóa học cùng chủ đề'
         },
         Browser: {
             PopularSkills: 'Kỹ năng phổ biến',
@@ -483,6 +486,7 @@ export var Language = [
             Point: 'Điểm',
             title: 'Tiêu đề bài kiểm tra',
             numberQuestion: 'Số câu hỏi',
+            Comments: 'DS đánh giá'
        }
     }
  ]

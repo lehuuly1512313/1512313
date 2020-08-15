@@ -9,7 +9,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import {courseinfoURL,getcourseinfoURL, DetailAuthorURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
+import {courseinfoURL,getcourseinfoURL, DetailAuthorURL, getcoursedetailURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
 
 const Api = new API()
 
@@ -200,6 +200,12 @@ class Item extends Component{
                     </MenuOption >
                 
                     <MenuOption onSelect={()=>{
+                       Api.GetRequestWithTwoParam(getcoursedetailURL, this.props.item.id, null).then(res=>{
+                        if(res)
+                        {
+                          this.props.context.togglecoursesLikeCategory(res.data.payload.coursesLikeCategory)
+                        }
+                      })
                        Api.GetRequestWithParam(courseinfoURL, this.props.item.id).then(res=>{
                         if(res)
                         {

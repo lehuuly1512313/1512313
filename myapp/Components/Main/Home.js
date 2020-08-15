@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {courseinfoURL, DetailAuthorURL, detailwithlessonURL,lastwatchedlessonURL} from './../../API/Url'
+import {courseinfoURL,getcoursedetailURL, DetailAuthorURL, detailwithlessonURL,lastwatchedlessonURL} from './../../API/Url'
 const Api = new API()
 
 export default class Home extends Component{  
@@ -31,6 +31,12 @@ export default class Home extends Component{
             const config = {
               headers: { Authorization: `Bearer ${val.Token}` }
           };
+            Api.GetRequestWithTwoParam(getcoursedetailURL, val.processcourses[index].id, null).then(res=>{
+              if(res)
+              {
+                val.toggleRattinglist(res.data.payload.ratings.ratingList)
+              }
+            })
             Api.GetRequestWithParameHeader(detailwithlessonURL, val.processcourses[index].id,config).then(res=>{
               if(res)
               {

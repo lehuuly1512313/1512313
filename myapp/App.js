@@ -177,6 +177,14 @@ export default class App extends Component{
       this.setState({ggAccount})
     }
 
+    this.toggleRattinglist = (Rattinglist)=>{
+      this.setState({Rattinglist})
+    }
+
+    this.togglecoursesLikeCategory = (coursesLikeCategory)=>{
+      this.setState({coursesLikeCategory})
+    }
+
     this.state={
       ggAccount: false,
       Teachers: [],
@@ -194,6 +202,10 @@ export default class App extends Component{
       history: ['ReactJS',
       'ReactNative'],
       Theme: Theme[0],
+      Rattinglist: [],
+      toggleRattinglist: this.toggleRattinglist,
+      coursesLikeCategory: [],
+      togglecoursesLikeCategory: this.togglecoursesLikeCategory,
       Token: '',
       news: '',
       rates: '',

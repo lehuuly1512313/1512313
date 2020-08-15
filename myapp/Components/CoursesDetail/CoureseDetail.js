@@ -1,7 +1,60 @@
 import React, {Component} from 'react'
-import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList,ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList,ScrollView } from 'react-native';
 import DropDownItem from "react-native-drop-down-item"
 import {Mycontext} from './../../Context/Mycontext'
+
+class Item extends Component{
+  render()
+  {
+    return(
+     
+      <View >
+        <View style={{
+          
+          flexDirection: 'row',
+          marginLeft: 20,
+          marginRight: 20,
+          marginTop: 10,
+          marginBottom: 10,
+        }}>
+          
+          <Image style={styles.strech} source={{uri: this.props.item.imageUrl}}></Image>
+          
+          <View style={{
+           
+            flexDirection: 'column',
+            height: 120,
+            paddingLeft: 10,
+            justifyContent: 'center'
+          }}>
+            
+             <Text style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.title} </Text>
+           
+          </View>
+
+          <View style={{
+            justifyContent: 'center',
+            alignItems:'center',
+            
+          }}>
+          </View>
+        </View>
+        <View style={{
+          height: 1,
+          backgroundColor: `${this.props.context.Theme.Color}`,
+          marginLeft: 20,
+          marginRight: 20,
+        
+        }}></View>
+        
+      </View>
+    )
+  }
+}
+
 
 export default class CoursesDetail extends Component{
   render()
@@ -9,7 +62,7 @@ export default class CoursesDetail extends Component{
     var liststar = [];
     let count = 0
     var val = this.context
-    console.log(val.Language.ListCourses)
+    console.log(val.coursesLikeCategory)
     for (let index = 0; index < 4 - 0.5; index++) {
       count++;
       liststar.push(
@@ -100,7 +153,8 @@ export default class CoursesDetail extends Component{
                     backgroundColor:'gray',
                     borderRadius: 5,
                     padding:10,
-                    marginTop: 5
+                    marginTop: 5,
+                    marginBottom: 5,
                 }}>
                   <Text style={{
                     fontSize: 18,
@@ -185,6 +239,46 @@ export default class CoursesDetail extends Component{
               </View>
              </View>
             </DropDownItem>
+            <DropDownItem
+              key={1}
+              style={styles.dropDownItem}
+              contentVisible={false}
+              header={
+                <View style={{
+                  flexDirection:'row',
+                  backgroundColor:'gray',
+                  borderRadius: 5,
+                  padding:10,
+                  marginBottom: 5,
+                  marginTop: 5,
+                }}>
+                  <Text style={{
+                    fontSize: 18,
+                    color: 'white',
+                    flex: 1,
+                  }}>{val.Language.CoureseDetail.coursesLikeCategory}</Text>
+                  <Image style={styles.strech2} source={{uri: 'https://cdn.onlinewebfonts.com/svg/img_227668.png'}}></Image>
+                </View>
+              }>
+             <View style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: `${val.Theme.BackgroundColor}`,
+                  justifyContent: 'center'
+                }}>
+       
+                <FlatList 
+                  data={val.coursesLikeCategory}
+                  nestedScrollEnabled={true}
+                  renderItem={({index, item})=>{
+                    return(
+                      <Item item={item} context={val} index={index}></Item>
+                    ) 
+                  }}
+                  >
+                </FlatList>
+      </View>
+            </DropDownItem>
           </ScrollView>
       </View>
     )
@@ -224,7 +318,7 @@ const styles = StyleSheet.create({
   strech:{
       width: 120,
       height: 120,
-      borderRadius: 60
+
   },
   strech2:{
     width: 24,

@@ -1,15 +1,7 @@
 import React, {Component} from 'react'
-import { Text, View , ScrollView ,Button, StyleSheet, TouchableHighlight,TextInput,  Dimensions, Image, FlatList, TouchableOpacityBase } from 'react-native';
-import Video from 'react-native-video';
+import { Text, View , ScrollView , StyleSheet, TouchableHighlight,  Dimensions, Image, FlatList } from 'react-native';
 import Share from './Share'
 import {Mycontext} from './../../Context/Mycontext'
-import { Icon } from 'react-native-elements'
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
 import ReactNativeYouTube from './ReactNativeYouTube';
 import ReactNativeVideo from './ReactNativeVideo'
 import API from './../../API/Api'
@@ -19,9 +11,59 @@ const Api = new API()
 
 const examimg = 'https://img.freepik.com/free-photo/test-score-sheet-with-answers_93675-5220.jpg?size=626&ext=jpg'
 
-class Item extends Component{
+class Itemcmm extends Component{
 
   
+  render()
+  {
+    return(
+      <View style={{
+        flexDirection: 'column'
+      }}>
+        <View style={{
+          flexDirection: 'row',
+          marginLeft: 20,
+          marginRight: 20,
+          marginTop: 10,
+          marginBottom: 10,
+          
+        }}>
+          
+           <Image style={styles.strech2} source={{uri: this.props.item.user.avatar}}></Image>
+           
+         <View style={{
+           marginLeft: 10,
+           justifyContent: 'center'
+         }}>
+           <Text  style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.user.name}</Text>
+           <Text  style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.createdAt}</Text>
+         <Text  style={{
+              color: `${this.props.context.Theme.Color}`,
+              fontSize: 18
+            }}>{this.props.item.content}</Text>
+         </View>
+            
+
+        </View>
+         
+        <View style={{
+          height: 1,
+          backgroundColor: `${this.props.context.Theme.Color}`,
+          marginLeft: 20,
+          marginRight: 20,
+        }}></View>
+      </View>
+    )
+  }
+}
+
+class Item extends Component{
   render()
   {
     return(
@@ -292,6 +334,34 @@ class Transcripts extends Component{
   }
 }
 
+class Comments extends Component{
+  render()
+  {
+    return(
+      <View style={{
+        height: 400,
+        borderColor: `${this.props.context.Theme.Color}`,
+        borderWidth: 1,
+        marginTop: 20,
+        marginLeft:  20,
+        marginRight: 20,
+      }}>
+
+          <FlatList 
+          nestedScrollEnabled={true}
+          data={this.props.context.Rattinglist}
+          renderItem={({index, item})=>{
+            return(
+              <Itemcmm item={item} context={this.props.context} index={index}></Itemcmm >
+            ) 
+          }}
+          >
+        </FlatList>
+      </View>
+    )
+  }
+}
+
 export default class Videoplayer extends Component{
 
     constructor(props)
@@ -300,6 +370,7 @@ export default class Videoplayer extends Component{
       this.state={
         contents: 'blue',
         transcripts: 'gray',
+        comments: 'gray',
         videourl: '',
         lessonId: '',
         isReady: false,
@@ -508,18 +579,7 @@ export default class Videoplayer extends Component{
                 }}>{val.Language.Videoplayer.Download}</Text>
                 </View>
               </View>
-              <View >
-                <TouchableHighlight style={styles.btn11}><Text style={{
-                  color: `${val.Theme.Color}`,
-                  fontSize: 18,
-                  fontWeight:'bold'
-                }}>{val.Language.Videoplayer.Relatedpathsandcourses}</Text></TouchableHighlight>
-                <TouchableHighlight style={styles.btn11}><Text style={{
-                  color: `${val.Theme.Color}`,
-                  fontSize: 18,
-                  fontWeight:'bold'
-                }}>{val.Language.Videoplayer.Takelearningcheck}</Text></TouchableHighlight>
-              </View>
+             
               <View style={styles.content}>
                 <View style={
                   {
@@ -532,7 +592,8 @@ export default class Videoplayer extends Component{
                   }
                 } onStartShouldSetResponder={()=>this.setState({
                   contents: 'blue',
-                  transcripts: 'gray'
+                  transcripts: 'gray',
+                  comments: 'gray'
                 })}>
                   <Text style={{
                   color: `${val.Theme.Color}`,
@@ -552,7 +613,8 @@ export default class Videoplayer extends Component{
                   }
                 } onStartShouldSetResponder={()=>this.setState({
                   contents: 'gray',
-                  transcripts: 'blue'
+                  transcripts: 'blue',
+                  comments: 'gray'
                 })}>
                   <Text style={{
                   color: `${val.Theme.Color}`,
@@ -560,9 +622,30 @@ export default class Videoplayer extends Component{
                   fontWeight:'bold'
                 }}>{val.Language.Videoplayer.Transcripts}</Text>
                 </View>
+                <View style={
+                  {
+                    flex: 1,
+                    justifyContent:'center',
+                    alignItems:'center',
+                    borderBottomWidth: 4,
+                    borderBottomColor: `${this.state.comments}`,
+                    padding: 10
+
+                  }
+                } onStartShouldSetResponder={()=>this.setState({
+                  contents: 'gray',
+                  transcripts: 'gray',
+                  comments: 'blue'
+                })}>
+                  <Text style={{
+                  color: `${val.Theme.Color}`,
+                  fontSize: 18,
+                  fontWeight:'bold'
+                }}>{val.Language.Videoplayer.Comments}</Text>
+                </View>
               </View>
              
-              {this.state.contents === 'blue' ? (
+                {this.state.contents === 'blue' ? (
                 <View>
                     <Contents setStateVideoURL={this.setStateVideoURL} setStatelessonId={this.setStatelessonId} context={val} imageUrl={val.Video.imageUrl}></Contents>
                 </View>
@@ -572,7 +655,11 @@ export default class Videoplayer extends Component{
                     <Transcripts context={val}></Transcripts>
                   </View>
                 ): null}
-              
+                {this.state.comments === 'blue' ? (
+                  <View>
+                    <Comments context={val}></Comments>
+                  </View>
+                ): null}
                
               </ScrollView>
               <Share ref={'share'}></Share>
@@ -616,8 +703,9 @@ const styles = StyleSheet.create({
       height: 120,
   },
   strech2:{
-    width: 40,
-    height: 40,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   btn:{
       padding: 10,
