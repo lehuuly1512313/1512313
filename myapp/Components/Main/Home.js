@@ -62,7 +62,6 @@ export default class Home extends Component{
               if(res)
               {
                 val.toggleVideo(res.data.payload)
-                console.log(val.processcourses[index].id)
                 Api.GetRequestWithParameHeader(lastwatchedlessonURL, val.processcourses[index].id,config).then(res=>{
                   if(res)
                   {

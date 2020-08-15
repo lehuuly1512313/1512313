@@ -87,7 +87,7 @@ export default class Register extends Component{
                       fontSize: 20,
                       marginBottom: 10,
                       color: `${val.Theme.Color}`
-                    }}>{val.Language.Register.Email}</Text>
+                    }}>{val.Language.Register.EmailorUsername}</Text>
                     <TextInput onChangeText={this.handleEmail} style={{
                       padding: 10,
                       fontSize: 20,

@@ -13,6 +13,7 @@ export var Language = [
         Register:
         {
             EmailorUsername: 'Email',
+            Username: 'User Name',
             Phone: 'Phone',
             SIGNIN: 'SIGN IN',
             Needhelp: 'Need help?',
@@ -258,6 +259,7 @@ export var Language = [
         Register:
         {
             EmailorUsername: 'Email',
+            Username: 'Tên tài khoản',
             Phone: 'Số điện thoại',
             SIGNIN: 'ĐĂNG NHẬP',
             Needhelp: 'Trợ giúp?',

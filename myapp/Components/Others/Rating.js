@@ -223,6 +223,7 @@ export default class Rating extends Component{
   render()
   {
     var val = this.context
+    console.log(val.CoursesID)
     return(
       <View style={{
         width: '100%',
@@ -289,7 +290,7 @@ export default class Rating extends Component{
       <View style={styles.flex}>
                     <TouchableHighlight onPress={()=>{
                         var data = {
-                            courseId: "24b1856a-953c-419b-84c5-a9ef44bc139e",
+                            courseId: val.CoursesID,
                             formalityPoint: this.state.formalityPoint,
                             contentPoint: this.state.contentPoint,
                             presentationPoint: this.state.presentationPoint,

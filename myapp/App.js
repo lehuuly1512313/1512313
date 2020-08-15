@@ -185,7 +185,13 @@ export default class App extends Component{
       this.setState({coursesLikeCategory})
     }
 
+    this.toggleCoursesID = (CoursesID)=>{
+      this.setState({CoursesID})
+    }
+
     this.state={
+      CoursesID: '',
+      toggleCoursesID: this.toggleCoursesID,
       ggAccount: false,
       Teachers: [],
       Account: null,

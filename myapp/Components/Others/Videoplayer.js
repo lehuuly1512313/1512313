@@ -428,8 +428,6 @@ export default class Videoplayer extends Component{
       video = (<ReactNativeVideo url={val.VideoHistory.videoUrl}></ReactNativeVideo>)
     }
   
-
-    var date = new Date()
        return(
          <View style={{
           width: '100%',
@@ -520,6 +518,7 @@ export default class Videoplayer extends Component{
                   alignItems: 'center',
                   flex: 1
                 }} onStartShouldSetResponder={()=>{
+                  val.toggleCoursesID(val.Video.section[0].courseId)
                   this.props.navigation.navigate('Rating')
                 }}>
                 <Image source={{uri: 'https://cms-assets.tutsplus.com/uploads/users/34/posts/30118/preview_image/star-rating.jpg'}} style={{
