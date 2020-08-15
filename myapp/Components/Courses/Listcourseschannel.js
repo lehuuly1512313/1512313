@@ -9,7 +9,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import {courseinfoURL, DetailAuthorURL,getcoursedetailURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
+import {courseinfoURL,lastwatchedlessonURL, DetailAuthorURL,getcoursedetailURL,detailwithlessonURL, getfreecoursesURL,likecourseURL} from './../../API/Url'
 
 const Api = new API()
 
@@ -53,8 +53,41 @@ class Item extends Component{
           marginTop: 10,
             marginBottom: 10,
         }}>
-          
+           <TouchableHighlight onPress={
+            ()=>{
+              const config = {
+                headers: { Authorization: `Bearer ${this.props.context.Token}` }
+            };
+              Api.GetRequestWithTwoParam(getcoursedetailURL, this.props.context.processcourses[this.props.index].id, null).then(res=>{
+                if(res)
+                {
+                  this.props.context.toggleRattinglist(res.data.payload.ratings.ratingList)
+                }
+              })
+              Api.GetRequestWithParameHeader(detailwithlessonURL, this.props.context.processcourses[this.props.index].id,config).then(res=>{
+                if(res)
+                {
+                  this.props.context.toggleVideo(res.data.payload)
+                  Api.GetRequestWithParameHeader(lastwatchedlessonURL, this.props.context.processcourses[this.props.index].id,config).then(res=>{
+                    if(res)
+                    {
+                      this.props.context.toggleVideoHistory(res.data.payload)         
+                    }
+                  })
+                  Api.GetRequestWithParam(DetailAuthorURL, this.props.context.processcourses[this.props.index]['instructorId']).then(res=>{
+                    if(res)
+                    {
+                      this.props.context.toggleTeacher(res.data.payload)             
+                      this.props.navigation.navigate('Videoplayer');
+                    }
+                  })
+                  
+                }
+              }) 
+            }}
+          >
           <Image style={styles.strech} source={{uri: this.props.item.courseImage}}></Image>
+          </TouchableHighlight>
           
           <View style={{
             flex: 1,

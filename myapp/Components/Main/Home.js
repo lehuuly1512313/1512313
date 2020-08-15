@@ -3,10 +3,31 @@ import { Text, View, StyleSheet, TouchableHighlight,TextInput,Image, FlatList, S
 import { Icon } from 'react-native-elements'
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {courseinfoURL,getcoursedetailURL, DetailAuthorURL, detailwithlessonURL,lastwatchedlessonURL} from './../../API/Url'
+import {getprocesscoursesURL, getfavoritecoursesURL, getcoursedetailURL, DetailAuthorURL, detailwithlessonURL,lastwatchedlessonURL} from './../../API/Url'
 const Api = new API()
 
-export default class Home extends Component{  
+export default class Home extends Component{
+  
+  componentWillMount()
+  {
+    var val =  this.context
+    const config = {
+      headers: { Authorization: `Bearer ${val.Token}` }
+  };
+      Api.GetRequestWithParameHeader(getprocesscoursesURL,'', config).then(res=>{
+        if(res)
+        {
+        val.toggleprocesscourses(res.data.payload)
+        }
+      })
+
+      Api.GetRequestWithParameHeader(getfavoritecoursesURL,'', config).then(res=>{
+        if(res)
+        {
+        val.togglefavoritecourses(res.data.payload)
+        }
+      })
+  }
 
   render()
   {
@@ -21,13 +42,13 @@ export default class Home extends Component{
         <View style={{
             marginRight: 20,
         }}>
-          <View style={{
+          <TouchableHighlight style={{
              backgroundColor: 'dimgray',
              height: '50%',
              width: 200,
              justifyContent: 'center',
              alignItems: 'center',
-          }} onStartShouldSetResponder={()=>{
+          }} onPress={()=>{
             const config = {
               headers: { Authorization: `Bearer ${val.Token}` }
           };
@@ -60,7 +81,7 @@ export default class Home extends Component{
             }) 
           }}>
             <Image source={{uri: val.processcourses[index].courseImage}} style={styles.strech4}></Image>
-          </View>
+          </TouchableHighlight>
           <View style={{
             backgroundColor: 'gray',
             height: '50%',
@@ -159,21 +180,33 @@ export default class Home extends Component{
         <View style={{
             marginRight: 20,
         }}>
-          <View style={{
-            backgroundColor: 'dimgray',
-            height: '50%',
-            width: 200,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }} onStartShouldSetResponder={()=>{
+          <TouchableHighlight style={{
+             backgroundColor: 'dimgray',
+             height: '50%',
+             width: 200,
+             justifyContent: 'center',
+             alignItems: 'center',
+          }} onPress={()=>{
             const config = {
               headers: { Authorization: `Bearer ${val.Token}` }
           };
-
+            Api.GetRequestWithTwoParam(getcoursedetailURL, val.favoritecourses[index].id, null).then(res=>{
+              if(res)
+              {
+                val.toggleRattinglist(res.data.payload.ratings.ratingList)
+              }
+            })
             Api.GetRequestWithParameHeader(detailwithlessonURL, val.favoritecourses[index].id,config).then(res=>{
               if(res)
               {
                 val.toggleVideo(res.data.payload)
+                console.log(val.processcourses[index].id)
+                Api.GetRequestWithParameHeader(lastwatchedlessonURL, val.favoritecourses[index].id,config).then(res=>{
+                  if(res)
+                  {
+                    val.toggleVideoHistory(res.data.payload)         
+                  }
+                })
                 Api.GetRequestWithParam(DetailAuthorURL, val.favoritecourses[index]['instructorId']).then(res=>{
                   if(res)
                   {
@@ -181,12 +214,15 @@ export default class Home extends Component{
                     this.props.navigation.navigate('Videoplayer');
                   }
                 })
-                
+              }
+              else
+              {
+                alert('Bạn chưa đăng ký khóa học này! để xem được hãy vui lòng đăng ký khóa học bằng cách click vào tất cả, sao đó click icon 3 chấm bên phải rồi sao đó ấn Đăng ký')
               }
             }) 
           }}>
             <Image source={{uri: val.favoritecourses[index].courseImage}} style={styles.strech4}></Image>
-          </View>
+          </TouchableHighlight>
           <View style={{
             backgroundColor: 'gray',
             height: '50%',

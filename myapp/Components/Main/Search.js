@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { Text, View ,StyleSheet, TouchableHighlight,TextInput,Image, FlatList, ScrollView, Dimensions, Alert } from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-import {Teachers} from './../../Data/Teacher'
 import {
   Menu,
   MenuOptions,
@@ -11,7 +10,7 @@ import {
 } from 'react-native-popup-menu';
 import {Mycontext} from './../../Context/Mycontext'
 import API from './../../API/Api'
-import {searchURL, getcoursedetailURL, detailwithlessonURL, DetailAuthorURL, likecourseURL, courseinfoURL, getfreecoursesURL} from './../../API/Url'
+import {searchURL, getcoursedetailURL, getcourseinfoURL, detailwithlessonURL, DetailAuthorURL, likecourseURL, courseinfoURL, getfreecoursesURL} from './../../API/Url'
 
 
 const Api = new API()
@@ -149,17 +148,44 @@ const Api = new API()
                    alignItems: 'center',
                 }}>
                     <MenuOption onSelect={()=>{
-                      const config = {
+                       const config = {
                         headers: { Authorization: `Bearer ${this.props.context.Token}` }
                     };
                     var data = {
                       courseId: this.props.item.id
-                      
                     }
+                    
                       Api.PostRequest(data, getfreecoursesURL, config).then(res=>{
                         if(res)
                         {
-                          alert('Bạn đã đăng ký khóa học này thành công')
+                          alert('Đăng ký khóa học này thành công')
+                        }
+                        else
+                        {
+                          Api.GetRequestWithParameHeader(getcourseinfoURL, this.props.item.id, config).then(res=>{
+                            if(res.data.payload.price === 0)
+                            {
+                              alert('Bạn đã đăng ký khóa học này rồi')
+                            }
+                            else
+                            {
+                              Alert.alert(
+                                "Thông báo",
+                                "Đây không phải là một khóa học miễn phí! nhấn tiếp tục nếu bạn muốn mua khóa học này!",
+                                [
+                                  {
+                                    text: "Hủy",
+                                    style: "cancel"
+                                  },
+                                  { text: "Tiếp tục", onPress: () => {
+                                    var uri = `https://itedu.me/payment/${this.props.item.id}`
+                                    Linking.openURL(uri)
+                                  } }
+                                ],
+                                { cancelable: false }
+                              );
+                            }
+                          })
                         }
                       })
                     }}>
